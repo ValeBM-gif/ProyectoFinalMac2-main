@@ -38,25 +38,24 @@ class MenuAdmin: NSViewController {
     @IBAction func eliminarUsuario(_ sender: NSButton) {
         if soloHayNumerosEnTxtID(){
             lblIDIncorrecto.isHidden = true
-            lblBajaCorrecta.isHidden = false
             idUsuarioAEliminar = txtID.integerValue
             if(idUsuarioAEliminar==0){
                 lblIDIncorrecto.stringValue = "*El admin no se puede eliminar*"
-                let tal = soloHayNumerosEnTxtID()
+                lblIDIncorrecto.isHidden = false
+                lblBajaCorrecta.isHidden = true
             }else{
-                lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+
                 if(idUsuarioActual==idUsuarioAEliminar){
                     print("AHORITA NO SE PUEDE ELIMINAR A UNO MISME")
+                    lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIDIncorrecto.isHidden = false
                     lblBajaCorrecta.isHidden = true
                 }else if checarExistenciaUsuario(id: idUsuarioAEliminar){
                     vc.usuarioLog.remove(at: idUsuarioAEliminar)
                     lblBajaCorrecta.isHidden=false
                     lblIDIncorrecto.isHidden=true
-                }else{
-                    lblBajaCorrecta.isHidden=true
-                    lblIDIncorrecto.isHidden=false
                 }
+                
             }
         }else{
             lblBajaCorrecta.isHidden = true
@@ -95,7 +94,7 @@ class MenuAdmin: NSViewController {
     }
     
     
-    
+    //
     
     func verificarSiUsuarioLogVacio() -> Bool{
         if !vc.usuarioLog.isEmpty{

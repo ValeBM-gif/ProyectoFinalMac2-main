@@ -10,7 +10,6 @@ import Cocoa
 class RegistrarUsuario: NSViewController {
     
     //TODO: Validar que no haya usuarios repetidos
-    //TODO: Validar que el correo sea válido
     //TODO: Validar contraseñas seguras
     //TODO: Que no se vea la contraseña en campos de contraseña
 
