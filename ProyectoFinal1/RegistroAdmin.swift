@@ -12,6 +12,7 @@ class RegistroAdmin: NSViewController {
     //TODO: Validar que no haya usuarios repetidos
     //TODO: Validar contraseñas seguras
     //TODO: Que no se vea la contraseña en campos de contraseña
+    //TODO: Validar que sea un rol válido
 
     @IBOutlet weak var vc: ViewController!
     
@@ -89,7 +90,8 @@ class RegistroAdmin: NSViewController {
             txtTelefono.stringValue == "" ||
             txtGenero.stringValue == "" ||
             txtPassword.stringValue == "" ||
-            txtConfirmarPassword.stringValue == "" {
+            txtConfirmarPassword.stringValue == "" ||
+            txtRol.stringValue == ""{
             return false
         }
         return true

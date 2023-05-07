@@ -30,89 +30,88 @@ class MenuAdmin: NSViewController {
 
         let usuarioActual = vc.usuarioLog
         idUsuarioActual = vc.idUsuarioActual
-        print("num de usuarios",vc.usuarioLog.count)
         
         txtNombreUsuario.stringValue = "Bienvenide " + usuarioActual[idUsuarioActual].nombre
     }
     
+    @IBAction func irARegistro(_ sender: NSButton) {
+        performSegue(withIdentifier: "irARegistrar", sender: self)
+    }
+    
     @IBAction func eliminarUsuario(_ sender: NSButton) {
-        if soloHayNumerosEnTxtID(){
-            lblIDIncorrecto.isHidden = true
-            idUsuarioAEliminar = txtID.integerValue
-            if(idUsuarioAEliminar==0){
-                lblIDIncorrecto.stringValue = "*El admin no se puede eliminar*"
+        if txtID.stringValue != ""{
+            if soloHayNumerosEnTxtID(){
+                idUsuarioAEliminar = txtID.integerValue
+                if idUsuarioAEliminar != 0 {
+                    if idUsuarioActual != idUsuarioAEliminar{
+                        if checarExistenciaUsuario(id: idUsuarioAEliminar){
+                            vc.usuarioLog.remove(at: idUsuarioAEliminar)
+                            lblBajaCorrecta.isHidden=false
+                            lblIDIncorrecto.isHidden=true
+                        }else{
+                            lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+                            lblIDIncorrecto.isHidden = false
+                            lblBajaCorrecta.isHidden = true
+                        }
+                    }else{
+                        lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+                        lblIDIncorrecto.isHidden = false
+                        lblBajaCorrecta.isHidden = true
+                    }
+                }else{
+                    lblIDIncorrecto.stringValue = "*El admin no se puede eliminar*"
+                    lblIDIncorrecto.isHidden = false
+                    lblBajaCorrecta.isHidden = true
+                }
+            }else{
+                lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                 lblIDIncorrecto.isHidden = false
                 lblBajaCorrecta.isHidden = true
-            }else{
-
-                if(idUsuarioActual==idUsuarioAEliminar){
-                    print("AHORITA NO SE PUEDE ELIMINAR A UNO MISME")
+            }
+        }else{
+            lblIDIncorrecto.stringValue = "*Inserta el ID que quieres eliminar*"
+            lblIDIncorrecto.isHidden = false
+            lblBajaCorrecta.isHidden = true
+        }
+        
+    }
+    
+    @IBAction func irAModificar(_ sender: NSButton) {
+        if txtID.stringValue != ""{
+            if soloHayNumerosEnTxtID(){
+                idUsuarioAModificar = txtID.integerValue
+                if checarExistenciaUsuario(id: idUsuarioAModificar){
+                    performSegue(withIdentifier: "irAModificar", sender: self)
+                    lblIDIncorrecto.isHidden = true
+                    lblBajaCorrecta.isHidden = true
+                }else{
                     lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIDIncorrecto.isHidden = false
                     lblBajaCorrecta.isHidden = true
-                }else if checarExistenciaUsuario(id: idUsuarioAEliminar){
-                    vc.usuarioLog.remove(at: idUsuarioAEliminar)
-                    lblBajaCorrecta.isHidden=false
-                    lblIDIncorrecto.isHidden=true
-                }
-                
-            }
-        }else{
-            lblBajaCorrecta.isHidden = true
-            lblIDIncorrecto.isHidden = false
-            
-        }
-        
-    }
-    
-    @IBAction func irModificar(_ sender: NSButton) {
-        if soloHayNumerosEnTxtID(){
-            lblIDIncorrecto.isHidden = true
-            if txtID.stringValue != ""{
-                lblIDIncorrecto.isHidden = true
-                idUsuarioAModificar = txtID.integerValue
-               
-                if verificarSiUsuarioLogVacio(){
-                    print("PRINT QUE NO ES DE VALE "+vc.usuarioLog[idUsuarioAModificar].nombre)
-                    print("si hay usuarios y si es id válido")
-                    performSegue(withIdentifier: "irAModificar", sender: self)
                 }
             }else{
+                lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                 lblIDIncorrecto.isHidden = false
+                lblBajaCorrecta.isHidden = true
             }
         }else{
-            lblBajaCorrecta.isHidden = true
+            lblIDIncorrecto.stringValue = "*Inserta el ID del usuario a modificar*"
             lblIDIncorrecto.isHidden = false
+            lblBajaCorrecta.isHidden = true
         }
-        
     }
     
     
-    @IBAction func irConsultar(_ sender: NSButton) {
-        
+    @IBAction func irAConsultar(_ sender: NSButton) {
         performSegue(withIdentifier: "irAConsultar", sender: self)
-    }
-
-    //
-    
-    func verificarSiUsuarioLogVacio() -> Bool{
-        if !vc.usuarioLog.isEmpty{
-            return checarExistenciaUsuario(id: idUsuarioAModificar)
-        }
-        return false;
     }
     
     func checarExistenciaUsuario(id:Int) -> Bool{
         for UsuarioModelo in vc.usuarioLog {
             if (UsuarioModelo.id == id) {
-                print("entra a forrrrrrrr")
-                lblIDIncorrecto.isHidden = true
-                
                 return true
-                
             }
         }
-        lblIDIncorrecto.isHidden = false
         return false
     }
     
@@ -121,13 +120,8 @@ class MenuAdmin: NSViewController {
         return txtID.stringValue.rangeOfCharacter(from: numericCharacters) == nil
     }
         
-    @IBAction func irARegistro(_ sender: NSButton) {
-        performSegue(withIdentifier: "irARegistrar", sender: self)
-    }
-    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-            
-            if segue.identifier == "irAModificar" {
+        if segue.identifier == "irAModificar" {
                 
                 (segue.destinationController as! ModificarUsuario).vc = self.vc
                 
@@ -138,16 +132,16 @@ class MenuAdmin: NSViewController {
                 destinationVC.idDeUsuarioRecibido = idUsuarioActual
                 destinationVC.idUsuarioAModificar = idUsuarioAModificar
                 print("valor id en menu: ",vc.usuarioLog[idUsuarioAModificar].id)
-            }else if segue.identifier=="irARegistrar"{
+        }else if segue.identifier=="irARegistrar"{
+                
             (segue.destinationController as! RegistroAdmin).vc = self.vc
-            }else if segue.identifier=="irAConsultar"{
+                
+             }else if segue.identifier=="irAConsultar"{
                 (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog
                 (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
-            }
+                    }
     }
     
-        
-    
-    }
+}
     
 

@@ -841,7 +841,7 @@
                                 </buttonCell>
                                 <color key="bezelColor" red="0.96078431372549022" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="irModificar:" target="bNf-4g-jrw" id="Q7b-AS-BgZ"/>
+                                    <action selector="irAModificar:" target="bNf-4g-jrw" id="cEl-kK-e5f"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xKE-tB-M2u">
@@ -871,7 +871,7 @@
                                 </buttonCell>
                                 <color key="bezelColor" red="0.96078431372549022" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="irConsultar:" target="bNf-4g-jrw" id="83K-aF-hNN"/>
+                                    <action selector="irAConsultar:" target="bNf-4g-jrw" id="Lb6-hu-oEe"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="41o-xO-mCh">
@@ -901,7 +901,7 @@
                                 </buttonCell>
                                 <color key="bezelColor" red="0.96078431372549022" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="irARegistro:" target="bNf-4g-jrw" id="guo-Fa-YsH"/>
+                                    <action selector="irARegistro:" target="bNf-4g-jrw" id="KMf-hA-B4w"/>
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMe-Zu-gCS">
@@ -952,7 +952,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Consulta" id="ZX6-rX-K39">
                                     <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemCyanColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1281,7 +1281,7 @@
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-CG-fAl">
                                 <rect key="frame" x="-8" y="421" width="467" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.97498421719999995" green="0.62028160740000005" blue="0.70325981059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="color" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                             </colorWell>
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgE-Rm-iWL">
                                 <rect key="frame" x="20" y="433" width="410" height="17"/>
@@ -1774,12 +1774,12 @@
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMq-RL-LlV">
                                 <rect key="frame" x="-19" y="487" width="193" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.92549026010000002" green="0.37647059560000001" blue="0.40784314269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="color" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                             </colorWell>
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikT-Gn-Erq">
                                 <rect key="frame" x="287" y="487" width="193" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.92549026010000002" green="0.37647059560000001" blue="0.40784314269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="color" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                             </colorWell>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIs-gz-h8S">
                                 <rect key="frame" x="206" y="495" width="48" height="48"/>
@@ -1865,7 +1865,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="VC Menú Ventas" id="fWr-tN-Jsk">
                                     <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemCyanColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1893,7 +1893,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="VC Menú Compras" id="hr8-kN-OX8">
                                     <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemCyanColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1921,7 +1921,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="VC Modificar Producto" id="MU7-14-MEM">
                                     <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemCyanColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1945,7 +1945,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="VC Registro Producto" id="5ZJ-Jl-dpl">
                                     <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemCyanColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1969,7 +1969,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="VC Ventas" id="vSs-ID-9nk">
                                     <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemCyanColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1993,7 +1993,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="VC Registro Ventas" id="9DH-lO-J7M">
                                     <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemCyanColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
