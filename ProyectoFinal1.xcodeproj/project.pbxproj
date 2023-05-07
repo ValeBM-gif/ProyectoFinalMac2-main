@@ -14,6 +14,10 @@
 		D6767DCC29F0AF9F00260906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6767DCA29F0AF9F00260906 /* Main.storyboard */; };
 		D6767DD429F0BB8600260906 /* UsuarioModelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6767DD329F0BB8600260906 /* UsuarioModelo.swift */; };
 		D6767DD829F0BCEB00260906 /* RegistrarUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6767DD729F0BCEB00260906 /* RegistrarUsuario.swift */; };
+		D6815F902A08625F00827C58 /* MenuCompras.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F8F2A08625F00827C58 /* MenuCompras.swift */; };
+		D6815F922A08628600827C58 /* RegistroProductos.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F912A08628600827C58 /* RegistroProductos.swift */; };
+		D6815F942A0862AD00827C58 /* ModificarProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F932A0862AD00827C58 /* ModificarProducto.swift */; };
+		D6815F962A08653A00827C58 /* ProductoModelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F952A08653A00827C58 /* ProductoModelo.swift */; };
 		D69426252A02B40800B47689 /* cuadrado2.png in Resources */ = {isa = PBXBuildFile; fileRef = D69426162A02B40800B47689 /* cuadrado2.png */; };
 		D69426262A02B40800B47689 /* gaton.png in Resources */ = {isa = PBXBuildFile; fileRef = D69426172A02B40800B47689 /* gaton.png */; };
 		D69426272A02B40800B47689 /* gato.png in Resources */ = {isa = PBXBuildFile; fileRef = D69426182A02B40800B47689 /* gato.png */; };
@@ -45,6 +49,10 @@
 		D6767DCD29F0AF9F00260906 /* ProyectoFinal1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProyectoFinal1.entitlements; sourceTree = "<group>"; };
 		D6767DD329F0BB8600260906 /* UsuarioModelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuarioModelo.swift; sourceTree = "<group>"; };
 		D6767DD729F0BCEB00260906 /* RegistrarUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrarUsuario.swift; sourceTree = "<group>"; };
+		D6815F8F2A08625F00827C58 /* MenuCompras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCompras.swift; sourceTree = "<group>"; };
+		D6815F912A08628600827C58 /* RegistroProductos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroProductos.swift; sourceTree = "<group>"; };
+		D6815F932A0862AD00827C58 /* ModificarProducto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificarProducto.swift; sourceTree = "<group>"; };
+		D6815F952A08653A00827C58 /* ProductoModelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoModelo.swift; sourceTree = "<group>"; };
 		D69426162A02B40800B47689 /* cuadrado2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cuadrado2.png; sourceTree = "<group>"; };
 		D69426172A02B40800B47689 /* gaton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gaton.png; sourceTree = "<group>"; };
 		D69426182A02B40800B47689 /* gato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gato.png; sourceTree = "<group>"; };
@@ -101,11 +109,15 @@
 				D6767DC629F0AF9F00260906 /* ViewController.swift */,
 				D6767DC829F0AF9F00260906 /* Assets.xcassets */,
 				D6767DCA29F0AF9F00260906 /* Main.storyboard */,
+				D6815F932A0862AD00827C58 /* ModificarProducto.swift */,
+				D6815F912A08628600827C58 /* RegistroProductos.swift */,
+				D6815F8F2A08625F00827C58 /* MenuCompras.swift */,
 				D6AD02A22A0759A1001B5299 /* RegistroAdmin.swift */,
 				F115BC2A29F7B1C200417F13 /* MenuAdmin.swift */,
 				D6A9DF6C29F1FE0200D9CEE3 /* ModificarUsuario.swift */,
 				C32E59542A01D28600213D5C /* ConsultarUsuario.swift */,
 				D6767DD329F0BB8600260906 /* UsuarioModelo.swift */,
+				D6815F952A08653A00827C58 /* ProductoModelo.swift */,
 				D6767DD729F0BCEB00260906 /* RegistrarUsuario.swift */,
 				D6767DCD29F0AF9F00260906 /* ProyectoFinal1.entitlements */,
 			);
@@ -222,9 +234,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6767DD829F0BCEB00260906 /* RegistrarUsuario.swift in Sources */,
+				D6815F902A08625F00827C58 /* MenuCompras.swift in Sources */,
+				D6815F922A08628600827C58 /* RegistroProductos.swift in Sources */,
 				D6A9DF6D29F1FE0200D9CEE3 /* ModificarUsuario.swift in Sources */,
+				D6815F942A0862AD00827C58 /* ModificarProducto.swift in Sources */,
 				D6767DC729F0AF9F00260906 /* ViewController.swift in Sources */,
 				D6767DC529F0AF9F00260906 /* AppDelegate.swift in Sources */,
+				D6815F962A08653A00827C58 /* ProductoModelo.swift in Sources */,
 				F115BC2B29F7B1C200417F13 /* MenuAdmin.swift in Sources */,
 				C32E59552A01D28600213D5C /* ConsultarUsuario.swift in Sources */,
 				D6AD02A32A0759A1001B5299 /* RegistroAdmin.swift in Sources */,
