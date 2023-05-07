@@ -1276,12 +1276,12 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="gatito" id="ilD-cZ-5GO"/>
                             </imageView>
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-CG-fAl">
-                                <rect key="frame" x="-8" y="421" width="467" height="11"/>
+                                <rect key="frame" x="-8" y="421" width="467" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.97498421719999995" green="0.62028160740000005" blue="0.70325981059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </colorWell>
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgE-Rm-iWL">
-                                <rect key="frame" x="20" y="433" width="410" height="11"/>
+                                <rect key="frame" x="20" y="433" width="410" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.97647058959999999" green="0.86666667460000002" blue="0.64313727620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </colorWell>
@@ -1513,12 +1513,12 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMq-RL-LlV">
-                                <rect key="frame" x="-19" y="487" width="193" height="11"/>
+                                <rect key="frame" x="-19" y="487" width="193" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.92549026010000002" green="0.37647059560000001" blue="0.40784314269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </colorWell>
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikT-Gn-Erq">
-                                <rect key="frame" x="287" y="487" width="193" height="11"/>
+                                <rect key="frame" x="287" y="487" width="193" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.92549026010000002" green="0.37647059560000001" blue="0.40784314269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </colorWell>
@@ -1562,7 +1562,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="58r-KP-1cZ"/>
+        <segue reference="I0U-A5-VRi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="feliz" width="512" height="512"/>

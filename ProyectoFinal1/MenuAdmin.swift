@@ -92,8 +92,7 @@ class MenuAdmin: NSViewController {
         
         performSegue(withIdentifier: "irAConsultar", sender: self)
     }
-    
-    
+
     //
     
     func verificarSiUsuarioLogVacio() -> Bool{

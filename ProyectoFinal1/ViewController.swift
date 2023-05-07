@@ -46,7 +46,7 @@ class ViewController: NSViewController {
 
     func login(username: String, password: String) -> Any {
         for UsuarioModelo in usuarioLog {
-            if (UsuarioModelo.nombre == username && UsuarioModelo.contraseña == password) {
+            if (UsuarioModelo.email == username && UsuarioModelo.contraseña == password) {
                 return UsuarioModelo
             }
         }
