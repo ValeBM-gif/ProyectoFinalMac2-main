@@ -19,7 +19,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         
-        usuarioLog.append(UsuarioModelo(0, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", "123", "123","admin"))
+        usuarioLog.append(UsuarioModelo(0, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", "123", "123","Admin"))
 
         lblIncorrecto.isHidden=true
     }
@@ -33,10 +33,19 @@ class ViewController: NSViewController {
         let resultadoLogin = login(username: txtUsuario.stringValue, password: txtPassword.stringValue)
                
                if(resultadoLogin is UsuarioModelo){
+                   
                    lblIncorrecto.isHidden = true
                    let UsuarioActual = resultadoLogin as! UsuarioModelo
                    idUsuarioActual=UsuarioActual.id
-                   performSegue(withIdentifier: "iniciarSesionCorrecto", sender: self)
+                   if UsuarioActual.rol == "Cliente"{
+                       performSegue(withIdentifier: "irVcCliente", sender: self)
+                   }else if UsuarioActual.rol == "Admin"{
+                       performSegue(withIdentifier: "iniciarSesionCorrecto", sender: self)
+                   }else if UsuarioActual.rol == "Ventas"{
+                       performSegue(withIdentifier: "irMenuVentas", sender: self)
+                   }else if UsuarioActual.rol == "Compras"{
+                       performSegue(withIdentifier: "irVcMenuCompras", sender: self)
+                   }
                }
                else{
                    lblIncorrecto.isHidden = false;

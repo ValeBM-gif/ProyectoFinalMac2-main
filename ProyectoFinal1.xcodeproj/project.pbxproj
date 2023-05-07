@@ -31,6 +31,7 @@
 		D69426332A02B40800B47689 /* forma.png in Resources */ = {isa = PBXBuildFile; fileRef = D69426242A02B40800B47689 /* forma.png */; };
 		D69426352A02C23200B47689 /* gatoAzul.png in Resources */ = {isa = PBXBuildFile; fileRef = D69426342A02C23200B47689 /* gatoAzul.png */; };
 		D6A9DF6D29F1FE0200D9CEE3 /* ModificarUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9DF6C29F1FE0200D9CEE3 /* ModificarUsuario.swift */; };
+		D6AD02A32A0759A1001B5299 /* RegistroAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD02A22A0759A1001B5299 /* RegistroAdmin.swift */; };
 		F115BC2B29F7B1C200417F13 /* MenuAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F115BC2A29F7B1C200417F13 /* MenuAdmin.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		D69426242A02B40800B47689 /* forma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forma.png; sourceTree = "<group>"; };
 		D69426342A02C23200B47689 /* gatoAzul.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gatoAzul.png; sourceTree = "<group>"; };
 		D6A9DF6C29F1FE0200D9CEE3 /* ModificarUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificarUsuario.swift; sourceTree = "<group>"; };
+		D6AD02A22A0759A1001B5299 /* RegistroAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroAdmin.swift; sourceTree = "<group>"; };
 		F115BC2A29F7B1C200417F13 /* MenuAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdmin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 				D6767DC629F0AF9F00260906 /* ViewController.swift */,
 				D6767DC829F0AF9F00260906 /* Assets.xcassets */,
 				D6767DCA29F0AF9F00260906 /* Main.storyboard */,
+				D6AD02A22A0759A1001B5299 /* RegistroAdmin.swift */,
 				F115BC2A29F7B1C200417F13 /* MenuAdmin.swift */,
 				D6A9DF6C29F1FE0200D9CEE3 /* ModificarUsuario.swift */,
 				C32E59542A01D28600213D5C /* ConsultarUsuario.swift */,
@@ -224,6 +227,7 @@
 				D6767DC529F0AF9F00260906 /* AppDelegate.swift in Sources */,
 				F115BC2B29F7B1C200417F13 /* MenuAdmin.swift in Sources */,
 				C32E59552A01D28600213D5C /* ConsultarUsuario.swift in Sources */,
+				D6AD02A32A0759A1001B5299 /* RegistroAdmin.swift in Sources */,
 				D6767DD429F0BB8600260906 /* UsuarioModelo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

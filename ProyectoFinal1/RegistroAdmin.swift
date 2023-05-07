@@ -1,14 +1,14 @@
 //
-//  RegistrarUsuario.swift.
+//  RegistroAdmin.swift
 //  ProyectoFinal1
 //
-//  Created by Valeria Baeza on 19/04/23.
+//  Created by Valeria Baeza on 06/05/23.
 //
 
 import Cocoa
 
-class RegistrarUsuario: NSViewController {
-    
+class RegistroAdmin: NSViewController {
+
     //TODO: Validar que no haya usuarios repetidos
     //TODO: Validar contraseñas seguras
     //TODO: Que no se vea la contraseña en campos de contraseña
@@ -23,6 +23,7 @@ class RegistrarUsuario: NSViewController {
     @IBOutlet weak var txtGenero: NSTextField!
     @IBOutlet weak var txtPassword: NSTextField!
     @IBOutlet weak var txtConfirmarPassword: NSTextField!
+    @IBOutlet weak var txtRol: NSTextField!
     
     @IBOutlet weak var btnRegistrar: NSButton!
     
@@ -54,12 +55,11 @@ class RegistrarUsuario: NSViewController {
                     if numeroTelfonicoEsValido(){
                         lblCamposVacios.isHidden = true
                         
-                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
+                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, txtRol.stringValue))
                         
                         print("Agregaste")
                         
                         dismiss(self)
-                        
                     }else{
                         lblCamposVacios.stringValue = "Inserta un teléfono válido"
                         lblCamposVacios.isHidden = false
@@ -117,6 +117,5 @@ class RegistrarUsuario: NSViewController {
     @IBAction func cerrarViewController(_ sender: NSButton) {
         dismiss(self)
     }
-
+    
 }
-

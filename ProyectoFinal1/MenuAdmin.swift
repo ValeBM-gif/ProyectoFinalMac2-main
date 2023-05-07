@@ -122,7 +122,7 @@ class MenuAdmin: NSViewController {
     }
         
     @IBAction func irARegistro(_ sender: NSButton) {
-        performSegue(withIdentifier: "iniciarSesionCorrecto", sender: self)
+        performSegue(withIdentifier: "irARegistrar", sender: self)
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -139,7 +139,7 @@ class MenuAdmin: NSViewController {
                 destinationVC.idUsuarioAModificar = idUsuarioAModificar
                 print("valor id en menu: ",vc.usuarioLog[idUsuarioAModificar].id)
             }else if segue.identifier=="irARegistrar"{
-            (segue.destinationController as! RegistrarUsuario).vc = self.vc
+            (segue.destinationController as! RegistroAdmin).vc = self.vc
             }else if segue.identifier=="irAConsultar"{
                 (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog
                 (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
