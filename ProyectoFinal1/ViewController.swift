@@ -68,6 +68,8 @@ class ViewController: NSViewController {
         }
         else if segue.identifier=="iniciarSesionCorrecto"{(segue.destinationController as! MenuAdmin).vc = self
             
+        }else if segue.identifier=="irVcMenuCompras"{
+            (segue.destinationController as! MenuCompras).vc = self
         }
     }
     
