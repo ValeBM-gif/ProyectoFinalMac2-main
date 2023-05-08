@@ -1839,10 +1839,10 @@
             </objects>
             <point key="canvasLocation" x="76" y="1365"/>
         </scene>
-        <!--View Controller-->
+        <!--Pedidos Cliente-->
         <scene sceneID="EQR-dB-New">
             <objects>
-                <viewController id="6Qt-6N-u1K" sceneMemberID="viewController">
+                <viewController title="Pedidos Cliente" id="6Qt-6N-u1K" sceneMemberID="viewController">
                     <view key="view" id="EgA-Gk-8wS">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1885,6 +1885,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="jDd-WZ-Zw6" name="value" keyPath="objectValue.id" id="mjr-6t-SGg"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -1917,6 +1920,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="48S-sS-hZu" name="value" keyPath="objectValue.idProducto" id="OeB-2e-8iK"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -1981,6 +1987,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="B7f-4H-7HJ" name="value" keyPath="objectValue.cantidad" id="Sc6-rO-Ycr"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -2013,6 +2022,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="wm7-lZ-DUB" name="value" keyPath="objectValue.totalProducto" id="M6b-Os-UPb"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -2022,6 +2034,9 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="tEI-9v-mos" name="content" keyPath="arrangedObjects" id="Z30-fG-yt5"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
@@ -2051,7 +2066,11 @@
                     </view>
                 </viewController>
                 <customObject id="aex-3i-TkE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController id="tEI-9v-mos"/>
+                <arrayController id="tEI-9v-mos">
+                    <connections>
+                        <binding destination="6Qt-6N-u1K" name="contentArray" keyPath="pedidosLog" id="bls-Tr-DHM"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="1293" y="1239"/>
         </scene>
@@ -2717,14 +2736,14 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-Pd-8gi">
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-Pd-8gi">
                                 <rect key="frame" x="52" y="121" width="775" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="8VR-XG-t24">
                                     <rect key="frame" x="1" y="1" width="773" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" headerView="Izv-C0-vMZ" viewBased="YES" id="zgJ-Hw-DDz">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Izv-C0-vMZ" viewBased="YES" id="zgJ-Hw-DDz">
                                             <rect key="frame" x="0.0" y="0.0" width="773" height="105"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
@@ -2755,6 +2774,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="pmJ-KI-ka5" name="value" keyPath="objectValue.idVenta" id="EXu-rM-8V5"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -2787,6 +2809,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="OIo-Qp-x0q" name="value" keyPath="objectValue.idCliente" id="4zL-lO-xuO"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -2956,11 +2981,14 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="H2a-x2-5qi" name="content" keyPath="arrangedObjects" id="jUc-1g-l4I"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="CmJ-Xd-fFN">
-                                    <rect key="frame" x="1" y="118" width="773" height="16"/>
+                                    <rect key="frame" x="1" y="119" width="773" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="kaa-gZ-6gd">
@@ -2976,7 +3004,11 @@
                     </view>
                 </viewController>
                 <customObject id="TEC-X1-TNO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController id="H2a-x2-5qi"/>
+                <arrayController id="H2a-x2-5qi">
+                    <connections>
+                        <binding destination="5k6-lg-PEd" name="contentArray" keyPath="ventasLog" id="Zo2-TV-U4K"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="1838.5" y="1827"/>
         </scene>
