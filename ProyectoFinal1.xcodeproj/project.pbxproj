@@ -40,6 +40,8 @@
 		D6A9DF6D29F1FE0200D9CEE3 /* ModificarUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9DF6C29F1FE0200D9CEE3 /* ModificarUsuario.swift */; };
 		D6AD02A32A0759A1001B5299 /* RegistroAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD02A22A0759A1001B5299 /* RegistroAdmin.swift */; };
 		F115BC2B29F7B1C200417F13 /* MenuAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F115BC2A29F7B1C200417F13 /* MenuAdmin.swift */; };
+		F1E5173F2A0885F300D766DD /* PedidosCliente.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5173E2A0885F300D766DD /* PedidosCliente.swift */; };
+		F1E517412A08881200D766DD /* PedidoModelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E517402A08881200D766DD /* PedidoModelo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		D6A9DF6C29F1FE0200D9CEE3 /* ModificarUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificarUsuario.swift; sourceTree = "<group>"; };
 		D6AD02A22A0759A1001B5299 /* RegistroAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroAdmin.swift; sourceTree = "<group>"; };
 		F115BC2A29F7B1C200417F13 /* MenuAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdmin.swift; sourceTree = "<group>"; };
+		F1E5173E2A0885F300D766DD /* PedidosCliente.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedidosCliente.swift; sourceTree = "<group>"; };
+		F1E517402A08881200D766DD /* PedidoModelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedidoModelo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,9 +130,13 @@
 				D6815F952A08653A00827C58 /* ProductoModelo.swift */,
 				D6767DD729F0BCEB00260906 /* RegistrarUsuario.swift */,
 				D6767DCD29F0AF9F00260906 /* ProyectoFinal1.entitlements */,
+
 				2B3439EC2A087FDC00E733D3 /* MenuVentas.swift */,
 				2B3439EE2A08BC4F00E733D3 /* VentaModelo.swift */,
 				2B3439F22A08BF7800E733D3 /* CrearVenta.swift */,
+				F1E5173E2A0885F300D766DD /* PedidosCliente.swift */,
+				F1E517402A08881200D766DD /* PedidoModelo.swift */,
+
 			);
 			path = ProyectoFinal1;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 			files = (
 				D6767DD829F0BCEB00260906 /* RegistrarUsuario.swift in Sources */,
 				D6815F902A08625F00827C58 /* MenuCompras.swift in Sources */,
+				F1E5173F2A0885F300D766DD /* PedidosCliente.swift in Sources */,
 				D6815F922A08628600827C58 /* RegistroProductos.swift in Sources */,
 				D6A9DF6D29F1FE0200D9CEE3 /* ModificarUsuario.swift in Sources */,
 				D6815F942A0862AD00827C58 /* ModificarProducto.swift in Sources */,
@@ -251,6 +260,7 @@
 				2B3439EF2A08BC4F00E733D3 /* VentaModelo.swift in Sources */,
 				2B3439F32A08BF7800E733D3 /* CrearVenta.swift in Sources */,
 				D6767DC529F0AF9F00260906 /* AppDelegate.swift in Sources */,
+				F1E517412A08881200D766DD /* PedidoModelo.swift in Sources */,
 				D6815F962A08653A00827C58 /* ProductoModelo.swift in Sources */,
 				2B3439ED2A087FDC00E733D3 /* MenuVentas.swift in Sources */,
 				F115BC2B29F7B1C200417F13 /* MenuAdmin.swift in Sources */,

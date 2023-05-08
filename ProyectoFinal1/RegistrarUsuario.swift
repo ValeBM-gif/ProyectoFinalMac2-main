@@ -41,6 +41,7 @@ class RegistrarUsuario: NSViewController {
         
         position = vc.usuarioLog.count
         
+
         btnRegistrar.isEnabled = true
         
         lblClienteExistente.isHidden = true
@@ -61,8 +62,12 @@ class RegistrarUsuario: NSViewController {
                         
                         vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
                         
+
                         print("Agregaste")
                         performSegue(withIdentifier: "irAMenuVentas", sender: self)
+                    print("Agregaste Cliente")
+                        
+
                         dismiss(self)
                         
                     }else{
