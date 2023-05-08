@@ -38,6 +38,7 @@ class RegistrarUsuario: NSViewController {
         
         position = vc.usuarioLog.count
         
+        print("usuariossssssss")
         for usuario in usuarioLog{
             print(usuario.nombre)
         }

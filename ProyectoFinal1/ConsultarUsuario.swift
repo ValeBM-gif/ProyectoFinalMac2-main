@@ -9,7 +9,6 @@ import Cocoa
 
 class ConsultarUsuario: NSViewController {
     
-    //TODO: Checar qpd con id
 
     @IBOutlet var vcTabla: ViewController!
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
