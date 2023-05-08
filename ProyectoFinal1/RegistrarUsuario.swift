@@ -38,6 +38,7 @@ class RegistrarUsuario: NSViewController {
         
         position = vc.usuarioLog.count
         
+
         btnRegistrar.isEnabled = true
         
     }
