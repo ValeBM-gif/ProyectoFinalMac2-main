@@ -38,10 +38,6 @@ class RegistrarUsuario: NSViewController {
         
         position = vc.usuarioLog.count
         
-        for usuario in usuarioLog{
-            print(usuario.nombre)
-        }
-        
         btnRegistrar.isEnabled = true
         
     }
@@ -56,7 +52,7 @@ class RegistrarUsuario: NSViewController {
                         
                         vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
                         
-                        print("Agregaste")
+                        print("Agregaste Cliente")
                         
                         dismiss(self)
                         
