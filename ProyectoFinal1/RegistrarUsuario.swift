@@ -26,9 +26,12 @@ class RegistrarUsuario: NSViewController {
     
     @IBOutlet weak var btnRegistrar: NSButton!
     
+    @IBOutlet weak var lblClienteExistente: NSTextField!
     @IBOutlet weak var lblCamposVacios: NSTextField!
     
     var position:Int = 0
+    var vcMenu:String = "Menu"
+    
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     
     override func viewDidLoad() {
@@ -38,11 +41,13 @@ class RegistrarUsuario: NSViewController {
         
         position = vc.usuarioLog.count
         
-        for usuario in usuarioLog{
-            print(usuario.nombre)
-        }
-        
         btnRegistrar.isEnabled = true
+        
+        lblClienteExistente.isHidden = true
+        
+        if(vcMenu=="Ventas"){
+            lblClienteExistente.isHidden = false
+        }
         
     }
     
@@ -57,7 +62,7 @@ class RegistrarUsuario: NSViewController {
                         vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
                         
                         print("Agregaste")
-                        
+                        performSegue(withIdentifier: "irAMenuVentas", sender: self)
                         dismiss(self)
                         
                     }else{
@@ -114,7 +119,16 @@ class RegistrarUsuario: NSViewController {
         return false
     }
     
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier=="irAMenuVentas"{
+            (segue.destinationController as! MenuVentas).vc = self.vc
+        }
+    }
+        
     @IBAction func cerrarViewController(_ sender: NSButton) {
+        if(vcMenu=="Ventas"){
+            performSegue(withIdentifier: "irAMenuVentas", sender: self)
+        }
         dismiss(self)
     }
 

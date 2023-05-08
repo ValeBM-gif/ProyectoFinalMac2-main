@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B3439ED2A087FDC00E733D3 /* MenuVentas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3439EC2A087FDC00E733D3 /* MenuVentas.swift */; };
 		C32E59552A01D28600213D5C /* ConsultarUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32E59542A01D28600213D5C /* ConsultarUsuario.swift */; };
 		D6767DC529F0AF9F00260906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6767DC429F0AF9F00260906 /* AppDelegate.swift */; };
 		D6767DC729F0AF9F00260906 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6767DC629F0AF9F00260906 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B3439EC2A087FDC00E733D3 /* MenuVentas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVentas.swift; sourceTree = "<group>"; };
 		C32E59542A01D28600213D5C /* ConsultarUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultarUsuario.swift; sourceTree = "<group>"; };
 		D6767DC129F0AF9F00260906 /* ProyectoFinal1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProyectoFinal1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6767DC429F0AF9F00260906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				D6815F952A08653A00827C58 /* ProductoModelo.swift */,
 				D6767DD729F0BCEB00260906 /* RegistrarUsuario.swift */,
 				D6767DCD29F0AF9F00260906 /* ProyectoFinal1.entitlements */,
+				2B3439EC2A087FDC00E733D3 /* MenuVentas.swift */,
 			);
 			path = ProyectoFinal1;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				D6767DC729F0AF9F00260906 /* ViewController.swift in Sources */,
 				D6767DC529F0AF9F00260906 /* AppDelegate.swift in Sources */,
 				D6815F962A08653A00827C58 /* ProductoModelo.swift in Sources */,
+				2B3439ED2A087FDC00E733D3 /* MenuVentas.swift in Sources */,
 				F115BC2B29F7B1C200417F13 /* MenuAdmin.swift in Sources */,
 				C32E59552A01D28600213D5C /* ConsultarUsuario.swift in Sources */,
 				D6AD02A32A0759A1001B5299 /* RegistroAdmin.swift in Sources */,

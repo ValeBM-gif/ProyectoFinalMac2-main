@@ -713,7 +713,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVj-yb-ePw">
                                 <rect key="frame" x="182" y="195" width="84" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Usuario:" id="mu7-f0-OmX">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Correo:" id="mu7-f0-OmX">
                                     <font key="font" size="13" name="ArialMT"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1584,7 +1584,7 @@
                 </viewController>
                 <customObject id="4py-TL-0Hz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-467" y="1273"/>
+            <point key="canvasLocation" x="-467" y="1272.5"/>
         </scene>
         <!--Registro-->
         <scene sceneID="fTc-cE-h2c">
@@ -1809,11 +1809,21 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftb-8i-0yx">
+                                <rect key="frame" x="117" y="113" width="226" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Ese cliente aun no existe. Regístralo!" id="QQT-Y6-5cK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="btnRegistrar" destination="3Z9-GX-skk" id="ll9-sV-zFz"/>
                         <outlet property="lblCamposVacios" destination="Moc-f7-U4h" id="tLr-NL-fZ7"/>
+                        <outlet property="lblClienteExistente" destination="ftb-8i-0yx" id="wul-js-Zuj"/>
                         <outlet property="txtApellidoMaterno" destination="7WN-P4-ipe" id="dUH-zb-AXX"/>
                         <outlet property="txtApellidoPaterno" destination="LS1-mZ-va1" id="rNO-Qe-DES"/>
                         <outlet property="txtConfirmarPassword" destination="P26-vh-eU4" id="h8L-af-eJd"/>
@@ -1822,6 +1832,7 @@
                         <outlet property="txtNombre" destination="Q3f-pn-9hy" id="tlA-Qv-tiv"/>
                         <outlet property="txtPassword" destination="eaw-4t-eRO" id="sj6-kb-Iav"/>
                         <outlet property="txtTelefono" destination="Pin-mu-3DX" id="QBp-ee-IXF"/>
+                        <segue destination="Z8L-oQ-Z2G" kind="modal" identifier="irAMenuVentas" id="txk-Vd-39z"/>
                     </connections>
                 </viewController>
                 <customObject id="gqB-Yq-By2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1852,10 +1863,10 @@
             </objects>
             <point key="canvasLocation" x="1298" y="1221"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu Ventas-->
         <scene sceneID="7In-nH-qXi">
             <objects>
-                <viewController id="Z8L-oQ-Z2G" sceneMemberID="viewController">
+                <viewController id="Z8L-oQ-Z2G" customClass="MenuVentas" customModule="ProyectoFinal1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="CGI-9g-6lz">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1870,7 +1881,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="llc-Wa-48L">
-                                <rect key="frame" x="320" y="207" width="96" height="21"/>
+                                <rect key="frame" x="234" y="158" width="74" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="o9A-rN-zs8">
                                     <font key="font" metaFont="system"/>
@@ -1878,16 +1889,69 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSs-zz-vJc">
+                                <rect key="frame" x="140" y="161" width="81" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Inserta el ID:" id="3Mr-wK-z9t">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lzf-F9-R2x">
+                                <rect key="frame" x="126" y="205" width="198" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Verifica la existencia del cliente:" id="Inx-F1-FAD">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PXH-s2-cZg">
+                                <rect key="frame" x="121" y="107" width="208" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Buscar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VS9-X5-eUj">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buscarCliente:" target="Z8L-oQ-Z2G" id="sK4-Qh-agG"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JqE-Lq-roe">
+                                <rect key="frame" x="154" y="67" width="143" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cerrar Sesión" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="720-B0-Wmv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="regresarAInicio:" target="Vrn-rV-8a4" id="TbQ-Ps-m1O"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBb-kr-Wpn">
+                                <rect key="frame" x="120" y="43" width="211" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="*Inserta un ID válido*" id="vxs-mb-yln">
+                                    <font key="font" size="13" name="ArialMT"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
-                        <segue destination="7nR-sy-Sj6" kind="modal" identifier="irRegistroVentas" id="6nE-Id-9aM"/>
+                        <outlet property="btnBuscar" destination="PXH-s2-cZg" id="51t-Go-tY6"/>
+                        <outlet property="btnCerrarSesion" destination="JqE-Lq-roe" id="Euq-4A-aJM"/>
+                        <outlet property="lblIDIncorrecto" destination="XBb-kr-Wpn" id="oRK-P8-rVR"/>
+                        <outlet property="txtID" destination="llc-Wa-48L" id="2Kc-Og-VqP"/>
                         <segue destination="5k6-lg-PEd" kind="modal" identifier="irVentas" id="2E7-Bt-Svq"/>
+                        <segue destination="5J5-hP-FVg" kind="modal" identifier="irVcRegistroVentas" id="Rmp-cS-KSe"/>
                     </connections>
                 </viewController>
                 <customObject id="egW-HJ-fTV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807" y="1298"/>
+            <point key="canvasLocation" x="1820" y="1221"/>
         </scene>
         <!--Menu Compras-->
         <scene sceneID="kCW-kv-6jc">
@@ -1912,15 +1976,6 @@
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="v5M-z8-QJq">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56c-uj-jhI">
-                                <rect key="frame" x="116" y="187" width="218" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Verifica la existncia de tu producto:" id="bwZ-Ns-A0t">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1961,6 +2016,15 @@
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="*Inserta un ID válido*" id="EMk-pv-Oga">
                                     <font key="font" size="13" name="ArialMT"/>
                                     <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56c-uj-jhI">
+                                <rect key="frame" x="113" y="190" width="225" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Verifica la existencia de tu producto:" id="bwZ-Ns-A0t">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -2224,33 +2288,13 @@
                 </viewController>
                 <customObject id="TEC-X1-TNO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2033" y="1780"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Jb1-5Z-Qpc">
-            <objects>
-                <viewController id="7nR-sy-Sj6" sceneMemberID="viewController">
-                    <view key="view" id="w9u-e8-mxE">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54v-h7-jum">
-                                <rect key="frame" x="74" y="131" width="302" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="VC Registro Ventas" id="9DH-lO-J7M">
-                                    <font key="font" size="32" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                    </view>
-                </viewController>
-                <customObject id="2SB-Nu-ymX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1551" y="1780"/>
+            <point key="canvasLocation" x="1820" y="1774"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="txk-Vd-39z"/>
+        <segue reference="Rmp-cS-KSe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="feliz" width="512" height="512"/>
         <image name="gatito" width="409.60000610351562" height="409.60000610351562"/>
