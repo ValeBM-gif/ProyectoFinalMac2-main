@@ -20,6 +20,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         
         usuarioLog.append(UsuarioModelo(0, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", "123", "123","Admin"))
+        usuarioLog.append(UsuarioModelo(1, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", "123", "123","Ventas"))
 
         lblIncorrecto.isHidden=true
     }
@@ -67,6 +68,8 @@ class ViewController: NSViewController {
             (segue.destinationController as! RegistrarUsuario).vc = self
         }
         else if segue.identifier=="iniciarSesionCorrecto"{(segue.destinationController as! MenuAdmin).vc = self
+        }
+        else if segue.identifier=="irMenuVentas"{(segue.destinationController as! MenuVentas).vc = self
             
         }else if segue.identifier=="irVcMenuCompras"{
             (segue.destinationController as! MenuCompras).vc = self
