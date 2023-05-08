@@ -16,11 +16,11 @@ class VentaModelo: NSObject {
     @objc dynamic var cantidad:Int
     @objc dynamic var precioProducto:Double
     @objc dynamic var totalProducto:Double
-    @objc dynamic var subtotalVenta:Bool
-    @objc dynamic var ivaVenta:Bool
-    @objc dynamic var totalVenta:Bool
+    @objc dynamic var subtotalVenta:Double
+    @objc dynamic var ivaVenta:Double
+    @objc dynamic var totalVenta:Double
     
-    init(idVenta: Int, idVendedor: Int, idCliente: Int, idProducto: Int, cantidad: Int, precioProducto: Double, totalProducto: Double, subtotalVenta: Bool, ivaVenta: Bool, totalVenta: Bool) {
+    init(idVenta: Int, idVendedor: Int, idCliente: Int, idProducto: Int, cantidad: Int, precioProducto: Double, totalProducto: Double, subtotalVenta: Double, ivaVenta: Double, totalVenta: Double) {
         self.idVenta = idVenta
         self.idVendedor = idVendedor
         self.idCliente = idCliente
