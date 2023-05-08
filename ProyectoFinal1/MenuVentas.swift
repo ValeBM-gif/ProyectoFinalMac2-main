@@ -17,6 +17,7 @@ class MenuVentas: NSViewController {
     @IBOutlet weak var lblIDIncorrecto: NSTextField!
     
     var idClienteABuscar: Int=0
+    var usuarioVieneDeVentas: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,7 @@ class MenuVentas: NSViewController {
             let destinoVc = segue.destinationController as! RegistrarUsuario
             destinoVc.vcMenu = "Ventas"
             destinoVc.vc = vc
+            destinoVc.usuarioVieneDeVentas = true
            
         }
     }

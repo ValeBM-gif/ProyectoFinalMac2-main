@@ -1084,7 +1084,7 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Azj-O3-Dkd">
-                                    <rect key="frame" x="1" y="119" width="398" height="15"/>
+                                    <rect key="frame" x="1" y="118" width="398" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="T1c-4t-zzN">
@@ -2041,7 +2041,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="2hm-RQ-Ikt">
-                                    <rect key="frame" x="1" y="119" width="528" height="15"/>
+                                    <rect key="frame" x="1" y="118" width="528" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="P2S-Zs-wZH">
