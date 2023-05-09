@@ -31,7 +31,6 @@ class RegistrarUsuario: NSViewController {
     
     var position:Int = 0
     var vcMenu:String = "Menu"
-    var usuarioVieneDeVentas: Bool = false
     
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     
@@ -65,11 +64,7 @@ class RegistrarUsuario: NSViewController {
                         
 
                         print("Agregaste")
-                        
-                        if usuarioVieneDeVentas{
-                            performSegue(withIdentifier: "irAMenuVentas", sender: self)
-                        }
-                        
+                        performSegue(withIdentifier: "irAMenuVentas", sender: self)
                     print("Agregaste Cliente")
                         
 

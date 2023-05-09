@@ -66,8 +66,6 @@ class ViewController: NSViewController {
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="registrarUsuarioSegue"{
             (segue.destinationController as! RegistrarUsuario).vc = self
-            let destinoVc = segue.destinationController as! RegistrarUsuario
-            destinoVc.usuarioVieneDeVentas = false
         }
         else if segue.identifier=="iniciarSesionCorrecto"{(segue.destinationController as! MenuAdmin).vc = self
         }
