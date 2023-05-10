@@ -73,6 +73,9 @@ class ViewController: NSViewController {
             
         }else if segue.identifier=="irVcMenuCompras"{
             (segue.destinationController as! MenuCompras).vc = self
+            
+        }else if segue.identifier=="irVcCliente"{
+            (segue.destinationController as! PedidosCliente).vcTablaPedidos = self
         }
     }
     
