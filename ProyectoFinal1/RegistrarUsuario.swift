@@ -64,7 +64,7 @@ class RegistrarUsuario: NSViewController {
                         
 
                         print("Agregaste")
-                        performSegue(withIdentifier: "irAMenuVentas", sender: self)
+                        
                     print("Agregaste Cliente")
                         
 
@@ -131,10 +131,13 @@ class RegistrarUsuario: NSViewController {
     }
         
     @IBAction func cerrarViewController(_ sender: NSButton) {
+       
+        dismiss(self)
+    }
+    override func viewDidDisappear() {
         if(vcMenu=="Ventas"){
             performSegue(withIdentifier: "irAMenuVentas", sender: self)
         }
-        dismiss(self)
     }
 
 }
