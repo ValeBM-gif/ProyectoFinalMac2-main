@@ -84,6 +84,7 @@ class MenuAdmin: NSViewController {
                     performSegue(withIdentifier: "irAModificar", sender: self)
                     lblIDIncorrecto.isHidden = true
                     lblBajaCorrecta.isHidden = true
+                    
                 }else{
                     lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIDIncorrecto.isHidden = false
@@ -121,20 +122,17 @@ class MenuAdmin: NSViewController {
     }
         
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "irAModificar" {
-                
-                (segue.destinationController as! ModificarUsuario).vc = self.vc
-                
-                (segue.destinationController as! ModificarUsuario).vcMenu = self
-                
-                let destinationVC = segue.destinationController as! ModificarUsuario;
-
-                destinationVC.idDeUsuarioRecibido = idUsuarioActual
-                destinationVC.idUsuarioAModificar = idUsuarioAModificar
-                print("valor id en menu: ",vc.usuarioLog[idUsuarioAModificar].id)
-        }else if segue.identifier=="irARegistrar"{
+ if segue.identifier=="irARegistrar"{
                 
             (segue.destinationController as! RegistroAdmin).vc = self.vc
+            
+     (segue.destinationController as! RegistroAdmin).modificar = true
+            (segue.destinationController as! RegistroAdmin).vcMenu = self
+            
+            let destinationVC = segue.destinationController as! RegistroAdmin;
+
+            destinationVC.idDeUsuarioRecibido = idUsuarioActual
+            destinationVC.vcMenu.idUsuarioAModificar = idUsuarioAModificar
                 
              }else if segue.identifier=="irAConsultar"{
                 (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog

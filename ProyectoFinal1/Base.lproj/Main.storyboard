@@ -1571,6 +1571,8 @@
                     <connections>
                         <outlet property="btnRegistrar" destination="Ofb-qi-wQ7" id="WQ2-iE-vVj"/>
                         <outlet property="lblCamposVacios" destination="a8L-w5-zsB" id="WxM-aa-rt2"/>
+                        <outlet property="lblTitulo" destination="IbU-hU-bdZ" id="C13-c2-iQb"/>
+                        <outlet property="lbltitulo" destination="IbU-hU-bdZ" id="PlN-Co-4Sg"/>
                         <outlet property="txtApellidoMaterno" destination="FJR-T6-zIL" id="6vb-nc-Fp6"/>
                         <outlet property="txtApellidoPaterno" destination="MNT-KX-lfd" id="tMf-Y6-qhx"/>
                         <outlet property="txtConfirmarPassword" destination="wVs-nc-IuI" id="Ua2-MZ-hoI"/>
@@ -3018,8 +3020,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="txk-Vd-39z"/>
-        <segue reference="Rmp-cS-KSe"/>
+        <segue reference="m5k-g2-VSf"/>
+        <segue reference="I0U-A5-VRi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="feliz" width="512" height="512"/>
