@@ -925,14 +925,14 @@
                         <outlet property="lblIDIncorrecto" destination="axR-ar-Ht0" id="9tT-JV-Xbt"/>
                         <outlet property="txtID" destination="xKE-tB-M2u" id="7rt-ee-dvC"/>
                         <outlet property="txtNombreUsuario" destination="41o-xO-mCh" id="4Lw-ep-Lem"/>
-                        <segue destination="0dI-L0-DqN" kind="modal" identifier="irAModificar" id="R01-Ib-HwN"/>
                         <segue destination="taZ-J0-CNN" kind="modal" identifier="irAConsultar" id="FMV-7W-3PX"/>
                         <segue destination="qHR-2w-ym3" kind="modal" identifier="irARegistrar" id="Zvc-7A-yUL"/>
+                        <segue destination="qHR-2w-ym3" kind="modal" identifier="irAModificar" id="ENY-1T-7ik"/>
                     </connections>
                 </viewController>
                 <customObject id="u6u-GN-OuH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="640" y="655"/>
+            <point key="canvasLocation" x="584" y="670"/>
         </scene>
         <!--Consultar Usuario-->
         <scene sceneID="rTa-y5-6tk">
@@ -1586,7 +1586,7 @@
                 </viewController>
                 <customObject id="4py-TL-0Hz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-467" y="1272.5"/>
+            <point key="canvasLocation" x="-473" y="1346"/>
         </scene>
         <!--Registro-->
         <scene sceneID="fTc-cE-h2c">
@@ -3020,8 +3020,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="m5k-g2-VSf"/>
+        <segue reference="txk-Vd-39z"/>
         <segue reference="I0U-A5-VRi"/>
+        <segue reference="ENY-1T-7ik"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="feliz" width="512" height="512"/>
