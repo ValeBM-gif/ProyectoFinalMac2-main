@@ -22,8 +22,9 @@ class RegistroAdmin: NSViewController {
     var idDeUsuarioRecibido:Int = 0
     var idUsuarioAModificar:Int = 0
     
-    @IBOutlet weak var txtNombre: NSTextField!
     @IBOutlet weak var lblTitulo: NSTextField!
+    
+    @IBOutlet weak var txtNombre: NSTextField!
     @IBOutlet weak var txtApellidoPaterno: NSTextField!
     @IBOutlet weak var txtApellidoMaterno: NSTextField!
     @IBOutlet weak var txtEmail: NSTextField!
@@ -33,7 +34,8 @@ class RegistroAdmin: NSViewController {
     @IBOutlet weak var txtConfirmarPassword: NSTextField!
     @IBOutlet weak var txtRol: NSTextField!
     
-    @IBOutlet weak var btnRegistrar: NSButton!
+    @IBOutlet weak var dtpFechaNacimiento: NSDatePicker!
+    @IBOutlet weak var lblEdad: NSTextField!
     
     @IBOutlet weak var lblCamposVacios: NSTextField!
     
@@ -52,9 +54,8 @@ class RegistroAdmin: NSViewController {
             print(usuario.nombre)
         }
         
-        btnRegistrar.isEnabled = true
-        
     }
+    
     
     @IBAction func registrarUsuario(_ sender: NSButton) {
         
@@ -64,9 +65,13 @@ class RegistroAdmin: NSViewController {
                     if numeroTelfonicoEsValido(){
                         lblCamposVacios.isHidden = true
                         
-                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, txtRol.stringValue))
+                        var edad:Int = sacarEdad()
+                        
+                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad, txtPassword.stringValue, txtConfirmarPassword.stringValue, txtRol.stringValue))
                         
                         print("Agregaste")
+                        
+                        
                         
                         dismiss(self)
                     }else{
@@ -97,6 +102,28 @@ class RegistroAdmin: NSViewController {
         else{
             lblTitulo.stringValue = "Registro"
         }
+    }
+    
+    func sacarEdad() -> Int{
+        let calendario = Calendar(identifier: .gregorian)
+        
+        var fechaNacimiento = dtpFechaNacimiento.dateValue
+        var fechaActual = Date()
+        
+        var componentesFechaNacimiento = calendario.dateComponents([.year, .month, .day], from: fechaNacimiento)
+        var componentesFechaActual = calendario.dateComponents([.year, .month, .day], from: fechaActual)
+
+        var edad = componentesFechaActual.year! - componentesFechaNacimiento.year!
+
+        // Comprobar si todavía no ha pasado su cumpleaños este año
+        if (componentesFechaNacimiento.month! > componentesFechaActual.month!) || (componentesFechaNacimiento.month! == componentesFechaActual.month! && componentesFechaNacimiento.day! > componentesFechaActual.day!) {
+          edad -= 1
+        }
+        
+        lblEdad.stringValue = "Edad: \(edad)"
+        print("tu edad:",edad)
+        return edad
+
     }
     
     func validarCamposVacios()->Bool{
@@ -134,6 +161,7 @@ class RegistroAdmin: NSViewController {
     }
     
     @IBAction func cerrarViewController(_ sender: NSButton) {
+        
         dismiss(self)
     }
     
@@ -250,6 +278,7 @@ class RegistroAdmin: NSViewController {
 
         
         @IBAction func cerrarViewController(_ sender: NSButton) {
+            
             dismiss(self)
         }
         
