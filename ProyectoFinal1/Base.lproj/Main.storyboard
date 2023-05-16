@@ -1084,7 +1084,7 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Azj-O3-Dkd">
-                                    <rect key="frame" x="1" y="118" width="398" height="16"/>
+                                    <rect key="frame" x="1" y="119" width="398" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="T1c-4t-zzN">
@@ -1374,7 +1374,7 @@
                                 </buttonCell>
                                 <color key="bezelColor" red="0.96078431369999995" green="0.97647058819999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="registrarUsuario:" target="qHR-2w-ym3" id="shC-k1-Vsf"/>
+                                    <action selector="modficarRegistrarUsuario:" target="qHR-2w-ym3" id="tgW-f8-1bI"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="47a-sK-swu">
@@ -1506,15 +1506,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbU-hU-bdZ">
-                                <rect key="frame" x="175" y="476" width="101" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Registro" id="k7o-e6-lkG">
-                                    <font key="font" size="24" name="HelveticaNeue-Bold"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <colorWell focusRingType="exterior" fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbx-rT-fZa">
                                 <rect key="frame" x="-24" y="484" width="193" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1566,6 +1557,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbU-hU-bdZ">
+                                <rect key="frame" x="161" y="478" width="128" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Registro" id="k7o-e6-lkG">
+                                    <font key="font" size="24" name="HelveticaNeue-Bold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -1586,7 +1586,7 @@
                 </viewController>
                 <customObject id="4py-TL-0Hz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-473" y="1346"/>
+            <point key="canvasLocation" x="-473" y="1345.5"/>
         </scene>
         <!--Registro-->
         <scene sceneID="fTc-cE-h2c">
@@ -2046,7 +2046,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="2hm-RQ-Ikt">
-                                    <rect key="frame" x="1" y="118" width="528" height="16"/>
+                                    <rect key="frame" x="1" y="119" width="528" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="P2S-Zs-wZH">
@@ -2954,7 +2954,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="137.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="fu5-gm-tSf">
+                                                <tableColumn width="138" minWidth="10" maxWidth="3.4028234663852886e+38" id="fu5-gm-tSf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2994,7 +2994,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="CmJ-Xd-fFN">
-                                    <rect key="frame" x="1" y="118" width="773" height="16"/>
+                                    <rect key="frame" x="1" y="119" width="773" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="kaa-gZ-6gd">
