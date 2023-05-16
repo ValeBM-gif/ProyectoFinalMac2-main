@@ -32,6 +32,9 @@ class RegistrarUsuario: NSViewController {
     var position:Int = 0
     var vcMenu:String = "Menu"
     
+    var idDeUsuarioRecibido:Int = 0
+    var idUsuarioAModificar:Int = 0
+    
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     
     override func viewDidLoad() {
