@@ -216,7 +216,11 @@ class RegistroAdmin: NSViewController {
             {
             return false
         }
-        else if txtNombre.stringValue.trimmingCharacters(in: .whitespaces).isEmpty
+        else if txtNombre.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtApellidoPaterno.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtApellidoMaterno.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtGenero.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtPassword.stringValue.trimmingCharacters(in: .whitespaces).isEmpty
         {
             return false
         }
