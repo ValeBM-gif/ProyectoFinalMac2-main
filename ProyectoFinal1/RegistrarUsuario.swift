@@ -63,7 +63,7 @@ class RegistrarUsuario: NSViewController {
                     if numeroTelfonicoEsValido(){
                         lblCamposVacios.isHidden = true
                         
-                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
+                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, 10, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
                         
 
                         print("Agregaste")
