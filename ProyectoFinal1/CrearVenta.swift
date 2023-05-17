@@ -12,6 +12,7 @@ class CrearVenta: NSViewController {
     @IBOutlet var vcVentas: ViewController!
     @objc dynamic var ventasLog:[VentaModelo] = []
     var idUsuarioActual:Int!
+    @IBOutlet weak var btnAgregarVenta: NSButton!
     
     //TO DO: Funcionalidad de agregar venta a partir de un botón
     //TO DO: NO SE PUEDE REPETIR ID DE VENTA
@@ -19,10 +20,14 @@ class CrearVenta: NSViewController {
    
     override func viewDidLoad() {
        
-        ventasLog.append(VentaModelo(idVenta: 1, idVendedor: 1, idCliente: 1, idProducto: 2, cantidad: 1, precioProducto: 100, totalProducto: 200, subtotalVenta: 100, ivaVenta: 10, totalVenta: 300))
+        ventasLog.append(VentaModelo(idVenta: 1, idVendedor: 1, idCliente: 1, idProducto: 2, cantidad: 1, precioProducto: 100, totalProducto: 0, subtotalVenta: 0, ivaVenta: 10, totalVenta: 0))
         
         super.viewDidLoad()
         
+    }
+    
+    @IBAction func agregarVenta(_ sender: NSButton) {
+        ventasLog.append(VentaModelo(idVenta: 10, idVendedor: 1, idCliente: 1, idProducto: 2, cantidad: 1, precioProducto: 100, totalProducto: 0, subtotalVenta: 0, ivaVenta: 10, totalVenta: 0))
     }
     
     func calcularTotalProducto(){
@@ -36,4 +41,6 @@ class CrearVenta: NSViewController {
     func calcularSubtotalVenta(){
         //  totalVenta/1.16
     }
+    
+    
 }
