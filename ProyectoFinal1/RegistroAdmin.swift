@@ -14,7 +14,7 @@ class RegistroAdmin: NSViewController {
     //TODO: Que no se vea la contraseña en campos de contraseña
     //TODO: Que cuando te mande a modificar aparezca tu fecha de nacimiento ya
     //TODO: Hacer que no le pueda cambiar el rol al admin 0
-
+    //TODO: VAlidar EDAD
     
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!
@@ -55,7 +55,7 @@ class RegistroAdmin: NSViewController {
             autorellenarCampos()
             lblTitulo.stringValue = "Modificar"
             btnRegistrar.title = "Modificar"
-            cmbRoles.selectItem(at: sacarIndiceRol())
+            cmbRoles.selectItem(at: obtenerIndiceRol())
         }else{
             btnRegistrar.title = "Registrar"
             lblTitulo.stringValue = "Registro"
@@ -72,7 +72,7 @@ class RegistroAdmin: NSViewController {
     }
     
     @IBAction func rolCambiado(_ sender: NSPopUpButton) {
-            var indiceSeleccionado = sender.indexOfSelectedItem
+        let indiceSeleccionado = sender.indexOfSelectedItem
             rolSeleccionado = roles[indiceSeleccionado]
             
         }
@@ -91,7 +91,7 @@ class RegistroAdmin: NSViewController {
         if hacerValidaciones(){
             lblCamposVacios.isHidden = true
             
-            var edad=sacarEdad()
+            let edad=calcularEdad()
             
             vc.usuarioLog[idUsuarioAModificar].nombre = txtNombre.stringValue
             vc.usuarioLog[idUsuarioAModificar].apellidoMaterno = txtApellidoMaterno.stringValue
@@ -129,10 +129,10 @@ class RegistroAdmin: NSViewController {
                         txtConfirmarPassword.stringValue = vc.usuarioLog[idUsuarioAModificar].contraseña
         
         
-                        cmbRoles.selectItem(at: sacarIndiceRol())
+                        cmbRoles.selectItem(at: obtenerIndiceRol())
     }
     
-    func sacarIndiceRol() -> Int{
+    func obtenerIndiceRol() -> Int{
         switch vc.usuarioLog[idUsuarioAModificar].rol {
         case "Admin": return 0
         case "Cliente": return 1
@@ -149,7 +149,7 @@ class RegistroAdmin: NSViewController {
             lblCamposVacios.isHidden = true
             
             vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue,
-                         sacarEdad(),                      txtPassword.stringValue, txtConfirmarPassword.stringValue, rolSeleccionado))
+                         calcularEdad(),                      txtPassword.stringValue, txtConfirmarPassword.stringValue, rolSeleccionado))
             
             print("Agregaste")
             
@@ -157,14 +157,14 @@ class RegistroAdmin: NSViewController {
         }
     }
     
-    func sacarEdad() -> Int{
+    func calcularEdad() -> Int{
         let calendario = Calendar(identifier: .gregorian)
         
-        var fechaNacimiento = dtpFechaNacimiento.dateValue
-        var fechaActual = Date()
+        let fechaNacimiento = dtpFechaNacimiento.dateValue
+        let fechaActual = Date()
         
-        var componentesFechaNacimiento = calendario.dateComponents([.year, .month, .day], from: fechaNacimiento)
-        var componentesFechaActual = calendario.dateComponents([.year, .month, .day], from: fechaActual)
+        let componentesFechaNacimiento = calendario.dateComponents([.year, .month, .day], from: fechaNacimiento)
+        let componentesFechaActual = calendario.dateComponents([.year, .month, .day], from: fechaActual)
 
         var edad = componentesFechaActual.year! - componentesFechaNacimiento.year!
 
@@ -174,7 +174,6 @@ class RegistroAdmin: NSViewController {
         }
         
         lblEdad.stringValue = "Edad: \(edad)"
-        print("tu edad:",edad)
         return edad
 
     }
@@ -213,7 +212,12 @@ class RegistroAdmin: NSViewController {
             txtTelefono.stringValue == "" ||
             txtGenero.stringValue == "" ||
             txtPassword.stringValue == "" ||
-            txtConfirmarPassword.stringValue == ""{
+            txtConfirmarPassword.stringValue == ""
+            {
+            return false
+        }
+        else if txtNombre.stringValue.trimmingCharacters(in: .whitespaces).isEmpty
+        {
             return false
         }
         return true

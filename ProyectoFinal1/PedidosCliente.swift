@@ -19,7 +19,7 @@ class PedidosCliente: NSViewController {
     var usuarios:[UsuarioModelo]!
     var clientes:[UsuarioModelo]!
     
-    
+    //TO DO: MOSTRAR EL TOTAL DEL PEDIDO
   
     override func viewDidLoad() {
         super.viewDidLoad()
