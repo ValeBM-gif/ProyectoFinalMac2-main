@@ -19,8 +19,9 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         
-        usuarioLog.append(UsuarioModelo(0, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", "123", "123","Admin"))
-        usuarioLog.append(UsuarioModelo(1, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", "123", "123","Ventas"))
+        usuarioLog.append(UsuarioModelo(0, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", 10, "123", "123","Admin"))
+        usuarioLog.append(UsuarioModelo(1, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", 10, "123", "123","Ventas"))
+        usuarioLog.append(UsuarioModelo(2, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 10, "123", "123","Cliente"))
 
         lblIncorrecto.isHidden=true
     }
@@ -66,8 +67,6 @@ class ViewController: NSViewController {
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="registrarUsuarioSegue"{
             (segue.destinationController as! RegistrarUsuario).vc = self
-            let destinoVc = segue.destinationController as! RegistrarUsuario
-            destinoVc.usuarioVieneDeVentas = false
         }
         else if segue.identifier=="iniciarSesionCorrecto"{(segue.destinationController as! MenuAdmin).vc = self
         }
@@ -75,6 +74,9 @@ class ViewController: NSViewController {
             
         }else if segue.identifier=="irVcMenuCompras"{
             (segue.destinationController as! MenuCompras).vc = self
+            
+        }else if segue.identifier=="irVcCliente"{
+            (segue.destinationController as! PedidosCliente).vcTablaPedidos = self
         }
     }
     

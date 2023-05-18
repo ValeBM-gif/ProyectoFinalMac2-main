@@ -31,7 +31,9 @@ class RegistrarUsuario: NSViewController {
     
     var position:Int = 0
     var vcMenu:String = "Menu"
-    var usuarioVieneDeVentas: Bool = false
+    
+    var idDeUsuarioRecibido:Int = 0
+    var idUsuarioAModificar:Int = 0
     
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     
@@ -61,14 +63,10 @@ class RegistrarUsuario: NSViewController {
                     if numeroTelfonicoEsValido(){
                         lblCamposVacios.isHidden = true
                         
-                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
+                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, 10, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
                         
 
                         print("Agregaste")
-                        
-                        if usuarioVieneDeVentas{
-                            performSegue(withIdentifier: "irAMenuVentas", sender: self)
-                        }
                         
                     print("Agregaste Cliente")
                         
@@ -136,10 +134,13 @@ class RegistrarUsuario: NSViewController {
     }
         
     @IBAction func cerrarViewController(_ sender: NSButton) {
+       
+        dismiss(self)
+    }
+    override func viewDidDisappear() {
         if(vcMenu=="Ventas"){
             performSegue(withIdentifier: "irAMenuVentas", sender: self)
         }
-        dismiss(self)
     }
 
 }

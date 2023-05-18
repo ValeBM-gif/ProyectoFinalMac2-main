@@ -10,7 +10,7 @@ import Cocoa
 class PedidosCliente: NSViewController {
     
     @IBOutlet var vcTablaPedidos: ViewController!
-    //@objc dynamic var ventasLog:[VentasModelo] = []
+    @objc dynamic var ventasLog:[VentaModelo] = []
     @objc dynamic var pedidosLog:[PedidoModelo] = []
     @objc dynamic var clientesLog:[UsuarioModelo] = []
     
@@ -19,12 +19,13 @@ class PedidosCliente: NSViewController {
     var usuarios:[UsuarioModelo]!
     var clientes:[UsuarioModelo]!
     
-    
+    //TO DO: MOSTRAR EL TOTAL DEL PEDIDO
   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         usuarios = vcTablaPedidos.usuarioLog
+        clientes = []
         idUsuarioActual = vcTablaPedidos.idUsuarioActual
         
         buscarClientes()
@@ -32,8 +33,8 @@ class PedidosCliente: NSViewController {
         obtenerIdClienteActual()
         
         
-        pedidosLog.append(PedidoModelo(1, 1, 1, 100, 100, 200, false))
-        pedidosLog.append(PedidoModelo(2, 2, 1, 100, 100, 200, false))
+       pedidosLog.append(PedidoModelo(1, 1, 1, 100, 100, 200, false))
+    pedidosLog.append(PedidoModelo(2, 2, 1, 100, 100, 200, false))
         
         
         

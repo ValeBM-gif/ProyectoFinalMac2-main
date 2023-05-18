@@ -84,6 +84,7 @@ class MenuAdmin: NSViewController {
                     performSegue(withIdentifier: "irAModificar", sender: self)
                     lblIDIncorrecto.isHidden = true
                     lblBajaCorrecta.isHidden = true
+                    
                 }else{
                     lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIDIncorrecto.isHidden = false
@@ -122,26 +123,30 @@ class MenuAdmin: NSViewController {
         
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier == "irAModificar" {
-                
-                (segue.destinationController as! ModificarUsuario).vc = self.vc
-                
-                (segue.destinationController as! ModificarUsuario).vcMenu = self
-                
-                let destinationVC = segue.destinationController as! ModificarUsuario;
+                        
+                        (segue.destinationController as! RegistroAdmin).vc = self.vc
+                        
+                        (segue.destinationController as! RegistroAdmin).vcMenu = self
+                        
+                        let destinationVC = segue.destinationController as! RegistroAdmin;
 
-                destinationVC.idDeUsuarioRecibido = idUsuarioActual
-                destinationVC.idUsuarioAModificar = idUsuarioAModificar
-                print("valor id en menu: ",vc.usuarioLog[idUsuarioAModificar].id)
-        }else if segue.identifier=="irARegistrar"{
-                
-            (segue.destinationController as! RegistroAdmin).vc = self.vc
-                
-             }else if segue.identifier=="irAConsultar"{
-                (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog
-                (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
-                    }
-    }
-    
-}
+                        destinationVC.idDeUsuarioRecibido = idUsuarioActual
+                        destinationVC.idUsuarioAModificar = idUsuarioAModificar
+                        print("valor id en menu: ",vc.usuarioLog[idUsuarioAModificar].id)
+            destinationVC.modificar=true
+            
+                }else if segue.identifier=="irARegistrar"{
+                        
+                    (segue.destinationController as! RegistroAdmin).vc = self.vc
+                    let destinationVC = segue.destinationController as! RegistroAdmin;
+                    destinationVC.modificar=false
+                        
+                     }else if segue.identifier=="irAConsultar"{
+                        (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog
+                        (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
+                            }
+            }
+            
+        }
     //
 
