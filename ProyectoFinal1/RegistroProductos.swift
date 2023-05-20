@@ -113,10 +113,16 @@ class RegistroProductos: NSViewController {
         vc.productoLog[modifyPosition].nombre = txtNombre.stringValue
         vc.productoLog[modifyPosition].descricpion = txtDescripcion.stringValue
         vc.productoLog[modifyPosition].unidad = txtUnidad.stringValue
-        vc.productoLog[modifyPosition].precio = txtNombre.doubleValue
-        vc.productoLog[modifyPosition].costo = txtNombre.doubleValue
-        vc.productoLog[modifyPosition].categoria = txtNombre.stringValue
-        vc.productoLog[modifyPosition].cantidad = txtNombre.integerValue
+        vc.productoLog[modifyPosition].precio = txtPrecio.doubleValue
+        vc.productoLog[modifyPosition].costo = txtCosto.doubleValue
+        vc.productoLog[modifyPosition].categoria = txtCategoria.stringValue
+        vc.productoLog[modifyPosition].cantidad = txtCantidad.integerValue
+        print("modify position", modifyPosition)
+        print("txt precio", txtPrecio.doubleValue)
+        print("precio", vc.productoLog[modifyPosition].precio )
+        print("costo", vc.productoLog[modifyPosition].costo )
+        print("cantidad", vc.productoLog[modifyPosition].cantidad )
+        print("cantidad", vc.productoLog[modifyPosition].categoria )
         dismiss(self)
     }
     

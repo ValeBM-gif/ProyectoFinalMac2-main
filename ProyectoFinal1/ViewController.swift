@@ -28,6 +28,7 @@ class ViewController: NSViewController {
         usuarioLog.append(UsuarioModelo(1, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", 10, "123", "123","Ventas"))
         usuarioLog.append(UsuarioModelo(2, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 10, "123", "123","Cliente"))
         usuarioLog.append(UsuarioModelo(3, "vale", "b", "m", "v@g.com","4771234567", "no binarie", 20, "123", "123","Compras"))
+        
         productoLog.append(ProductoModelo(0, "awita", "de limon", "lt", 10, 5, "liquidoss", 20))
 
         lblIncorrecto.isHidden=true
