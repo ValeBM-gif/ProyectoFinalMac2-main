@@ -9,7 +9,13 @@ import Cocoa
 
 class RegistroProductos: NSViewController {
 
-    @IBOutlet weak var vc: MenuCompras!
+    //TODO: cambiar nombres de variables de regex
+    //TODO: precio y costo no puedan ser 0
+    
+    @IBOutlet weak var vc: ViewController!
+    
+    @IBOutlet weak var lblTitulo: NSTextField!
+    @IBOutlet weak var lblDescripcion: NSTextField!
     
     @IBOutlet weak var txtNombre: NSTextField!
     @IBOutlet weak var txtDescripcion: NSTextField!
@@ -21,7 +27,11 @@ class RegistroProductos: NSViewController {
     
     @IBOutlet weak var lblIncorrecto: NSTextField!
     
-    var position: Int = 0
+    @IBOutlet weak var btnEnviar: NSButton!
+    
+    var esRegistroProducto: Bool = true
+    var registerPosition: Int = 0
+    var modifyPosition: Int = 0
     @objc dynamic var productoLog: [ProductoModelo] = []
     
     override func viewDidLoad() {
@@ -29,22 +39,45 @@ class RegistroProductos: NSViewController {
         
         lblIncorrecto.isHidden = true
         
-        position = productoLog.count
+        registerPosition = vc.productoLog.count
+        print("count de producto log",vc.productoLog.count)
+        
+        if esRegistroProducto{
+            lblTitulo.stringValue = "Registro de Productos"
+            lblDescripcion.isHidden = false
+            btnEnviar.title = "Registrar"
+        }else{
+            print("entraa a elseeeeeeeeeee")
+            llenarCampos()
+            lblTitulo.stringValue = "Modificación de Productos"
+            lblDescripcion.isHidden = true
+            btnEnviar.title = "Modificar"
+            
+            
+        }
     }
     
-    @IBAction func registrarUsuario(_ sender: NSButton) {
+    
+    @IBAction func enviar(_ sender: NSButton) {
+        
+        if hacerValidaciones(){
+            if esRegistroProducto{
+                registrarProducto()
+            }else{
+                modificarProducto()
+            }
+        }
+    }
+    
+    func hacerValidaciones()->Bool{
         
         if validarCamposVacios(){
             if validarNumeroDoublePositivo(txtPrecio.stringValue){
                 if validarNumeroDoublePositivo(txtCosto.stringValue){
-                    if validarNumeroEnteroPositivo(){
+                    if validarNumeroEnteroPositivo(txtCantidad.stringValue){
                         lblIncorrecto.isHidden = true
+                        return true
                         
-                        vc.productoLog.append(ProductoModelo(position, txtNombre.stringValue, txtDescripcion.stringValue, txtUnidad.stringValue, txtPrecio.doubleValue, txtCosto.doubleValue, txtCategoria.stringValue, txtCantidad.integerValue))
-                        
-                        print("producto log",productoLog)
-                        
-                        dismiss(self)
                         
                     }else{
                         lblIncorrecto.stringValue = "*En cantidad inserta un número válido*"
@@ -62,6 +95,46 @@ class RegistroProductos: NSViewController {
             lblIncorrecto.stringValue = "*Recuerda llenar todos los campos*"
             lblIncorrecto.isHidden = false
         }
+        
+        return false
+    }
+    
+    func registrarProducto(){
+        print("register position: ",registerPosition)
+        vc.productoLog.append(ProductoModelo(registerPosition, txtNombre.stringValue, txtDescripcion.stringValue, txtUnidad.stringValue, txtPrecio.doubleValue, txtCosto.doubleValue, txtCategoria.stringValue, txtCantidad.integerValue))
+        print("count de producto log, después de registrar",vc.productoLog.count)
+        for producto in vc.productoLog{
+            print("productos", producto.nombre)
+        }
+        dismiss(self)
+    }
+    
+    func modificarProducto(){
+        vc.productoLog[modifyPosition].nombre = txtNombre.stringValue
+        vc.productoLog[modifyPosition].descricpion = txtDescripcion.stringValue
+        vc.productoLog[modifyPosition].unidad = txtUnidad.stringValue
+        vc.productoLog[modifyPosition].precio = txtPrecio.doubleValue
+        vc.productoLog[modifyPosition].costo = txtCosto.doubleValue
+        vc.productoLog[modifyPosition].categoria = txtCategoria.stringValue
+        vc.productoLog[modifyPosition].cantidad = txtCantidad.integerValue
+        print("modify position", modifyPosition)
+        print("txt precio", txtPrecio.doubleValue)
+        print("precio", vc.productoLog[modifyPosition].precio )
+        print("costo", vc.productoLog[modifyPosition].costo )
+        print("cantidad", vc.productoLog[modifyPosition].cantidad )
+        print("cantidad", vc.productoLog[modifyPosition].categoria )
+        dismiss(self)
+    }
+    
+    func llenarCampos(){
+        print("entra a llenar campos")
+        txtNombre.stringValue = vc.productoLog[modifyPosition].nombre
+        txtDescripcion.stringValue = vc.productoLog[modifyPosition].descricpion
+        txtUnidad.stringValue = vc.productoLog[modifyPosition].unidad
+        txtPrecio.stringValue = String( vc.productoLog[modifyPosition].precio)
+        txtCosto.stringValue = String( vc.productoLog[modifyPosition].costo)
+        txtCategoria.stringValue =  vc.productoLog[modifyPosition].categoria
+        txtCantidad.stringValue = String( vc.productoLog[modifyPosition].cantidad)
     }
     
     func validarCamposVacios()->Bool{
@@ -77,16 +150,28 @@ class RegistroProductos: NSViewController {
         return true
     }
     
-    func validarNumeroDoublePositivo(_ str: String) -> Bool {
+    func validarNumeroDoublePositivo(_ campo: String) -> Bool {
         let numericCharacters = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: "."))
-        let stringCharacterSet = CharacterSet(charactersIn: str)
-        return numericCharacters.isSuperset(of: stringCharacterSet) && Double(str) != nil && Double(str)! >= 0
+        let stringCharacterSet = CharacterSet(charactersIn: campo)
+        return numericCharacters.isSuperset(of: stringCharacterSet) && Double(campo) != nil && Double(campo)! >= 0
     }
     
-    func validarNumeroEnteroPositivo() -> Bool {
+    func validarNoCeros(){
+        
+    }
+    
+    func validarNumeroEnteroPositivo(_ campo: String) -> Bool {
         let numericCharacters = CharacterSet.decimalDigits
-        let stringCharacterSet = CharacterSet(charactersIn: txtCantidad.stringValue)
-        return numericCharacters.isSuperset(of: stringCharacterSet) && Int(txtCantidad.stringValue) != nil && Int(txtCantidad.stringValue)! >= 0
+        let stringCharacterSet = CharacterSet(charactersIn: campo)
+        return numericCharacters.isSuperset(of: stringCharacterSet) && Int(campo) != nil && Int(campo)! >= 0
+    }
+    
+    @IBAction func cerrarVC(_ sender: NSButton) {
+        dismiss(self)
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        (segue.destinationController as! ViewController).productoLog = vc.productoLog
     }
 
     

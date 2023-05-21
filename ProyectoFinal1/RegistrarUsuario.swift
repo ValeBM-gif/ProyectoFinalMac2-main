@@ -12,7 +12,9 @@ class RegistrarUsuario: NSViewController {
     //TODO: Validar que no haya usuarios repetidos
     //TODO: Validar contraseñas seguras
     //TODO: Que no se vea la contraseña en campos de contraseña
-
+    //TODO: Cambiar el nombre de la variable vcMenu q es eso
+    
+    
     @IBOutlet weak var vc: ViewController!
     
     @IBOutlet weak var txtNombre: NSTextField!
@@ -64,9 +66,6 @@ class RegistrarUsuario: NSViewController {
                         lblCamposVacios.isHidden = true
                         
                         vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, 10, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
-                        
-
-                        print("Agregaste")
                         
                     print("Agregaste Cliente")
                         
@@ -127,6 +126,9 @@ class RegistrarUsuario: NSViewController {
         return false
     }
     
+    
+    
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="irAMenuVentas"{
             (segue.destinationController as! MenuVentas).vc = self.vc
@@ -134,9 +136,10 @@ class RegistrarUsuario: NSViewController {
     }
         
     @IBAction func cerrarViewController(_ sender: NSButton) {
-       
+       print("entra al ib action?")
         dismiss(self)
     }
+    
     override func viewDidDisappear() {
         if(vcMenu=="Ventas"){
             performSegue(withIdentifier: "irAMenuVentas", sender: self)

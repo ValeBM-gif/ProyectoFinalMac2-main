@@ -9,6 +9,8 @@ import Cocoa
 
 class MenuCompras: NSViewController {
     
+    //TODO: quiatr código excedente de prepare
+    
     @IBOutlet weak var vc: ViewController!
 
     @IBOutlet weak var txtID: NSTextField!
@@ -17,6 +19,7 @@ class MenuCompras: NSViewController {
     
     var idUsuarioActual:Int!
     var idProductoABuscar: Int=0
+    var irARegistro:Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +29,28 @@ class MenuCompras: NSViewController {
         
         let usuarioActual = vc.usuarioLog
         idUsuarioActual = vc.idUsuarioActual
+        
+        for producto in vc.productoLog{
+            print("productos", producto.nombre)
+        }
+        
     }
-    
-    @objc dynamic var productoLog: [ProductoModelo] = []
     
     @IBAction func buscarProducto(_ sender: NSButton) {
         if txtID.stringValue != ""{
             if soloHayNumerosEnTxtID(){
                 idProductoABuscar = txtID.integerValue
                 lblIDIncorrecto.isHidden = true
+                print("id de producto a buscar ",idProductoABuscar)
                 if checarExistenciaProducto(id: idProductoABuscar){
-                    performSegue(withIdentifier: "irVcModificarProducto", sender: self)
+                    print("id de producto a buscar")
+                    irARegistro = false
                 }else{
-                    performSegue(withIdentifier: "irVcRegistroProducto", sender: self)
+                    irARegistro = true
                 }
+                
+                performSegue(withIdentifier: "irVcRegistroProducto", sender: self)
+                
             }else{
                 lblIDIncorrecto.isHidden = false
             }
@@ -54,12 +65,20 @@ class MenuCompras: NSViewController {
     }
     
     func checarExistenciaProducto(id:Int) -> Bool{
-        for ProductoModelo in productoLog {
+        for ProductoModelo in vc.productoLog {
             if (ProductoModelo.id == id) {
                 return true
             }
         }
         return false
+    }
+    
+    func calcularTotal(id:Int) {
+        for venta in vc.productoLog {
+            if (venta.id == id) {
+                var total:Double = venta.precio * txtID.doubleValue
+            }
+        }
     }
     
     @IBAction func regresarAInicio(_ sender: NSButton) {
@@ -68,7 +87,10 @@ class MenuCompras: NSViewController {
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="irVcRegistroProducto"{
-            (segue.destinationController as! RegistroProductos).vc = self
+            (segue.destinationController as! RegistroProductos).vc = vc
+            (segue.destinationController as! RegistroProductos).esRegistroProducto = irARegistro
+            (segue.destinationController as! RegistroProductos).modifyPosition = idProductoABuscar
+
             
         }else if segue.identifier=="irVcModificarProducto"{
             (segue.destinationController as! ModificarProducto).vcMenu = self

@@ -32,14 +32,7 @@ class ModificarProducto: NSViewController {
         lblIncorrecto.isHidden = true
         
         idUsuarioRecibido = vc.idUsuarioActual
-        
-        txtNombre.stringValue = vcMenu.productoLog[idProductoAModificar].nombre
-        txtDescripcion.stringValue = vcMenu.productoLog[idProductoAModificar].descricpion
-        txtUnidad.stringValue = vcMenu.productoLog[idProductoAModificar].unidad
-        txtPrecio.stringValue = String( vcMenu.productoLog[idProductoAModificar].precio)
-        txtCosto.stringValue = String( vcMenu.productoLog[idProductoAModificar].costo)
-        txtCategoria.stringValue =  vcMenu.productoLog[idProductoAModificar].categoria
-        txtCantidad.stringValue = String( vcMenu.productoLog[idProductoAModificar].cantidad)
+
     }
     
     
@@ -51,13 +44,6 @@ class ModificarProducto: NSViewController {
                     if validarNumeroEnteroPositivo(){
                         lblIncorrecto.isHidden = true
                         
-                        vcMenu.productoLog[idProductoAModificar].nombre = txtNombre.stringValue
-                        vcMenu.productoLog[idProductoAModificar].descricpion = txtDescripcion.stringValue
-                        vcMenu.productoLog[idProductoAModificar].unidad = txtUnidad.stringValue
-                        vcMenu.productoLog[idProductoAModificar].precio = txtNombre.doubleValue
-                        vcMenu.productoLog[idProductoAModificar].costo = txtNombre.doubleValue
-                        vcMenu.productoLog[idProductoAModificar].categoria = txtNombre.stringValue
-                        vcMenu.productoLog[idProductoAModificar].cantidad = txtNombre.integerValue
                         
                         dismiss(self)
                         
