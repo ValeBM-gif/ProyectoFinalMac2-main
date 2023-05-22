@@ -9,9 +9,8 @@ import Cocoa
 
 class ModificarUsuario: NSViewController {
     
-    //TODO: validar Rol
-    //TODO: si el admin 0 quiere cambiar de rol que no se pueda
-    //TODO: validar que no haya email repetidos
+    //TODO: VC en deshuso, verificar que no se utilice y borrar
+    
 
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!

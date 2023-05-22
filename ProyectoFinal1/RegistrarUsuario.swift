@@ -36,6 +36,7 @@ class RegistrarUsuario: NSViewController {
     
     var idDeUsuarioRecibido:Int = 0
     var idUsuarioAModificar:Int = 0
+
     
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     

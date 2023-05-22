@@ -17,6 +17,10 @@ class MenuVentas: NSViewController {
     @IBOutlet weak var lblIDIncorrecto: NSTextField!
     
     var idClienteABuscar: Int=0
+    var nombreClienteABuscar:String = ""
+    var nombreVendedor:String = ""
+    var esClienteOAdmin: Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +34,21 @@ class MenuVentas: NSViewController {
                 idClienteABuscar = txtID.integerValue
                 lblIDIncorrecto.isHidden = true
                 if checarExistenciaCliente(id: idClienteABuscar){
-                    performSegue(withIdentifier: "irVentas", sender: self)
+                    print("cliente existe")
+                    if checarSiEsClienteOAdmin(id: idClienteABuscar){
+                        print("es cliente o admin")
+                        performSegue(withIdentifier: "irVentas", sender: self)
+                    }
                 }else{
                     performSegue(withIdentifier: "irVcRegistroVentas", sender: self)
                     dismiss(self)
                 }
             }else{
+                lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                 lblIDIncorrecto.isHidden = false
             }
         }else{
+            lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
             lblIDIncorrecto.isHidden = false
         }
     }
@@ -51,18 +61,41 @@ class MenuVentas: NSViewController {
     func checarExistenciaCliente(id:Int) -> Bool{
         for UsuarioModelo in vc.usuarioLog{
             if(UsuarioModelo.id == id){
+                nombreClienteABuscar = UsuarioModelo.nombre
                 return true
             }
         }
         return false
     }
     
+    func checarSiEsClienteOAdmin(id: Int)->Bool{
+        if vc.usuarioLog[id].rol == "Admin" || vc.usuarioLog[id].rol == "Cliente"{
+            esClienteOAdmin = true
+            lblIDIncorrecto.isHidden = true
+            return true
+        }else{
+            lblIDIncorrecto.stringValue = "*Inserta un usuario válido*"
+            lblIDIncorrecto.isHidden = false
+            return false
+        }
+    }
+    
+    @IBAction func cerrarSesion(_ sender: NSButton) {
+        dismiss(self)
+    }
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        print("entra a prepare")
         if segue.identifier == "irVcRegistroVentas" {
             let destinoVc = segue.destinationController as! RegistrarUsuario
             destinoVc.vcMenu = "Ventas"
             destinoVc.vc = vc
            
+        }else if segue.identifier == "irVentas"{
+            print("entra a segue irvemtas")
+            let destinoVc = segue.destinationController as! CrearVenta
+            destinoVc.vc = vc
+            destinoVc.vcMenuVenta = self
         }
     }
 }

@@ -11,6 +11,7 @@ class MenuCompras: NSViewController {
     
     //TODO: quiatr código excedente de prepare
     
+    
     @IBOutlet weak var vc: ViewController!
 
     @IBOutlet weak var txtID: NSTextField!
@@ -100,8 +101,14 @@ class MenuCompras: NSViewController {
             
             destinationVC.idUsuarioRecibido = idUsuarioActual
             destinationVC.idProductoAModificar = idProductoABuscar
+        }else if segue.identifier=="irConsultarProductos"{
+            (segue.destinationController as! ConsultaProductos).productoLog = vc.productoLog
+            (segue.destinationController as! ConsultaProductos).vcTablaProductos = self.vc
         }
     }
     
+    @IBAction func consultarProducto(_ sender: NSButton) {
+        performSegue(withIdentifier: "irConsultarProductos", sender: self)
+    }
 }
     

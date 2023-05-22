@@ -8,9 +8,7 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    
-    //TODO: Cuando inicia sesión borrar la info de los campos
-    
+        
     @IBOutlet weak var vc: ViewController!
     
     @IBOutlet weak var txtUsuario: NSTextField!
@@ -19,8 +17,11 @@ class ViewController: NSViewController {
     
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     @objc dynamic var productoLog: [ProductoModelo] = []
+    @objc dynamic var ventasLog:[VentaModelo] = []
     
     var idUsuarioActual: Int!
+    var nombreUsuarioActual: String!
+    var contadorIdVenta: Int = 0
     
     override func viewDidLoad() {
         
@@ -29,7 +30,10 @@ class ViewController: NSViewController {
         usuarioLog.append(UsuarioModelo(2, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 10, "123", "123","Cliente"))
         usuarioLog.append(UsuarioModelo(3, "vale", "b", "m", "v@g.com","4771234567", "no binarie", 20, "123", "123","Compras"))
         
-        productoLog.append(ProductoModelo(0, "awita", "de limon", "lt", 10, 5, "liquidoss", 20))
+        productoLog.append(ProductoModelo(0, "awita", "de limon", "lt", 10, 5, "liquidoss", 20, 3, "vale"))
+        productoLog.append(ProductoModelo(1, "jugue", "de uva", "ml", 20, 10, "liquidoss complejos", 30, 0, "uriel"))
+        productoLog.append(ProductoModelo(2, "awita", "de limon", "lt", 30, 5, "liquidoss", 20, 3, "vale"))
+        productoLog.append(ProductoModelo(3, "jugue", "de uva", "ml", 40, 10, "liquidoss complejos", 30, 2, "Cliente"))
 
         lblIncorrecto.isHidden=true
     }
@@ -43,10 +47,12 @@ class ViewController: NSViewController {
         let resultadoLogin = login(username: txtUsuario.stringValue, password: txtPassword.stringValue)
                
                if(resultadoLogin is UsuarioModelo){
-                   
+                   txtUsuario.stringValue = ""
+                   txtPassword.stringValue = ""
                    lblIncorrecto.isHidden = true
                    let UsuarioActual = resultadoLogin as! UsuarioModelo
                    idUsuarioActual=UsuarioActual.id
+                   nombreUsuarioActual=UsuarioActual.nombre
                    if UsuarioActual.rol == "Cliente"{
                        performSegue(withIdentifier: "irVcCliente", sender: self)
                    }else if UsuarioActual.rol == "Admin"{
@@ -79,7 +85,7 @@ class ViewController: NSViewController {
         else if segue.identifier=="iniciarSesionCorrecto"{(segue.destinationController as! MenuAdmin).vc = self
         }
         else if segue.identifier=="irMenuVentas"{(segue.destinationController as! MenuVentas).vc = self
-            
+            (segue.destinationController as! MenuVentas).nombreVendedor = nombreUsuarioActual
         }else if segue.identifier=="irVcMenuCompras"{
             (segue.destinationController as! MenuCompras).vc = self
             
@@ -87,6 +93,8 @@ class ViewController: NSViewController {
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = self
         }
     }
+    
+    
     
 
 

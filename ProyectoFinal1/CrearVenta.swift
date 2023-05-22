@@ -9,27 +9,37 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
-    @IBOutlet var vcVentas: ViewController!
-    @objc dynamic var ventasLog:[VentaModelo] = []
-    var idUsuarioActual:Int!
+    @IBOutlet var vc: ViewController!
+    @IBOutlet var vcMenuVenta: MenuVentas!
+    
     @IBOutlet weak var btnAgregarVenta: NSButton!
     @IBOutlet weak var txtIdProducto: NSTextField!
     @IBOutlet weak var txtCantidad: NSTextField!
     @IBOutlet weak var lblIncorrecto: NSTextField!
     @IBOutlet weak var lblSubtotalVenta: NSTextField!
     @IBOutlet weak var lblTotalVenta: NSTextField!
+    @IBOutlet weak var lblNombreVendedor: NSTextField!
     
-    //TODO: Funcionalidad de agregar venta a partir de un botón
-    //TODO: NO SE PUEDE REPETIR ID DE VENTA
+    @objc dynamic var ventasLog:[VentaModelo] = []
+    
     //TODO: CONECTAR VENTAS A PEDIDOS PARA QUE EL CLIENTE TENGA ACCESO
+    //TODO: que los IDs empiecen en 1 EN TODOS LOS COSIS, NO SOLO VENTAS
+    //TODO: crear el ventas log desde el vc principal
+    //TODO: Agregar a tablitas nombre (nombre producto, nombre vendedor, etc) EN TODOS LOS COSIS, NO SOLO VENTAS
+    //TODO: Validar que no se pueda buscar un producto que no existe
+    //TODO: appendear realmente total y subtotal de venta (solo aparecen bien el lbl externo a tabla)
+    //TODO: Agregar botón para completar venta
+    //TODO: Restar cantidad de productos en stock al venderlos
     
     var idProducto: Int=0
     var cantidadProducto: Int=0
     var totalProducto: Double=0
     var totalVenta:Double=0
     var subtotalVenta:Double=0
-    var precio1: Double=100
-    var precio2: Double=200
+    var idUsuarioActual:Int!
+    var subtotal : Double = 0
+    var multi : Double = 0
+    var total:Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +57,21 @@ class CrearVenta: NSViewController {
                         if soloHayNumerosEnIdProducto(){
                             idProducto = txtIdProducto.integerValue
                             lblIncorrecto.isHidden = true
-                            if checarIdRepetido(id:txtIdProducto.integerValue){
-                                ventasLog.append(VentaModelo(idVenta: 1, idVendedor: 1, idCliente: txtIdProducto.integerValue, idProducto: 1, cantidad: txtCantidad.integerValue, precioProducto: precio1, totalProducto: calcularTotalProducto(id: txtIdProducto.integerValue), subtotalVenta: 100, ivaVenta: 10, totalVenta: 100))
+                            if checarIdRepetido(id:idProducto){
+                                if checarCantidadvalida(id: idProducto){
+                                    
+                                    calcularTotalVenta()
+
+                                    ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: totalProducto, subtotalVenta: 100, ivaVenta: 16, totalVenta: 100))
+
+                                    lblNombreVendedor.stringValue = vcMenuVenta.nombreVendedor
+                                    
+                                    calcularSubtotalVenta(id: vc.contadorIdVenta)
+                                    calcularTotalVenta()
+                                }else{
+                                    lblIncorrecto.stringValue = "*Cantidad solicitada excedente a la cantidad en existencia*"
+                                    lblIncorrecto.isHidden = false
+                                }
                             }else{
                                 lblIncorrecto.stringValue = "*Inserta un ID diferente*"
                                 lblIncorrecto.isHidden = false
@@ -69,37 +92,6 @@ class CrearVenta: NSViewController {
         }
     }
     
-    func calcularTotalProducto(id:Int)->Double{
-        for venta in ventasLog{
-            if(venta.idProducto == id){
-                totalProducto = venta.precioProducto * txtCantidad.doubleValue
-            }
-        }
-        return totalProducto
-    }
-    
-    func calcularTotalVenta(id:Int){
-      //Se compara el id de venta actual para encontrar todos los productos de la venta, se suman todos los totalesProductos y se obtiene totalVenta
-    }
-    
-    func calcularSubtotalVenta(id:Int)->Double{
-        for venta in ventasLog{
-            if(venta.idVenta == id){
-                
-            }
-        }
-        return totalVenta
-    }
-    
-    func checarIdRepetido(id:Int) -> Bool{
-        for i in ventasLog{
-            if (i.idProducto == id){
-                return false
-            }
-        }
-        return true
-    }
-        
     func validarCamposVacios() -> Bool{
         if(txtCantidad.stringValue == "" && txtIdProducto.stringValue == ""){
             return false
@@ -107,13 +99,62 @@ class CrearVenta: NSViewController {
         return true
     }
     
+    func soloHayNumerosEnCantidad() -> Bool{
+        let numericCharacters = CharacterSet.decimalDigits.inverted
+        return txtCantidad.stringValue.rangeOfCharacter(from: numericCharacters) == nil
+    }
+    
     func soloHayNumerosEnIdProducto() -> Bool{
         let numericCharacters = CharacterSet.decimalDigits.inverted
         return txtIdProducto.stringValue.rangeOfCharacter(from: numericCharacters) == nil
     }
     
-    func soloHayNumerosEnCantidad() -> Bool{
-        let numericCharacters = CharacterSet.decimalDigits.inverted
-        return txtCantidad.stringValue.rangeOfCharacter(from: numericCharacters) == nil
+    func checarIdRepetido(id:Int) -> Bool{
+        for venta in ventasLog{
+            if (venta.idProducto == id){
+                return false
+            }
+        }
+        return true
+    }
+    
+    func checarCantidadvalida(id:Int)->Bool{
+        if txtCantidad.integerValue <= vc.productoLog[id].cantidad{
+            return true
+        }
+        return false
+    }
+    
+    func calcularTotalProducto(id:Int)->Double{
+        for producto in vc.productoLog{
+            if(producto.id == id){
+                totalProducto = producto.precio * txtCantidad.doubleValue
+                print(totalProducto, "vale tonte 2")
+            }
+        }
+        return totalProducto
+    }
+    
+    func calcularSubtotalVenta(id:Int)->Double{
+        for venta in ventasLog{
+            if(venta.idVenta == id){
+                print("entro de nuevo")
+                multi = Double(txtCantidad.stringValue)! * vc.productoLog[txtIdProducto.integerValue].precio
+            }
+        }
+        subtotal = subtotal + multi
+        multi=0
+        lblSubtotalVenta.stringValue = ("$" + String(subtotal))
+        return subtotal
+    }
+    
+    func calcularTotalVenta(){
+        total = subtotal + (subtotal * 0.16)
+        lblTotalVenta.stringValue = "$\(total)"
+    }
+    
+    override func viewDidDisappear() {
+        vc.contadorIdVenta = vc.contadorIdVenta + 1
+        print(vc.contadorIdVenta)
     }
 }

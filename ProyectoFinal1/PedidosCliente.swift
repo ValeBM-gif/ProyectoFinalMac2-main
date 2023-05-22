@@ -9,6 +9,8 @@ import Cocoa
 
 class PedidosCliente: NSViewController {
     
+    //TODO: Todeeeeeee
+    
     @IBOutlet var vcTablaPedidos: ViewController!
     @objc dynamic var ventasLog:[VentaModelo] = []
     @objc dynamic var pedidosLog:[PedidoModelo] = []

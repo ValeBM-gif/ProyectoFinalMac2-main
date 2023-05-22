@@ -12,6 +12,8 @@ class RegistroProductos: NSViewController {
     //TODO: cambiar nombres de variables de regex
     //TODO: precio y costo no puedan ser 0
     
+    
+    
     @IBOutlet weak var vc: ViewController!
     
     @IBOutlet weak var lblTitulo: NSTextField!
@@ -101,7 +103,7 @@ class RegistroProductos: NSViewController {
     
     func registrarProducto(){
         print("register position: ",registerPosition)
-        vc.productoLog.append(ProductoModelo(registerPosition, txtNombre.stringValue, txtDescripcion.stringValue, txtUnidad.stringValue, txtPrecio.doubleValue, txtCosto.doubleValue, txtCategoria.stringValue, txtCantidad.integerValue))
+        vc.productoLog.append(ProductoModelo(registerPosition, txtNombre.stringValue, txtDescripcion.stringValue, txtUnidad.stringValue, txtPrecio.doubleValue, txtCosto.doubleValue, txtCategoria.stringValue, txtCantidad.integerValue, vc.idUsuarioActual, vc.nombreUsuarioActual))
         print("count de producto log, después de registrar",vc.productoLog.count)
         for producto in vc.productoLog{
             print("productos", producto.nombre)
@@ -111,7 +113,7 @@ class RegistroProductos: NSViewController {
     
     func modificarProducto(){
         vc.productoLog[modifyPosition].nombre = txtNombre.stringValue
-        vc.productoLog[modifyPosition].descricpion = txtDescripcion.stringValue
+        vc.productoLog[modifyPosition].descripcion = txtDescripcion.stringValue
         vc.productoLog[modifyPosition].unidad = txtUnidad.stringValue
         vc.productoLog[modifyPosition].precio = txtPrecio.doubleValue
         vc.productoLog[modifyPosition].costo = txtCosto.doubleValue
@@ -129,7 +131,7 @@ class RegistroProductos: NSViewController {
     func llenarCampos(){
         print("entra a llenar campos")
         txtNombre.stringValue = vc.productoLog[modifyPosition].nombre
-        txtDescripcion.stringValue = vc.productoLog[modifyPosition].descricpion
+        txtDescripcion.stringValue = vc.productoLog[modifyPosition].descripcion
         txtUnidad.stringValue = vc.productoLog[modifyPosition].unidad
         txtPrecio.stringValue = String( vc.productoLog[modifyPosition].precio)
         txtCosto.stringValue = String( vc.productoLog[modifyPosition].costo)
