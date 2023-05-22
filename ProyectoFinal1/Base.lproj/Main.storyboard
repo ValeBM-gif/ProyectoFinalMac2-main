@@ -1571,8 +1571,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="eK8-tn-YGD">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="706410646.70176804">
-                                        <!--2023-05-22 01:10:46 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="706421657.53742898">
+                                        <!--2023-05-22 04:14:17 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2578,6 +2578,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="Me9-hS-goX" name="value" keyPath="objectValue.id" id="Ra3-Bd-grR"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="Me9-hS-goX" name="value" keyPath="objectValue.id" id="eww-pb-Ojt"/>
@@ -2613,6 +2616,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="kHr-mb-kw5" name="value" keyPath="objectValue.nombre" id="MdS-Dt-ecX"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="kHr-mb-kw5" name="value" keyPath="objectValue.nombre" id="5jT-u3-2Q0"/>
@@ -2638,7 +2644,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="bQk-Vk-mRS">
-                                                            <rect key="frame" x="224.5" y="0.0" width="103" height="17"/>
+                                                            <rect key="frame" x="225" y="0.0" width="103" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teO-I7-WN9">
@@ -2648,6 +2654,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="bQk-Vk-mRS" name="value" keyPath="objectValue.descripcion" id="9qL-oo-VYr"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="bQk-Vk-mRS" name="value" keyPath="objectValue.descripcion" id="lKy-Vv-I2o"/>
@@ -2683,6 +2692,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="94O-Bd-GyP" name="value" keyPath="objectValue.unidad" id="chn-UD-Qwy"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="94O-Bd-GyP" name="value" keyPath="objectValue.unidad" id="fXt-fg-m7S"/>
@@ -2718,6 +2730,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="4iM-J5-xMa" name="value" keyPath="objectValue.precio" id="EnU-Av-DCJ"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="4iM-J5-xMa" name="value" keyPath="objectValue.precio" id="CQs-wY-KJE"/>
@@ -2753,6 +2768,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="dZY-ex-HeA" name="value" keyPath="objectValue.costo" id="pMR-0p-5pv"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="dZY-ex-HeA" name="value" keyPath="objectValue.costo" id="ZTo-cA-Lzp"/>
@@ -2788,6 +2806,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="Z6N-8l-YYO" name="value" keyPath="objectValue.categoria" id="fGu-KB-8hf"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="Z6N-8l-YYO" name="value" keyPath="objectValue.categoria" id="Fol-rx-QND"/>
@@ -2823,6 +2844,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="cIa-os-qiH" name="value" keyPath="objectValue.cantidad" id="xEn-EN-KPw"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="cIa-os-qiH" name="value" keyPath="objectValue.cantidad" id="bhZ-vB-FT5"/>
@@ -2858,6 +2882,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="QQH-uK-qug" name="value" keyPath="objectValue.idComprador" id="wiA-eE-kKl"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="QQH-uK-qug" name="value" keyPath="objectValue.idComprador" id="k25-Bp-RSd"/>
@@ -2893,6 +2920,9 @@
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="Hfa-86-6kH" name="value" keyPath="objectValue.nombreComprador" id="Ya7-vc-6JO"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="Hfa-86-6kH" name="value" keyPath="objectValue.nombreComprador" id="rCY-gc-dZj"/>
@@ -2937,7 +2967,12 @@
                     </view>
                 </viewController>
                 <customObject id="nEF-BU-tBz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController id="17J-Ki-A13"/>
+                <arrayController id="17J-Ki-A13">
+                    <connections>
+                        <binding destination="G2n-Gs-ypg" name="contentArray" keyPath="productoLog" id="ohk-0f-UyL"/>
+                    </connections>
+                </arrayController>
+                <userDefaultsController id="db8-jB-WcT"/>
             </objects>
             <point key="canvasLocation" x="3094.5" y="214.5"/>
         </scene>
@@ -3030,7 +3065,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VEk-Nd-gjn">
-                                <rect key="frame" x="926" y="40" width="40" height="16"/>
+                                <rect key="frame" x="926" y="40" width="73" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="$0.00" id="eN1-3u-img">
                                     <font key="font" metaFont="system"/>
@@ -3057,7 +3092,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRC-Cu-TGG">
-                                <rect key="frame" x="583" y="40" width="40" height="16"/>
+                                <rect key="frame" x="583" y="40" width="56" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="$0.00" id="IF5-5P-DW6">
                                     <font key="font" metaFont="system"/>
@@ -3454,7 +3489,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2033" y="1829"/>
+            <point key="canvasLocation" x="2032.5" y="1829"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

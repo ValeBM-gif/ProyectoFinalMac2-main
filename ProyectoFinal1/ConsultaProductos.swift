@@ -12,12 +12,12 @@ class ConsultaProductos: NSViewController {
     //TODO: muestre productos
     //TODO: elimine productos
 
-    @IBOutlet var vcTablaProductos: ViewController!
+    @IBOutlet var vcTabla: ViewController!
     @objc dynamic var productoLog:[ProductoModelo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
     
     @IBAction func cerrarViewController(_ sender: NSButton) {

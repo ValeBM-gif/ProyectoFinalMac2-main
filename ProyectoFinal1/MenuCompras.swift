@@ -28,7 +28,7 @@ class MenuCompras: NSViewController {
         
         lblIDIncorrecto.isHidden = true
         
-        let usuarioActual = vc.usuarioLog
+        //let usuarioActual = vc.usuarioLog
         idUsuarioActual = vc.idUsuarioActual
         
         for producto in vc.productoLog{
@@ -74,14 +74,6 @@ class MenuCompras: NSViewController {
         return false
     }
     
-    func calcularTotal(id:Int) {
-        for venta in vc.productoLog {
-            if (venta.id == id) {
-                var total:Double = venta.precio * txtID.doubleValue
-            }
-        }
-    }
-    
     @IBAction func regresarAInicio(_ sender: NSButton) {
             dismiss(self)
     }
@@ -101,9 +93,10 @@ class MenuCompras: NSViewController {
             
             destinationVC.idUsuarioRecibido = idUsuarioActual
             destinationVC.idProductoAModificar = idProductoABuscar
+            
         }else if segue.identifier=="irConsultarProductos"{
             (segue.destinationController as! ConsultaProductos).productoLog = vc.productoLog
-            (segue.destinationController as! ConsultaProductos).vcTablaProductos = self.vc
+            (segue.destinationController as! ConsultaProductos).vcTabla = vc
         }
     }
     

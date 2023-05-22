@@ -62,7 +62,7 @@ class CrearVenta: NSViewController {
                                     
                                     calcularTotalVenta()
 
-                                    ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: totalProducto, subtotalVenta: 100, ivaVenta: 16, totalVenta: 100))
+                                    ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: 100, ivaVenta: 16, totalVenta: 100))
 
                                     lblNombreVendedor.stringValue = vcMenuVenta.nombreVendedor
                                     
@@ -135,7 +135,7 @@ class CrearVenta: NSViewController {
         return totalProducto
     }
     
-    func calcularSubtotalVenta(id:Int)->Double{
+    func calcularSubtotalVenta(id:Int){
         for venta in ventasLog{
             if(venta.idVenta == id){
                 print("entro de nuevo")
@@ -145,7 +145,6 @@ class CrearVenta: NSViewController {
         subtotal = subtotal + multi
         multi=0
         lblSubtotalVenta.stringValue = ("$" + String(subtotal))
-        return subtotal
     }
     
     func calcularTotalVenta(){
