@@ -22,6 +22,7 @@ class ViewController: NSViewController {
     var idUsuarioActual: Int!
     var nombreUsuarioActual: String!
     var contadorIdVenta: Int = 0
+    var usuarioEsAdmin: Bool = false
     
     override func viewDidLoad() {
         
@@ -56,12 +57,16 @@ class ViewController: NSViewController {
                    idUsuarioActual=UsuarioActual.id
                    nombreUsuarioActual=UsuarioActual.nombre
                    if UsuarioActual.rol == "Cliente"{
+                       usuarioEsAdmin = false
                        performSegue(withIdentifier: "irVcCliente", sender: self)
                    }else if UsuarioActual.rol == "Admin"{
+                       usuarioEsAdmin = true
                        performSegue(withIdentifier: "iniciarSesionCorrecto", sender: self)
                    }else if UsuarioActual.rol == "Ventas"{
+                       usuarioEsAdmin = false
                        performSegue(withIdentifier: "irMenuVentas", sender: self)
                    }else if UsuarioActual.rol == "Compras"{
+                       usuarioEsAdmin = false
                        performSegue(withIdentifier: "irVcMenuCompras", sender: self)
                    }
                }
@@ -94,6 +99,7 @@ class ViewController: NSViewController {
         }else if segue.identifier=="irVcCliente"{
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = self
         }
+        print("VIEWCONTROLLER: bool es admin? ",usuarioEsAdmin)
     }
     
     
