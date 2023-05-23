@@ -124,6 +124,9 @@ class MenuAdmin: NSViewController {
     }
     
     func checarExistenciaUsuario(id:Int) -> Bool{
+        if (id==0){
+            return false
+        }
         for UsuarioModelo in vc.usuarioLog {
             if (UsuarioModelo.id == id) {
                 return true

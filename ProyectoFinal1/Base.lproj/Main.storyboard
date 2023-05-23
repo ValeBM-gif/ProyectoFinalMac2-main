@@ -1342,7 +1342,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="feliz" id="ITk-xt-QC0"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8L-w5-zsB">
-                                <rect key="frame" x="115" y="68" width="211" height="15"/>
+                                <rect key="frame" x="-2" y="68" width="454" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="*Recuerda llenar todos los campos*" id="RWt-jH-S48">
                                     <font key="font" size="13" name="ArialMT"/>
@@ -1449,6 +1449,15 @@
                                     </allowedInputSourceLocales>
                                 </secureTextFieldCell>
                             </secureTextField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6d-YH-teu">
+                                <rect key="frame" x="246" y="107" width="43" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Admin" id="UVn-Rb-0pa">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -1457,6 +1466,7 @@
                         <outlet property="dtpFechaNacimiento" destination="sh0-pf-bhv" id="UEx-WR-35t"/>
                         <outlet property="lblCamposVacios" destination="a8L-w5-zsB" id="WxM-aa-rt2"/>
                         <outlet property="lblEdad" destination="i2M-MG-Tf6" id="Coi-HV-If1"/>
+                        <outlet property="lblRolAdmin" destination="U6d-YH-teu" id="BWy-UM-ZF0"/>
                         <outlet property="lblTitulo" destination="IbU-hU-bdZ" id="C13-c2-iQb"/>
                         <outlet property="lbltitulo" destination="IbU-hU-bdZ" id="PlN-Co-4Sg"/>
                         <outlet property="txtApellidoMaterno" destination="FJR-T6-zIL" id="6vb-nc-Fp6"/>
