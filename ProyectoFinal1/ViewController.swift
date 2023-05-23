@@ -40,6 +40,9 @@ class ViewController: NSViewController {
         productoLog.append(ProductoModelo(2, "jugue", "de uva", "ml", 20, 10, "liquidoss complejos", 30, 0, "uriel"))
         productoLog.append(ProductoModelo(3, "awita", "de limon", "lt", 30, 5, "liquidoss", 20, 3, "vale"))
         productoLog.append(ProductoModelo(4, "jugue", "de uva", "ml", 40, 10, "liquidoss complejos", 30, 2, "Cliente"))
+        ventasLog.append(   VentaModelo(idVenta: 0, idVendedor: 1, nombreVendedor: "JUANA", idCliente: 0, nombreCliente: "JHONNY", idProducto: 1, nombreProducto: "AWA", descripcionProducto: "DE LIMON", cantidad: 2, precioProducto: 200, totalProducto: 400, subtotalVenta: 170, ivaVenta: 30, totalVenta: 200))
+        ventasLog.append(   VentaModelo(idVenta: 2, idVendedor: 1, nombreVendedor: "JUANA", idCliente: 0, nombreCliente: "JHONNY", idProducto: 1, nombreProducto: "AWA", descripcionProducto: "DE LIMON", cantidad: 2, precioProducto: 200, totalProducto: 400, subtotalVenta: 170, ivaVenta: 30, totalVenta: 200))
+        ventasLog.append(   VentaModelo(idVenta: 1, idVendedor: 1, nombreVendedor: "JUANA", idCliente: 3, nombreCliente: "JHONNY2", idProducto: 1, nombreProducto: "COJIN", descripcionProducto: "COJIN DE TELA", cantidad: 2, precioProducto: 100, totalProducto: 200, subtotalVenta: 170, ivaVenta: 30, totalVenta: 200))
 
         lblIncorrecto.isHidden=true
     }
@@ -112,6 +115,9 @@ class ViewController: NSViewController {
             
         }else if segue.identifier=="irVcCliente"{
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = self
+            
+            (segue.destinationController as! PedidosCliente).ventasLog = self.ventasLog
+            (segue.destinationController as! PedidosCliente).productosLog = self.productoLog
         }
         print("VIEWCONTROLLER: bool es admin? ",usuarioEsAdmin)
     }

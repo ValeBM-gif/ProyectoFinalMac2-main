@@ -41,7 +41,7 @@ class RegistroProductos: NSViewController {
         
         lblIncorrecto.isHidden = true
         
-        registerPosition = vc.productoLog.count + 1
+        registerPosition = vc.productoLog.count
         print("count de producto log",vc.productoLog.count)
         
         if esRegistroProducto{
@@ -102,7 +102,7 @@ class RegistroProductos: NSViewController {
     }
     
     func registrarProducto(){
-        print("register position: ",registerPosition)
+        print("  position: ",registerPosition)
         vc.productoLog.append(ProductoModelo(registerPosition, txtNombre.stringValue, txtDescripcion.stringValue, txtUnidad.stringValue, txtPrecio.doubleValue, txtCosto.doubleValue, txtCategoria.stringValue, txtCantidad.integerValue, vc.idUsuarioActual, vc.nombreUsuarioActual))
         print("count de producto log, después de registrar",vc.productoLog.count)
         for producto in vc.productoLog{
