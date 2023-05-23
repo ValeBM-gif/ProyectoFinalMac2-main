@@ -21,7 +21,8 @@ class ViewController: NSViewController {
     
     var idUsuarioActual: Int!
     var nombreUsuarioActual: String!
-    var contadorIdVenta: Int = 0
+
+    var contadorIdVenta: Int = 1
     var usuarioEsAdmin: Bool = false
     
     override func viewDidLoad() {
