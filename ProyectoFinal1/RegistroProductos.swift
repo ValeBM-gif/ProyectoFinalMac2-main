@@ -9,10 +9,6 @@ import Cocoa
 
 class RegistroProductos: NSViewController {
 
-    //TODO: cambiar nombres de variables de regex
-    //TODO: precio y costo no puedan ser 0
-    
-    
     
     @IBOutlet weak var vc: ViewController!
     
@@ -71,18 +67,22 @@ class RegistroProductos: NSViewController {
         }
     }
     
+    
     func hacerValidaciones()->Bool{
         
         if validarCamposVacios(){
             if validarNumeroDoublePositivo(txtPrecio.stringValue){
                 if validarNumeroDoublePositivo(txtCosto.stringValue){
-                    if validarNumeroEnteroPositivo(txtCantidad.stringValue){
-                        lblIncorrecto.isHidden = true
-                        return true
-                        
-                        
+                    if validarNoCeros(){
+                        if validarNumeroEnteroPositivo(txtCantidad.stringValue){
+                            lblIncorrecto.isHidden = true
+                            return true
+                        }else{
+                            lblIncorrecto.stringValue = "*En cantidad inserta un número válido*"
+                            lblIncorrecto.isHidden = false
+                        }
                     }else{
-                        lblIncorrecto.stringValue = "*En cantidad inserta un número válido*"
+                        lblIncorrecto.stringValue = "*Inserta mas de 0 en costo o precio*"
                         lblIncorrecto.isHidden = false
                     }
                 }else{
@@ -153,8 +153,11 @@ class RegistroProductos: NSViewController {
         return numericCharacters.isSuperset(of: stringCharacterSet) && Double(campo) != nil && Double(campo)! >= 0
     }
     
-    func validarNoCeros(){
-        
+    func validarNoCeros()->Bool{
+        if txtCosto.integerValue == 0 || txtPrecio.integerValue == 0{
+            return false
+        }
+        return true
     }
     
     func validarNumeroEnteroPositivo(_ campo: String) -> Bool {
