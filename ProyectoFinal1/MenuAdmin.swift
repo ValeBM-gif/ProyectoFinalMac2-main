@@ -9,6 +9,7 @@ import Cocoa
 
 class MenuAdmin: NSViewController {
     
+    //TODO: admin puede ser todos los roles!!!
 
     @IBOutlet weak var vc: ViewController!
 
@@ -131,8 +132,7 @@ class MenuAdmin: NSViewController {
                         let destinationVC = segue.destinationController as! RegistroAdmin;
 
                         destinationVC.idDeUsuarioRecibido = idUsuarioActual
-                        destinationVC.idUsuarioAModificar = idUsuarioAModificar
-                        print("valor id en menu: ",vc.usuarioLog[idUsuarioAModificar].id)
+                        destinationVC.idUsuarioAModificar = idUsuarioAModificar - 1
             destinationVC.modificar=true
             
                 }else if segue.identifier=="irARegistrar"{

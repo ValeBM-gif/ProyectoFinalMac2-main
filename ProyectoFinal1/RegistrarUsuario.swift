@@ -45,7 +45,7 @@ class RegistrarUsuario: NSViewController {
         
         lblCamposVacios.isHidden = true;
         
-        position = vc.usuarioLog.count
+        position = vc.usuarioLog.count + 1
         
 
         btnRegistrar.isEnabled = true
