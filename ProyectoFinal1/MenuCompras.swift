@@ -9,9 +9,6 @@ import Cocoa
 
 class MenuCompras: NSViewController {
     
-    //TODO: quiatr código excedente de prepare
-
-    
     
     @IBOutlet weak var vc: ViewController!
 
@@ -52,14 +49,17 @@ class MenuCompras: NSViewController {
             if soloHayNumerosEnTxtID(){
                 idProductoABuscar = txtID.integerValue
                 lblIDIncorrecto.isHidden = true
-                if checarExistenciaProducto(id: idProductoABuscar){
-                    irARegistro = false
+                if validarNoUsarCero(id: idProductoABuscar){
+                    if checarExistenciaProducto(id: idProductoABuscar){
+                        irARegistro = false
+                    }else{
+                        irARegistro = true
+                    }
+                    
+                    performSegue(withIdentifier: "irVcRegistroProducto", sender: self)
                 }else{
-                    irARegistro = true
+                    lblIDIncorrecto.isHidden = false
                 }
-                
-                performSegue(withIdentifier: "irVcRegistroProducto", sender: self)
-                
             }else{
                 lblIDIncorrecto.isHidden = false
             }
@@ -82,6 +82,13 @@ class MenuCompras: NSViewController {
         return false
     }
     
+    func validarNoUsarCero(id:Int)->Bool{
+        if id == 0{
+            return false
+        }
+        return true
+    }
+    
     @IBAction func regresarAInicio(_ sender: NSButton) {
             dismiss(self)
     }
@@ -90,7 +97,7 @@ class MenuCompras: NSViewController {
         if segue.identifier=="irVcRegistroProducto"{
             (segue.destinationController as! RegistroProductos).vc = vc
             (segue.destinationController as! RegistroProductos).esRegistroProducto = irARegistro
-            (segue.destinationController as! RegistroProductos).modifyPosition = idProductoABuscar - 1
+            (segue.destinationController as! RegistroProductos).modifyPosition = idProductoABuscar
 
             
         }else if segue.identifier=="irConsultarProductos"{

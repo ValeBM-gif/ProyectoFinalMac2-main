@@ -9,7 +9,7 @@ import Cocoa
 
 class ModificarProducto: NSViewController {
 
-    //YA NO DEBERÍAMOS USAR ESTE VC, VERIFICAR QUE NO SE UTILICE Y BORRAR
+    //TODO: YA NO DEBERÍAMOS USAR ESTE VC, VERIFICAR QUE NO SE UTILICE Y BORRAR
     
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuCompras!
@@ -29,6 +29,7 @@ class ModificarProducto: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("llegamos aquí en algún momento?????????")
         
         lblIncorrecto.isHidden = true
         

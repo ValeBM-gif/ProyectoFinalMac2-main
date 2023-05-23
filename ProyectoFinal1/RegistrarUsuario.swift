@@ -8,15 +8,10 @@
 import Cocoa
 
 class RegistrarUsuario: NSViewController {
-    //basarse en menu admin maso
-    //TODO: Hacer funcional rol
-    //TODO: Hacer funcional datepicker
-    //TODO: agregar cosas faltantes a apend
-    //TODO: Validar que no haya usuarios repetidos
+    
+    //TODO: Validar edad
     //TODO: Validar contraseñas seguras
     //TODO: Que no se vea la contraseña en campos de contraseña
-    //TODO: Cambiar el nombre de la variable vcMenu q es eso
-    
     
     @IBOutlet weak var vc: ViewController!
     
@@ -29,22 +24,34 @@ class RegistrarUsuario: NSViewController {
     @IBOutlet weak var txtPassword: NSTextField!
     @IBOutlet weak var txtConfirmarPassword: NSTextField!
     
+    @IBOutlet weak var cmbRoles: NSPopUpButton!
+    
     @IBOutlet weak var btnRegistrar: NSButton!
     
     @IBOutlet weak var lblClienteExistente: NSTextField!
     @IBOutlet weak var lblCamposVacios: NSTextField!
     
+    @IBOutlet weak var dtpFechaNacimiento: NSDatePicker!
+    @IBOutlet weak var lblEdad: NSTextField!
+    
     var position:Int = 0
     var vcMenu:String = "Menu"
-    
+    let roles = ["Admin", "Cliente", "Compras", "Ventas"]
+    var rolSeleccionado:String = "Cliente"
     var idDeUsuarioRecibido:Int = 0
     var idUsuarioAModificar:Int = 0
-
+    var edad:Int = 0
     
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cmbRoles.isHidden = true
+        
+        cmbRoles.removeAllItems()
+       cmbRoles.addItems(withTitles: roles)
+        cmbRoles.selectItem(at: 1)
         
         lblCamposVacios.isHidden = true;
         
@@ -61,36 +68,48 @@ class RegistrarUsuario: NSViewController {
         
     }
     
+    @IBAction func rolCambiado(_ sender: NSPopUpButton) {
+        let indiceSeleccionado = sender.indexOfSelectedItem
+            rolSeleccionado = roles[indiceSeleccionado]
+            
+        }
+    
     @IBAction func registrarUsuario(_ sender: NSButton) {
         
+        calcularEdad()
+        
         if validarCamposVacios(){
-            if validarPasswordsIguales(){
-                if emailEsValido(){
-                    if numeroTelfonicoEsValido(){
-                        lblCamposVacios.isHidden = true
-                        
-                        //vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, 10, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
-                        
-                    print("Agregaste Cliente")
-                        print("id de user agregado", position)
+            if validarNoUsuarioRepetido(){
+                if validarPasswordsIguales(){
+                    if emailEsValido(){
+                        if numeroTelfonicoEsValido(){
+                            lblCamposVacios.isHidden = true
+                            
+                            vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente",dtpFechaNacimiento.dateValue))
+                            
+                        print("Agregaste Cliente")
+                            print("id de user agregado", position)
 
-                        dismiss(self)
+                            dismiss(self)
+                            
+                        }else{
+                            lblCamposVacios.stringValue = "Inserta un teléfono válido"
+                            lblCamposVacios.isHidden = false
+                        }
                         
                     }else{
-                        lblCamposVacios.stringValue = "Inserta un teléfono válido"
+                        lblCamposVacios.stringValue = "Inserta un email válido"
                         lblCamposVacios.isHidden = false
                     }
-                    
+
                 }else{
-                    lblCamposVacios.stringValue = "Inserta un email válido"
+                    lblCamposVacios.stringValue = "Las contraseñas no coinciden"
                     lblCamposVacios.isHidden = false
                 }
-
             }else{
-                lblCamposVacios.stringValue = "Las contraseñas no coinciden"
+                lblCamposVacios.stringValue = "Ese email ya está en uso"
                 lblCamposVacios.isHidden = false
             }
-            
         }else{
             lblCamposVacios.stringValue = "Recuerda llenar todos los campos"
             lblCamposVacios.isHidden = false
@@ -107,6 +126,15 @@ class RegistrarUsuario: NSViewController {
             txtPassword.stringValue == "" ||
             txtConfirmarPassword.stringValue == "" {
             return false
+        }
+        return true
+    }
+    
+    func validarNoUsuarioRepetido()->Bool{
+        for usuario in vc.usuarioLog {
+            if txtEmail.stringValue == usuario.email{
+                return false
+            }
         }
         return true
     }
@@ -130,7 +158,25 @@ class RegistrarUsuario: NSViewController {
         return false
     }
     
-    
+    func calcularEdad(){
+        let calendario = Calendar(identifier: .gregorian)
+        
+        let fechaNacimiento = dtpFechaNacimiento.dateValue
+        let fechaActual = Date()
+        
+        let componentesFechaNacimiento = calendario.dateComponents([.year, .month, .day], from: fechaNacimiento)
+        let componentesFechaActual = calendario.dateComponents([.year, .month, .day], from: fechaActual)
+
+        edad = componentesFechaActual.year! - componentesFechaNacimiento.year!
+
+        // Comprobar si todavía no ha pasado su cumpleaños este año
+        if (componentesFechaNacimiento.month! > componentesFechaActual.month!) || (componentesFechaNacimiento.month! == componentesFechaActual.month! && componentesFechaNacimiento.day! > componentesFechaActual.day!) {
+          edad -= 1
+        }
+        
+        lblEdad.stringValue = "Edad: \(edad)"
+
+    }
     
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {

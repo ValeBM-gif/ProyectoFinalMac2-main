@@ -9,8 +9,6 @@ import Cocoa
 
 class MenuAdmin: NSViewController {
     
-    //TODO: admin puede ser todos los roles!!!
-    
     @IBOutlet weak var vc: ViewController!
     
     @IBOutlet weak var txtNombreUsuario: NSTextField!
