@@ -927,22 +927,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GVG-hn-AC8">
-                                <rect key="frame" x="523" y="13" width="108" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Cerrar Sesión" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="47U-TL-pR4">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="volverAInicio:" target="bNf-4g-jrw" id="mWZ-ZC-fRH"/>
-                                </connections>
-                            </button>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMe-Zu-gCS">
-                                <rect key="frame" x="-65" y="-18" width="266" height="189"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="18" id="D8N-2a-hIh"/>
-                            </imageView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zw1-vF-Wo2">
                                 <rect key="frame" x="452" y="174" width="126" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -979,12 +963,47 @@
                                     <action selector="irAMenuPedidos:" target="bNf-4g-jrw" id="mdC-X0-Ldp"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GVG-hn-AC8">
+                                <rect key="frame" x="523" y="13" width="108" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cerrar Sesión" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="47U-TL-pR4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="volverAInicio:" target="bNf-4g-jrw" id="mWZ-ZC-fRH"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMe-Zu-gCS">
+                                <rect key="frame" x="-65" y="-18" width="266" height="189"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="18" id="D8N-2a-hIh"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2px-KB-XOG">
+                                <rect key="frame" x="407" y="75" width="230" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="O consultar pedidos por id de Cliente" id="aEc-sw-obv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XVV-Zb-7eI">
+                                <rect key="frame" x="483" y="48" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="HVM-6d-bkc">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="lblBajaCorrecta" destination="JVk-OW-wMQ" id="tdf-dt-Mqe"/>
                         <outlet property="lblIDIncorrecto" destination="axR-ar-Ht0" id="9tT-JV-Xbt"/>
                         <outlet property="txtID" destination="xKE-tB-M2u" id="7rt-ee-dvC"/>
+                        <outlet property="txtIdCliente" destination="XVV-Zb-7eI" id="pWp-Hc-LOV"/>
                         <outlet property="txtNombreUsuario" destination="41o-xO-mCh" id="4Lw-ep-Lem"/>
                         <segue destination="taZ-J0-CNN" kind="modal" identifier="irAConsultar" id="FMV-7W-3PX"/>
                         <segue destination="qHR-2w-ym3" kind="modal" identifier="irARegistrar" id="Zvc-7A-yUL"/>
@@ -1832,6 +1851,30 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Z9-GX-skk">
+                                <rect key="frame" x="224" y="22" width="175" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Registrar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v4I-6v-k1T">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" red="0.96078431372549022" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="registrarUsuario:" target="5J5-hP-FVg" id="ERI-oI-6cI"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IHC-pR-MtO">
+                                <rect key="frame" x="52" y="22" width="174" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Atrás" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aUZ-oi-ZoG">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" red="0.96078431372549022" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="cerrarViewController:" target="5J5-hP-FVg" id="HPt-A1-2gl"/>
+                                </connections>
+                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ffy-G9-NOj">
                                 <rect key="frame" x="57" y="154" width="111" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1841,29 +1884,29 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" contentType="password" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-4t-eRO">
-                                <rect key="frame" x="175" y="151" width="217" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="VbY-5l-Dbp">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" contentType="password" translatesAutoresizingMaskIntoConstraints="NO" id="P26-vh-eU4">
-                                <rect key="frame" x="175" y="108" width="217" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="APq-dl-JCa">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcf-0y-gz1">
                                 <rect key="frame" x="57" y="96" width="111" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" alignment="center" title="Confirmar Password:" id="PGe-2i-Hsl">
                                     <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Moc-f7-U4h">
+                                <rect key="frame" x="120" y="64" width="211" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="*Recuerda llenar todos los campos*" id="uk1-mx-knF">
+                                    <font key="font" size="13" name="ArialMT"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftb-8i-0yx">
+                                <rect key="frame" x="117" y="64" width="226" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Ese cliente aun no existe. Regístralo!" id="QQT-Y6-5cK">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1916,48 +1959,30 @@
                                     <action selector="rolCambiado:" target="qHR-2w-ym3" id="psN-Xr-xhZ"/>
                                 </connections>
                             </popUpButton>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Z9-GX-skk">
-                                <rect key="frame" x="224" y="22" width="175" height="32"/>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-8i-oAe">
+                                <rect key="frame" x="177" y="151" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Registrar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v4I-6v-k1T">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="v53-lq-Xc9">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="bezelColor" red="0.96078431372549022" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="registrarUsuario:" target="5J5-hP-FVg" id="ERI-oI-6cI"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IHC-pR-MtO">
-                                <rect key="frame" x="52" y="22" width="174" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Atrás" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aUZ-oi-ZoG">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="bezelColor" red="0.96078431372549022" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="cerrarViewController:" target="5J5-hP-FVg" id="HPt-A1-2gl"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Moc-f7-U4h">
-                                <rect key="frame" x="120" y="64" width="211" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="*Recuerda llenar todos los campos*" id="uk1-mx-knF">
-                                    <font key="font" size="13" name="ArialMT"/>
-                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftb-8i-0yx">
-                                <rect key="frame" x="117" y="64" width="226" height="16"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAV-2x-Ogm">
+                                <rect key="frame" x="177" y="106" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Ese cliente aun no existe. Regístralo!" id="QQT-Y6-5cK">
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="elX-bg-VKS">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
                         </subviews>
                     </view>
                     <connections>
@@ -1969,11 +1994,11 @@
                         <outlet property="lblEdad" destination="31r-Pc-J4i" id="y04-Zf-QV8"/>
                         <outlet property="txtApellidoMaterno" destination="7WN-P4-ipe" id="dUH-zb-AXX"/>
                         <outlet property="txtApellidoPaterno" destination="LS1-mZ-va1" id="rNO-Qe-DES"/>
-                        <outlet property="txtConfirmarPassword" destination="P26-vh-eU4" id="h8L-af-eJd"/>
+                        <outlet property="txtConfirmarPassword" destination="qAV-2x-Ogm" id="zGf-oR-vwo"/>
                         <outlet property="txtEmail" destination="Nl7-rk-6bE" id="Gia-au-5PA"/>
                         <outlet property="txtGenero" destination="8MJ-qo-dSc" id="8Fm-Gb-Vnj"/>
                         <outlet property="txtNombre" destination="Q3f-pn-9hy" id="tlA-Qv-tiv"/>
-                        <outlet property="txtPassword" destination="eaw-4t-eRO" id="sj6-kb-Iav"/>
+                        <outlet property="txtPassword" destination="Hsr-8i-oAe" id="UBn-CE-Ybm"/>
                         <outlet property="txtTelefono" destination="Pin-mu-3DX" id="QBp-ee-IXF"/>
                         <segue destination="Z8L-oQ-Z2G" kind="modal" identifier="irAMenuVentas" id="txk-Vd-39z"/>
                     </connections>
@@ -3750,9 +3775,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4bW-Km-igk"/>
-        <segue reference="txk-Vd-39z"/>
-        <segue reference="gpR-nn-ApA"/>
+        <segue reference="KpO-cB-Kuv"/>
+        <segue reference="nVf-Ty-dcr"/>
+        <segue reference="RdO-tw-ltK"/>
         <segue reference="Rmp-cS-KSe"/>
         <segue reference="ENY-1T-7ik"/>
     </inferredMetricsTieBreakers>

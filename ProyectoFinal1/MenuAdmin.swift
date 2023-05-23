@@ -9,21 +9,27 @@ import Cocoa
 
 class MenuAdmin: NSViewController {
     
+    //TODO: que exista el user
+    
     @IBOutlet weak var vc: ViewController!
     
     @IBOutlet weak var txtNombreUsuario: NSTextField!
     @IBOutlet weak var txtID: NSTextField!
     @IBOutlet weak var lblIDIncorrecto: NSTextField!
     
+    @IBOutlet weak var txtIdCliente: NSTextField!
     @IBOutlet weak var lblBajaCorrecta: NSTextField!
     
     var idUsuarioActual:Int!
     var idUsuarioAModificar:Int=0
     var idUsuarioAEliminar:Int=0
     var idCliente:Int=0
+    var idUsuarioPedidos:Int=0
+    var clientes:[UsuarioModelo]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         clientes = []
         
         print("MENU ADMIN: bool es admin? ",vc.usuarioEsAdmin)
         
@@ -46,11 +52,11 @@ class MenuAdmin: NSViewController {
     
     @IBAction func irAMenuPedidos(_ sender: NSButton) {
         
-        if txtID.stringValue != ""{
+        if txtIdCliente.stringValue != "" && txtID.stringValue==""{
             if soloHayNumerosEnTxtID(){
-                vc.idUsuarioActual = txtID.integerValue
-                
-                if (1==1) //checarExistenciaUsuario(id: idUsuarioAModificar)
+                idUsuarioPedidos = txtIdCliente.integerValue
+               idCliente=buscarIdCliente(id:idUsuarioPedidos)
+                if  idCliente != -1 && idCliente != 0
                 {
                     performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
                     lblIDIncorrecto.isHidden = true
@@ -66,7 +72,35 @@ class MenuAdmin: NSViewController {
                 lblIDIncorrecto.isHidden = false
                 lblBajaCorrecta.isHidden = true
             }
-        }else{
+        }else if txtID.stringValue != "" && txtIdCliente.stringValue == ""{
+            if soloHayNumerosEnTxtID(){
+                idCliente = txtID.integerValue
+              
+                if  buscarIdClienteValido(id:idCliente)
+                {
+                    performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
+                    lblIDIncorrecto.isHidden = true
+                    lblBajaCorrecta.isHidden = true
+                    
+                }else{
+                    lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+                    lblIDIncorrecto.isHidden = false
+                    lblBajaCorrecta.isHidden = true
+                }
+            }
+            else{
+                lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+                lblIDIncorrecto.isHidden = false
+                lblBajaCorrecta.isHidden = true
+            }
+            
+        } else if txtID.stringValue != "" && txtIdCliente.stringValue != "" {
+            lblIDIncorrecto.stringValue = "*Sólo se puede buscar por un tipo de ID a la vez*"
+            lblIDIncorrecto.isHidden = false
+            lblBajaCorrecta.isHidden = true
+            
+        }
+        else{
             lblIDIncorrecto.stringValue = "*Inserta el ID del cliente*"
             lblIDIncorrecto.isHidden = false
             lblBajaCorrecta.isHidden = true
@@ -84,7 +118,11 @@ class MenuAdmin: NSViewController {
                 if idUsuarioAEliminar != 0 {
                     if idUsuarioActual != idUsuarioAEliminar{
                         if checarExistenciaUsuario(id: idUsuarioAEliminar){
-                            vc.usuarioLog.remove(at: idUsuarioAEliminar)
+                            if(vc.usuarioLog[idUsuarioAEliminar].rol=="Cliente"){
+                                vc.usuarioLog[idUsuarioAEliminar].nombre="-1"
+                                vc.usuarioLog[idUsuarioAEliminar].email="-1"
+                            }else{
+                                vc.usuarioLog.remove(at: idUsuarioAEliminar)}
                             lblBajaCorrecta.isHidden=false
                             lblIDIncorrecto.isHidden=true
                         }else{
@@ -159,6 +197,42 @@ class MenuAdmin: NSViewController {
         return false
     }
     
+    func buscarClientes(){
+        for usuario in vc.usuarioLog {
+            if (usuario.rol=="Cliente"){
+                clientes.append(usuario)
+            }
+        }
+    }
+    
+    func buscarIdCliente(id:Int) -> Int{
+        buscarClientes()
+       
+        for cliente in clientes {
+            if (clientes.firstIndex(of: cliente)  == id && cliente.email != "-1"){
+                
+                return cliente.id
+            }
+        }
+        return -1
+    }
+    
+    func buscarIdClienteValido(id:Int) -> Bool{
+        buscarClientes()
+        if id == 0{
+            return false
+        }
+        for cliente in clientes {
+            if (cliente.id == id && cliente.email != "-1"){
+                
+                return true
+            }
+        }
+        return false
+    }
+    
+    
+    
     func soloHayNumerosEnTxtID() -> Bool{
         let numericCharacters = CharacterSet.decimalDigits.inverted
         return txtID.stringValue.rangeOfCharacter(from: numericCharacters) == nil
@@ -198,6 +272,7 @@ class MenuAdmin: NSViewController {
             (segue.destinationController as! MenuVentas).vc = vc
         }else if segue.identifier=="irMenuPedidosAdmin"{
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = vc
+            (segue.destinationController as! PedidosCliente).idClienteAdmin = idCliente
             
             (segue.destinationController as! PedidosCliente).ventasLog = vc.ventasLog
             (segue.destinationController as! PedidosCliente).productosLog = vc.productoLog
