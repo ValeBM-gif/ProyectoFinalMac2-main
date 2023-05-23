@@ -10,8 +10,11 @@ import Cocoa
 class PedidosCliente: NSViewController {
     
     //TODO: Todeeeeeee
-        
+    
     @IBOutlet var vcTablaPedidos: ViewController!
+    @objc dynamic var vieneDeAdmin: Bool  = false
+    @objc dynamic var idClienteAdmin: Int = -1
+    
     @objc dynamic var ventasLog:[VentaModelo] = []
     @objc dynamic var productosLog:[ProductoModelo] = []
     @objc dynamic var pedidosLog:[PedidoModelo] = []
@@ -45,7 +48,12 @@ class PedidosCliente: NSViewController {
         
         usuarios = vcTablaPedidos.usuarioLog
         clientes = []
-        idUsuarioActual = vcTablaPedidos.idUsuarioActual
+        if(idClienteAdmin == -1){
+            idUsuarioActual = vcTablaPedidos.idUsuarioActual
+        }
+        else{
+            idUsuarioActual = idClienteAdmin
+        }
         
         buscarClientes()
         

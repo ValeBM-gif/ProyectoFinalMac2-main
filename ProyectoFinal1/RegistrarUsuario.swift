@@ -9,9 +9,7 @@ import Cocoa
 
 class RegistrarUsuario: NSViewController {
     
-    //TODO: Validar edad
     //TODO: Validar contraseñas seguras
-    //TODO: Que no se vea la contraseña en campos de contraseña
     
     @IBOutlet weak var vc: ViewController!
     
@@ -83,15 +81,19 @@ class RegistrarUsuario: NSViewController {
                 if validarPasswordsIguales(){
                     if emailEsValido(){
                         if numeroTelfonicoEsValido(){
-                            lblCamposVacios.isHidden = true
-                            
-                            vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente",dtpFechaNacimiento.dateValue))
-                            
-                        print("Agregaste Cliente")
-                            print("id de user agregado", position)
+                            if validarEdad(){
+                                lblCamposVacios.isHidden = true
+                                
+                                vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente",dtpFechaNacimiento.dateValue))
+                                
+                            print("Agregaste Cliente")
+                                print("id de user agregado", position)
 
-                            dismiss(self)
-                            
+                                dismiss(self)
+                            }else{
+                                lblCamposVacios.stringValue = "Edad inválida"
+                                lblCamposVacios.isHidden = false
+                            }
                         }else{
                             lblCamposVacios.stringValue = "Inserta un teléfono válido"
                             lblCamposVacios.isHidden = false
@@ -151,6 +153,7 @@ class RegistrarUsuario: NSViewController {
         return phoneNumberPredicate.evaluate(with: txtTelefono.stringValue)
     }
     
+    
     func validarPasswordsIguales()->Bool{
         if txtPassword.stringValue == txtConfirmarPassword.stringValue{
             return true
@@ -176,6 +179,13 @@ class RegistrarUsuario: NSViewController {
         
         lblEdad.stringValue = "Edad: \(edad)"
 
+    }
+    
+    func validarEdad()->Bool{
+        if edad<18{
+            return false
+        }
+        return true
     }
     
     
