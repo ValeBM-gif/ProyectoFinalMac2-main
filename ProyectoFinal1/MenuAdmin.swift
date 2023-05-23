@@ -22,6 +22,7 @@ class MenuAdmin: NSViewController {
     var idUsuarioActual:Int!
     var idUsuarioAModificar:Int=0
     var idUsuarioAEliminar:Int=0
+    var idCliente:Int=0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,32 @@ class MenuAdmin: NSViewController {
     }
     
     @IBAction func irAMenuPedidos(_ sender: NSButton) {
-        performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
+        
+        if txtID.stringValue != ""{
+            if soloHayNumerosEnTxtID(){
+                vc.idUsuarioActual = txtID.integerValue
+                
+                if (1==1) //checarExistenciaUsuario(id: idUsuarioAModificar)
+                {
+                    performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
+                    lblIDIncorrecto.isHidden = true
+                    lblBajaCorrecta.isHidden = true
+                    
+                }else{
+                    lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+                    lblIDIncorrecto.isHidden = false
+                    lblBajaCorrecta.isHidden = true
+                }
+            }else{
+                lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+                lblIDIncorrecto.isHidden = false
+                lblBajaCorrecta.isHidden = true
+            }
+        }else{
+            lblIDIncorrecto.stringValue = "*Inserta el ID del cliente*"
+            lblIDIncorrecto.isHidden = false
+            lblBajaCorrecta.isHidden = true
+        }
     }
     
     @IBAction func irARegistro(_ sender: NSButton) {
@@ -174,6 +200,9 @@ class MenuAdmin: NSViewController {
             (segue.destinationController as! MenuVentas).vc = vc
         }else if segue.identifier=="irMenuPedidosAdmin"{
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = vc
+            
+            (segue.destinationController as! PedidosCliente).ventasLog = vc.ventasLog
+            (segue.destinationController as! PedidosCliente).productosLog = vc.productoLog
         }
     }
 }
