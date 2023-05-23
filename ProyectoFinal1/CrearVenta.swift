@@ -25,6 +25,8 @@ class CrearVenta: NSViewController {
     
     //TODO: CONECTAR VENTAS A PEDIDOS PARA QUE EL CLIENTE TENGA ACCESO
     
+    //NORMALIZAR LOS IDS DE USUARIOS CON LOS IDS DE CLIENTES
+    
     var idProducto: Int=0
     var cantidadProducto: Int=0
     var totalProducto: Double=0
@@ -54,10 +56,11 @@ class CrearVenta: NSViewController {
                             if validarExistenciaProducto(id: idProducto){
                                 if checarIdRepetido(id:idProducto){
                                     if checarCantidadValida(id: idProducto){
-                                        
+                                    
                                         calcularTotalVenta()
 
-                                        ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
+                                        ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
+                                                                     descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
 
                                         lblNombreVendedor.stringValue = vcMenuVenta.nombreVendedor
                                         
@@ -198,7 +201,7 @@ class CrearVenta: NSViewController {
         lblTotalVenta.stringValue = "$\(total)"
         return total
     }
-    
+
     override func viewDidDisappear() {
         vc.contadorIdVenta = vc.contadorIdVenta + 1
         print(vc.contadorIdVenta)

@@ -13,12 +13,17 @@ class PedidosCliente: NSViewController {
         
     @IBOutlet var vcTablaPedidos: ViewController!
     @objc dynamic var ventasLog:[VentaModelo] = []
+    @objc dynamic var productosLog:[ProductoModelo] = []
     @objc dynamic var pedidosLog:[PedidoModelo] = []
+    @objc dynamic var idsVentas:[Int] = []
     @objc dynamic var clientesLog:[UsuarioModelo] = []
     
     @IBOutlet weak var btnAtras: NSButton!
     
+    @IBOutlet weak var tablaPedidos: NSTableView!
     var idClienteActual:Int!
+    var idPedido:Int!
+    var tempId:Int!
     var idUsuarioActual:Int!
     var usuarios:[UsuarioModelo]!
     var clientes:[UsuarioModelo]!
@@ -27,6 +32,10 @@ class PedidosCliente: NSViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        idPedido=1;
+        tempId = -1;
+        
         
         if vcTablaPedidos.usuarioEsAdmin{
             btnAtras.isHidden = false
@@ -42,8 +51,8 @@ class PedidosCliente: NSViewController {
         
         obtenerIdClienteActual()
         
-       pedidosLog.append(PedidoModelo(1, 1, 1, 100, 100, 200, false))
-    pedidosLog.append(PedidoModelo(2, 2, 1, 100, 100, 200, false))
+        buscarPedidosDeCliente()
+        
         
         
     }
@@ -62,6 +71,49 @@ class PedidosCliente: NSViewController {
                 idClienteActual = clientes.firstIndex(of: cliente)
             }
         }
+    }
+    func obtenerIdsVentas(){
+        for venta in ventasLog{
+            if (venta.idCliente == idClienteActual){
+                if(!idsVentas.contains(venta.idVenta)){
+                    idsVentas.append(venta.idVenta)
+                }
+            }
+        }
+    }
+    
+    func buscarPedidosDeCliente(){
+        for venta in ventasLog
+        {
+            if (venta.idCliente == idClienteActual){
+                print(venta.idVenta)
+                if(tempId == -1){
+                    tempId=venta.idVenta
+                }
+                else{
+                    if(tempId != venta.idVenta){
+                        tempId=venta.idVenta
+                        pedidosLog.append(PedidoModelo(idPedido-1, "", "Total Pedido", "" ,"" ,"$"+String(venta.totalVenta), venta.totalVenta))
+                    }
+                }
+               
+                pedidosLog.append(PedidoModelo(idPedido, String(venta.idProducto),
+                                               obtenerDescripcionProducto(id: venta.idProducto)                ,String(venta.cantidad), String(venta.precioProducto), String(venta.totalProducto), venta.totalVenta))
+                
+                idPedido=idPedido+1
+            }
+            
+        }
+        pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[tempId].totalVenta), ventasLog[tempId].totalVenta))
+    }
+    
+    func obtenerDescripcionProducto(id:Int) -> String{
+        for producto in productosLog{
+            if producto.id == id {
+                return producto.descripcion
+            }
+        }
+        return ""
     }
     
     @IBAction func CerrarVc(_ sender: NSButton) {
