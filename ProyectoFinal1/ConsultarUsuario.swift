@@ -9,15 +9,18 @@ import Cocoa
 
 class ConsultarUsuario: NSViewController {
     
-    //TODO: Ampliar datos de la tabla
     
     @IBOutlet var vcTabla: ViewController!
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
 
+    @IBOutlet weak var tablaUsuarios: NSTableView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        // Do view setup here.
+        usuarioLog.remove(at: 0)
+        tablaUsuarios.reloadData()
+        
     }
     
     @IBAction func cerrarViewController(_ sender: NSButton) {
