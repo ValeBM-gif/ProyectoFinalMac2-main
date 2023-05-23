@@ -13,8 +13,9 @@ class MenuVentas: NSViewController {
     
     @IBOutlet weak var txtID: NSTextField!
     @IBOutlet weak var btnBuscar: NSButton!
-    @IBOutlet weak var btnCerrarSesion: NSButton!
     @IBOutlet weak var lblIDIncorrecto: NSTextField!
+    @IBOutlet weak var btnAtras: NSButton!
+    @IBOutlet weak var btnCerrarSesion: NSButton!
     
     var idClienteABuscar: Int=0
     var nombreClienteABuscar:String = ""
@@ -23,6 +24,14 @@ class MenuVentas: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("MENU VENTAS: bool es admin? ",vc.usuarioEsAdmin)
+        if vc.usuarioEsAdmin{
+            btnAtras.isHidden = false
+            btnCerrarSesion.isHidden = true
+        }else{
+            btnAtras.isHidden = true
+            btnCerrarSesion.isHidden = false
+        }
         
         lblIDIncorrecto.isHidden = true
     }
@@ -101,5 +110,9 @@ class MenuVentas: NSViewController {
             destinoVc.vcMenuVenta = self
             destinoVc.ventasLog = vc.ventasLog
         }
+    }
+    
+    @IBAction func CerrarVc(_ sender: NSButton) {
+        dismiss(self)
     }
 }

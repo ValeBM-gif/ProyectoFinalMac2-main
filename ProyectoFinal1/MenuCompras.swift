@@ -16,8 +16,9 @@ class MenuCompras: NSViewController {
     @IBOutlet weak var vc: ViewController!
 
     @IBOutlet weak var txtID: NSTextField!
-    
+    @IBOutlet weak var btnAtras: NSButton!
     @IBOutlet weak var lblIDIncorrecto: NSTextField!
+    @IBOutlet weak var btnCerrarSesion: NSButton!
     
     var idUsuarioActual:Int!
     var idProductoABuscar: Int=0
@@ -26,10 +27,18 @@ class MenuCompras: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        if vc.usuarioEsAdmin{
+            btnAtras.isHidden = false
+            btnCerrarSesion.isHidden = true
+        }else{
+            btnAtras.isHidden = true
+            btnCerrarSesion.isHidden = false
+        }
         
         lblIDIncorrecto.isHidden = true
         
         //let usuarioActual = vc.usuarioLog
+        print("id de usuario actuaal ",vc.idUsuarioActual)
         idUsuarioActual = vc.idUsuarioActual
         
         for producto in vc.productoLog{
@@ -92,6 +101,11 @@ class MenuCompras: NSViewController {
     
     @IBAction func consultarProducto(_ sender: NSButton) {
         performSegue(withIdentifier: "irConsultarProductos", sender: self)
+    }
+    
+    
+    @IBAction func CerrarVc(_ sender: NSButton) {
+        dismiss(self)
     }
 }
     

@@ -10,11 +10,13 @@ import Cocoa
 class PedidosCliente: NSViewController {
     
     //TODO: Todeeeeeee
-    
+        
     @IBOutlet var vcTablaPedidos: ViewController!
     @objc dynamic var ventasLog:[VentaModelo] = []
     @objc dynamic var pedidosLog:[PedidoModelo] = []
     @objc dynamic var clientesLog:[UsuarioModelo] = []
+    
+    @IBOutlet weak var btnAtras: NSButton!
     
     var idClienteActual:Int!
     var idUsuarioActual:Int!
@@ -26,6 +28,12 @@ class PedidosCliente: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if vcTablaPedidos.usuarioEsAdmin{
+            btnAtras.isHidden = false
+        }else{
+            btnAtras.isHidden = true
+        }
+        
         usuarios = vcTablaPedidos.usuarioLog
         clientes = []
         idUsuarioActual = vcTablaPedidos.idUsuarioActual
@@ -34,14 +42,10 @@ class PedidosCliente: NSViewController {
         
         obtenerIdClienteActual()
         
-        
        pedidosLog.append(PedidoModelo(1, 1, 1, 100, 100, 200, false))
     pedidosLog.append(PedidoModelo(2, 2, 1, 100, 100, 200, false))
         
         
-        
-        print(clientes[idClienteActual].nombre)
-
     }
     
     func buscarClientes(){
@@ -59,4 +63,9 @@ class PedidosCliente: NSViewController {
             }
         }
     }
+    
+    @IBAction func CerrarVc(_ sender: NSButton) {
+        dismiss(self)
+    }
+    
 }
