@@ -19,17 +19,11 @@ class CrearVenta: NSViewController {
     @IBOutlet weak var lblSubtotalVenta: NSTextField!
     @IBOutlet weak var lblTotalVenta: NSTextField!
     @IBOutlet weak var lblNombreVendedor: NSTextField!
+    @IBOutlet weak var txtNombreCliente: NSTextField!
     
     @objc dynamic var ventasLog:[VentaModelo] = []
     
     //TODO: CONECTAR VENTAS A PEDIDOS PARA QUE EL CLIENTE TENGA ACCESO
-    
-    //TODO: Agregar a tablitas nombre (nombre producto, nombre vendedor, etc) EN TODOS LOS COSIS, NO SOLO VENTAS
-    //TODO: Validar que no se pueda buscar un producto que no existe (id 0, nums negativos o mayor a la cantidad de productos existentes)
-    //TODO: appendear realmente total y subtotal de venta (solo aparecen bien el lbl externo a tabla)
-    //TODO: Agregar botón para completar venta
-    //TODO: Restar cantidad de productos en stock al venderlos
-    //TODO: Checar qpd con que busque un producto 0, ya que ahora los productos empiezan en 1
     
     var idProducto: Int=0
     var cantidadProducto: Int=0
@@ -50,8 +44,8 @@ class CrearVenta: NSViewController {
     @IBAction func agregarVenta(_ sender: NSButton) {
         if validarCamposVacios(){
             if txtCantidad.stringValue != ""{
-                if txtIdProducto.stringValue != ""{
-                    if soloHayNumerosEnCantidad(){
+                if txtIdProducto.stringValue != "" && validarIdProductoMayorCero(){
+                    if soloHayNumerosEnCantidad() && validarCantidadMayorCero(){
                         cantidadProducto = txtCantidad.integerValue
                         lblIncorrecto.isHidden = true
                         if soloHayNumerosEnIdProducto(){
@@ -63,12 +57,14 @@ class CrearVenta: NSViewController {
                                         
                                         calcularTotalVenta()
 
-                                        ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: 100, ivaVenta: 16, totalVenta: 100))
+                                        ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
 
                                         lblNombreVendedor.stringValue = vcMenuVenta.nombreVendedor
                                         
                                         calcularSubtotalVenta(id: vc.contadorIdVenta)
                                         calcularTotalVenta()
+                                        restarInventario(id: Int(txtIdProducto.stringValue)!)
+                                        txtNombreCliente.stringValue = vcMenuVenta.nombreClienteABuscar
                                     }else{
                                         lblIncorrecto.stringValue = "*Cantidad solicitada excedente a la cantidad en existencia*"
                                         lblIncorrecto.isHidden = false
@@ -81,10 +77,16 @@ class CrearVenta: NSViewController {
                                 lblIncorrecto.stringValue = "*Producto inexistente*"
                                 lblIncorrecto.isHidden = false
                             }
+                        }else{
+                            lblIncorrecto.stringValue = "*Inserta un ID válido en producto*"
+                            lblIncorrecto.isHidden = false
                         }
+                    }else{
+                        lblIncorrecto.stringValue = "*Inserta una cantidad valida"
+                        lblIncorrecto.isHidden = false
                     }
                 }else{
-                    lblIncorrecto.stringValue = "*Inserta un ID*"
+                    lblIncorrecto.stringValue = "*Inserta un ID Valido*"
                     lblIncorrecto.isHidden = false
                 }
             }else{
@@ -95,6 +97,35 @@ class CrearVenta: NSViewController {
             lblIncorrecto.stringValue = "*Inserta un ID y una cantidad*"
             lblIncorrecto.isHidden = false
         }
+    }
+    
+    func validarCantidadMayorCero() -> Bool {
+        var cantEsMayorCero = false
+        if((Int(txtCantidad.stringValue)!) > 0){
+            cantEsMayorCero = true
+        }
+        else{
+            cantEsMayorCero = false
+            lblIncorrecto.stringValue = "Inserta una cantidad valida"
+        }
+        return cantEsMayorCero
+    }
+    
+    func restarInventario(id:Int){
+        vc.productoLog[id].cantidad = vc.productoLog[id].cantidad - Int(txtCantidad.stringValue)!
+        print("cantidad del producto ahora es: " , vc.productoLog[id].cantidad)
+    }
+    
+    func validarIdProductoMayorCero() -> Bool {
+        var idProductoMayorcero = false
+        if((Int(txtIdProducto.stringValue)!) > 0){
+            idProductoMayorcero = true
+        }
+        else{
+            idProductoMayorcero = false
+            lblIncorrecto.stringValue = "Inserta un id de producto valido"
+        }
+        return idProductoMayorcero
     }
     
     func validarCamposVacios() -> Bool{
@@ -149,7 +180,7 @@ class CrearVenta: NSViewController {
         return totalProducto
     }
     
-    func calcularSubtotalVenta(id:Int){
+    func calcularSubtotalVenta(id:Int)->Double{
         for venta in ventasLog{
             if(venta.idVenta == id){
                 print("entro de nuevo")
@@ -159,11 +190,13 @@ class CrearVenta: NSViewController {
         subtotal = subtotal + multi
         multi=0
         lblSubtotalVenta.stringValue = ("$" + String(subtotal))
+        return subtotal
     }
     
-    func calcularTotalVenta(){
+    func calcularTotalVenta()->Double{
         total = subtotal + (subtotal * 0.16)
         lblTotalVenta.stringValue = "$\(total)"
+        return total
     }
     
     override func viewDidDisappear() {
