@@ -23,13 +23,13 @@ class CrearVenta: NSViewController {
     @objc dynamic var ventasLog:[VentaModelo] = []
     
     //TODO: CONECTAR VENTAS A PEDIDOS PARA QUE EL CLIENTE TENGA ACCESO
-    //TODO: que los IDs empiecen en 1 EN TODOS LOS COSIS, NO SOLO VENTAS
-    //TODO: crear el ventas log desde el vc principal
+    
     //TODO: Agregar a tablitas nombre (nombre producto, nombre vendedor, etc) EN TODOS LOS COSIS, NO SOLO VENTAS
-    //TODO: Validar que no se pueda buscar un producto que no existe
+    //TODO: Validar que no se pueda buscar un producto que no existe (id 0, nums negativos o mayor a la cantidad de productos existentes)
     //TODO: appendear realmente total y subtotal de venta (solo aparecen bien el lbl externo a tabla)
     //TODO: Agregar botón para completar venta
     //TODO: Restar cantidad de productos en stock al venderlos
+    //TODO: Checar qpd con que busque un producto 0, ya que ahora los productos empiezan en 1
     
     var idProducto: Int=0
     var cantidadProducto: Int=0
@@ -57,23 +57,28 @@ class CrearVenta: NSViewController {
                         if soloHayNumerosEnIdProducto(){
                             idProducto = txtIdProducto.integerValue
                             lblIncorrecto.isHidden = true
-                            if checarIdRepetido(id:idProducto){
-                                if checarCantidadvalida(id: idProducto){
-                                    
-                                    calcularTotalVenta()
+                            if validarExistenciaProducto(id: idProducto){
+                                if checarIdRepetido(id:idProducto){
+                                    if checarCantidadValida(id: idProducto){
+                                        
+                                        calcularTotalVenta()
 
-                                    ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: 100, ivaVenta: 16, totalVenta: 100))
+                                        ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre, cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: 100, ivaVenta: 16, totalVenta: 100))
 
-                                    lblNombreVendedor.stringValue = vcMenuVenta.nombreVendedor
-                                    
-                                    calcularSubtotalVenta(id: vc.contadorIdVenta)
-                                    calcularTotalVenta()
+                                        lblNombreVendedor.stringValue = vcMenuVenta.nombreVendedor
+                                        
+                                        calcularSubtotalVenta(id: vc.contadorIdVenta)
+                                        calcularTotalVenta()
+                                    }else{
+                                        lblIncorrecto.stringValue = "*Cantidad solicitada excedente a la cantidad en existencia*"
+                                        lblIncorrecto.isHidden = false
+                                    }
                                 }else{
-                                    lblIncorrecto.stringValue = "*Cantidad solicitada excedente a la cantidad en existencia*"
+                                    lblIncorrecto.stringValue = "*Inserta un ID diferente*"
                                     lblIncorrecto.isHidden = false
                                 }
                             }else{
-                                lblIncorrecto.stringValue = "*Inserta un ID diferente*"
+                                lblIncorrecto.stringValue = "*Producto inexistente*"
                                 lblIncorrecto.isHidden = false
                             }
                         }
@@ -109,6 +114,15 @@ class CrearVenta: NSViewController {
         return txtIdProducto.stringValue.rangeOfCharacter(from: numericCharacters) == nil
     }
     
+    func validarExistenciaProducto(id:Int)->Bool{
+        for ProductoModelo in vc.productoLog {
+            if (ProductoModelo.id == id) {
+                return true
+            }
+        }
+        return false
+    }
+    
     func checarIdRepetido(id:Int) -> Bool{
         for venta in ventasLog{
             if (venta.idProducto == id){
@@ -118,7 +132,7 @@ class CrearVenta: NSViewController {
         return true
     }
     
-    func checarCantidadvalida(id:Int)->Bool{
+    func checarCantidadValida(id:Int)->Bool{
         if txtCantidad.integerValue <= vc.productoLog[id].cantidad{
             return true
         }

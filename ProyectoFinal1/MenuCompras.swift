@@ -10,6 +10,7 @@ import Cocoa
 class MenuCompras: NSViewController {
     
     //TODO: quiatr código excedente de prepare
+
     
     
     @IBOutlet weak var vc: ViewController!
@@ -42,9 +43,7 @@ class MenuCompras: NSViewController {
             if soloHayNumerosEnTxtID(){
                 idProductoABuscar = txtID.integerValue
                 lblIDIncorrecto.isHidden = true
-                print("id de producto a buscar ",idProductoABuscar)
                 if checarExistenciaProducto(id: idProductoABuscar){
-                    print("id de producto a buscar")
                     irARegistro = false
                 }else{
                     irARegistro = true
@@ -82,17 +81,8 @@ class MenuCompras: NSViewController {
         if segue.identifier=="irVcRegistroProducto"{
             (segue.destinationController as! RegistroProductos).vc = vc
             (segue.destinationController as! RegistroProductos).esRegistroProducto = irARegistro
-            (segue.destinationController as! RegistroProductos).modifyPosition = idProductoABuscar
+            (segue.destinationController as! RegistroProductos).modifyPosition = idProductoABuscar - 1
 
-            
-        }else if segue.identifier=="irVcModificarProducto"{
-            (segue.destinationController as! ModificarProducto).vcMenu = self
-            (segue.destinationController as! ModificarProducto).vc = self.vc
-            
-            let destinationVC = segue.destinationController as! ModificarProducto;
-            
-            destinationVC.idUsuarioRecibido = idUsuarioActual
-            destinationVC.idProductoAModificar = idProductoABuscar
             
         }else if segue.identifier=="irConsultarProductos"{
             (segue.destinationController as! ConsultaProductos).productoLog = vc.productoLog

@@ -21,7 +21,6 @@ class MenuVentas: NSViewController {
     var nombreVendedor:String = ""
     var esClienteOAdmin: Bool = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +32,7 @@ class MenuVentas: NSViewController {
             if soloHayNumerosEnTxtID(){
                 idClienteABuscar = txtID.integerValue
                 lblIDIncorrecto.isHidden = true
+                print("id cliente a buscar",idClienteABuscar)
                 if checarExistenciaCliente(id: idClienteABuscar){
                     print("cliente existe")
                     if checarSiEsClienteOAdmin(id: idClienteABuscar){
@@ -62,6 +62,7 @@ class MenuVentas: NSViewController {
         for UsuarioModelo in vc.usuarioLog{
             if(UsuarioModelo.id == id){
                 nombreClienteABuscar = UsuarioModelo.nombre
+                print("nombre cliente a buscar",UsuarioModelo.nombre)
                 return true
             }
         }
@@ -69,7 +70,9 @@ class MenuVentas: NSViewController {
     }
     
     func checarSiEsClienteOAdmin(id: Int)->Bool{
+
         if vc.usuarioLog[id].rol == "Admin" || vc.usuarioLog[id].rol == "Cliente"{
+            print("entra a admin/cliente")
             esClienteOAdmin = true
             lblIDIncorrecto.isHidden = true
             return true
@@ -96,6 +99,7 @@ class MenuVentas: NSViewController {
             let destinoVc = segue.destinationController as! CrearVenta
             destinoVc.vc = vc
             destinoVc.vcMenuVenta = self
+            destinoVc.ventasLog = vc.ventasLog
         }
     }
 }

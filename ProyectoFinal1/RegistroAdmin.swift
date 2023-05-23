@@ -15,6 +15,7 @@ class RegistroAdmin: NSViewController {
     //TODO: Que cuando te mande a modificar aparezca tu fecha de nacimiento ya
     //TODO: Hacer que no le pueda cambiar el rol al admin 0
     //TODO: VAlidar EDAD
+    //TODO: checar pq el rol siempre por default aparece como admin
     
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!
@@ -64,7 +65,7 @@ class RegistroAdmin: NSViewController {
         
         lblCamposVacios.isHidden = true;
         
-        position = vc.usuarioLog.count
+        position = vc.usuarioLog.count + 1
         
         cmbRoles.removeAllItems()
         cmbRoles.addItems(withTitles: roles)

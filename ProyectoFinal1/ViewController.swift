@@ -25,15 +25,17 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         
-        usuarioLog.append(UsuarioModelo(0, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", 10, "123", "123","Admin"))
-        usuarioLog.append(UsuarioModelo(1, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", 10, "123", "123","Ventas"))
-        usuarioLog.append(UsuarioModelo(2, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 10, "123", "123","Cliente"))
-        usuarioLog.append(UsuarioModelo(3, "vale", "b", "m", "v@g.com","4771234567", "no binarie", 20, "123", "123","Compras"))
+        usuarioLog.append(UsuarioModelo(0, "Default User", "def", "def", "def@g.com","4771234567", "no binarie", 10, "123", "123","Admin"))
+        usuarioLog.append(UsuarioModelo(1, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", 10, "123", "123","Admin"))
+        usuarioLog.append(UsuarioModelo(2, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", 10, "123", "123","Ventas"))
+        usuarioLog.append(UsuarioModelo(3, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 10, "123", "123","Cliente"))
+        usuarioLog.append(UsuarioModelo(4, "vale", "b", "m", "v@g.com","4771234567", "no binarie", 20, "123", "123","Compras"))
         
-        productoLog.append(ProductoModelo(0, "awita", "de limon", "lt", 10, 5, "liquidoss", 20, 3, "vale"))
-        productoLog.append(ProductoModelo(1, "jugue", "de uva", "ml", 20, 10, "liquidoss complejos", 30, 0, "uriel"))
-        productoLog.append(ProductoModelo(2, "awita", "de limon", "lt", 30, 5, "liquidoss", 20, 3, "vale"))
-        productoLog.append(ProductoModelo(3, "jugue", "de uva", "ml", 40, 10, "liquidoss complejos", 30, 2, "Cliente"))
+        productoLog.append(ProductoModelo(0, "Default Prod", "def", "def", 1, 1, "def", 1, 0, "def"))
+        productoLog.append(ProductoModelo(1, "awita", "de limon", "lt", 10, 5, "liquidoss", 20, 3, "vale"))
+        productoLog.append(ProductoModelo(2, "jugue", "de uva", "ml", 20, 10, "liquidoss complejos", 30, 0, "uriel"))
+        productoLog.append(ProductoModelo(3, "awita", "de limon", "lt", 30, 5, "liquidoss", 20, 3, "vale"))
+        productoLog.append(ProductoModelo(4, "jugue", "de uva", "ml", 40, 10, "liquidoss complejos", 30, 2, "Cliente"))
 
         lblIncorrecto.isHidden=true
     }

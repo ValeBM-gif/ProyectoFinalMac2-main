@@ -34,14 +34,14 @@ class RegistroProductos: NSViewController {
     var esRegistroProducto: Bool = true
     var registerPosition: Int = 0
     var modifyPosition: Int = 0
-    @objc dynamic var productoLog: [ProductoModelo] = []
+    //@objc dynamic var productoLog: [ProductoModelo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         lblIncorrecto.isHidden = true
         
-        registerPosition = vc.productoLog.count
+        registerPosition = vc.productoLog.count + 1
         print("count de producto log",vc.productoLog.count)
         
         if esRegistroProducto{
@@ -119,12 +119,7 @@ class RegistroProductos: NSViewController {
         vc.productoLog[modifyPosition].costo = txtCosto.doubleValue
         vc.productoLog[modifyPosition].categoria = txtCategoria.stringValue
         vc.productoLog[modifyPosition].cantidad = txtCantidad.integerValue
-        print("modify position", modifyPosition)
-        print("txt precio", txtPrecio.doubleValue)
-        print("precio", vc.productoLog[modifyPosition].precio )
-        print("costo", vc.productoLog[modifyPosition].costo )
-        print("cantidad", vc.productoLog[modifyPosition].cantidad )
-        print("cantidad", vc.productoLog[modifyPosition].categoria )
+
         dismiss(self)
     }
     

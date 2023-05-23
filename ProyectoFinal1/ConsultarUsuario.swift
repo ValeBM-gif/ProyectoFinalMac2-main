@@ -9,7 +9,8 @@ import Cocoa
 
 class ConsultarUsuario: NSViewController {
     
-
+    //TODO: Ampliar datos de la tabla
+    
     @IBOutlet var vcTabla: ViewController!
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
 
