@@ -9,14 +9,8 @@ import Cocoa
 
 class RegistroAdmin: NSViewController {
 
-    //TODO: Validar que no haya usuarios repetidos
     //TODO: Validar contraseñas seguras
-    //TODO: Que no se vea la contraseña en campos de contraseña
-    //TODO: Que cuando te mande a modificar aparezca tu fecha de nacimiento ya
-    //TODO: Hacer que no le pueda cambiar el rol al admin 0
-    //TODO: VAlidar EDAD
-    //TODO: checar pq el rol siempre por default aparece como admin
-    
+
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!
     
@@ -27,6 +21,8 @@ class RegistroAdmin: NSViewController {
     var position:Int = 0
     let roles = ["Admin", "Cliente", "Compras", "Ventas"]
     var rolSeleccionado:String = "Cliente"
+    var emailTemporal:String = ""
+    var edad:Int = 0
     
     @IBOutlet weak var lblTitulo: NSTextField!
     
@@ -47,28 +43,35 @@ class RegistroAdmin: NSViewController {
     
     @IBOutlet weak var lblCamposVacios: NSTextField!
     
+    @IBOutlet weak var lblRolAdmin: NSTextField!
+    
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
     
     override func viewDidLoad() {
+        cmbRoles.removeAllItems()
+       cmbRoles.addItems(withTitles: roles)
+       
         super.viewDidLoad()
         
         if modificar{
             autorellenarCampos()
             lblTitulo.stringValue = "Modificar"
             btnRegistrar.title = "Modificar"
-            cmbRoles.selectItem(at: obtenerIndiceRol())
+            cmbRoles.selectItem(at: obtenerIndiceRol(id:idUsuarioAModificar))
+            
+            permitirCambioRol(usuarioLoggeado: vc.idUsuarioActual)
         }else{
             btnRegistrar.title = "Registrar"
             lblTitulo.stringValue = "Registro"
             cmbRoles.selectItem(at: 1)
+            lblRolAdmin.isHidden=true
         }
         
         lblCamposVacios.isHidden = true;
         
-        position = vc.usuarioLog.count + 1
+        position = vc.usuarioLog.count
         
-        cmbRoles.removeAllItems()
-        cmbRoles.addItems(withTitles: roles)
+        
         print("valor de bool modificar: \(String(describing: modificar))")
     }
     
@@ -79,20 +82,23 @@ class RegistroAdmin: NSViewController {
         }
     
     @IBAction func modficarORegistrarUsuario(_ sender: NSButton) {
+        print("entra a ibaction?????????")
         if modificar == true {
             modificarUsuario()
         }
         else {
+            print("entra a else de registrar usuario")
             registrarUsuario()
         }
     }
     
     
     func modificarUsuario(){
+        print("entra a modificar usuario :p")
+        calcularEdad()
         if hacerValidaciones(){
+            print("entra a modificar usuario hacer validaciones correctas:p")
             lblCamposVacios.isHidden = true
-            
-            let edad=calcularEdad()
             
             vc.usuarioLog[idUsuarioAModificar].nombre = txtNombre.stringValue
             vc.usuarioLog[idUsuarioAModificar].apellidoMaterno = txtApellidoMaterno.stringValue
@@ -100,6 +106,7 @@ class RegistroAdmin: NSViewController {
             vc.usuarioLog[idUsuarioAModificar].email = txtEmail.stringValue
             vc.usuarioLog[idUsuarioAModificar].telefono = txtTelefono.stringValue
             vc.usuarioLog[idUsuarioAModificar].genero = txtGenero.stringValue
+            vc.usuarioLog[idUsuarioAModificar].fechaNacimiento = dtpFechaNacimiento.dateValue
             vc.usuarioLog[idUsuarioAModificar].edad = edad
             vc.usuarioLog[idUsuarioAModificar].contraseña = txtPassword.stringValue
             vc.usuarioLog[idUsuarioAModificar].confirmarContraseña = txtConfirmarPassword.stringValue
@@ -116,6 +123,7 @@ class RegistroAdmin: NSViewController {
     func autorellenarCampos(){
             
             lblCamposVacios.isHidden = true
+        emailTemporal = vc.usuarioLog[idUsuarioAModificar].email
                     
                     idDeUsuarioRecibido = vc.idUsuarioActual
                     
@@ -125,16 +133,18 @@ class RegistroAdmin: NSViewController {
                         txtEmail.stringValue=vc.usuarioLog[idUsuarioAModificar].email
                         txtTelefono.stringValue = vc.usuarioLog[idUsuarioAModificar].telefono
                         txtGenero.stringValue=vc.usuarioLog[idUsuarioAModificar].genero
+                        dtpFechaNacimiento.dateValue = vc.usuarioLog[idUsuarioAModificar].fechaNacimiento
                         lblEdad.stringValue = "Edad: \(vc.usuarioLog[idUsuarioAModificar].edad)"
                         txtPassword.stringValue = vc.usuarioLog[idUsuarioAModificar].contraseña
                         txtConfirmarPassword.stringValue = vc.usuarioLog[idUsuarioAModificar].contraseña
         
         
-                        cmbRoles.selectItem(at: obtenerIndiceRol())
+        cmbRoles.selectItem(at: obtenerIndiceRol(id: idUsuarioAModificar))
     }
     
-    func obtenerIndiceRol() -> Int{
-        switch vc.usuarioLog[idUsuarioAModificar].rol {
+    func obtenerIndiceRol(id:Int) -> Int{
+       
+        switch vc.usuarioLog[id].rol {
         case "Admin": return 0
         case "Cliente": return 1
         case "Compras": return 2
@@ -146,19 +156,23 @@ class RegistroAdmin: NSViewController {
     }
     
     func registrarUsuario(){
+        print("entra a registrar usuario")
+        calcularEdad()
         if hacerValidaciones(){
             lblCamposVacios.isHidden = true
             
-            vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue,
-                         calcularEdad(),                      txtPassword.stringValue, txtConfirmarPassword.stringValue, rolSeleccionado))
+            calcularEdad()
             
-            print("Agregaste")
+            vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad
+                                               ,            txtPassword.stringValue, txtConfirmarPassword.stringValue, rolSeleccionado, dtpFechaNacimiento.dateValue))
             
+            print("Agregaste!!!!")
+            print("id de user agregado", position)
             dismiss(self)
         }
     }
     
-    func calcularEdad() -> Int{
+    func calcularEdad(){
         let calendario = Calendar(identifier: .gregorian)
         
         let fechaNacimiento = dtpFechaNacimiento.dateValue
@@ -167,7 +181,7 @@ class RegistroAdmin: NSViewController {
         let componentesFechaNacimiento = calendario.dateComponents([.year, .month, .day], from: fechaNacimiento)
         let componentesFechaActual = calendario.dateComponents([.year, .month, .day], from: fechaActual)
 
-        var edad = componentesFechaActual.year! - componentesFechaNacimiento.year!
+        edad = componentesFechaActual.year! - componentesFechaNacimiento.year!
 
         // Comprobar si todavía no ha pasado su cumpleaños este año
         if (componentesFechaNacimiento.month! > componentesFechaActual.month!) || (componentesFechaNacimiento.month! == componentesFechaActual.month! && componentesFechaNacimiento.day! > componentesFechaActual.day!) {
@@ -175,26 +189,35 @@ class RegistroAdmin: NSViewController {
         }
         
         lblEdad.stringValue = "Edad: \(edad)"
-        return edad
 
     }
     
     func hacerValidaciones()->Bool{
         if validarCamposVacios(){
-            if emailEsValido(){
-                if numeroTelfonicoEsValido(){
-                    if validarPasswordsIguales(){
-                        return true
+            if validarNoUsuarioRepetido(){
+                if emailEsValido(){
+                    if numeroTelfonicoEsValido(){
+                        if validarEdad(){
+                            if validarPasswordsIguales(){
+                                return true
+                            }else{
+                                lblCamposVacios.stringValue = "Las contraseñas no coinciden"
+                                lblCamposVacios.isHidden = false
+                            }
+                        }else{
+                            lblCamposVacios.stringValue = "Edad inválida"
+                            lblCamposVacios.isHidden = false
+                        }
                     }else{
-                        lblCamposVacios.stringValue = "Las contraseñas no coinciden"
+                        lblCamposVacios.stringValue = "Inserta un teléfono válido"
                         lblCamposVacios.isHidden = false
                     }
                 }else{
-                    lblCamposVacios.stringValue = "Inserta un teléfono válido"
+                    lblCamposVacios.stringValue = "Inserta un email válido"
                     lblCamposVacios.isHidden = false
                 }
             }else{
-                lblCamposVacios.stringValue = "Inserta un email válido"
+                lblCamposVacios.stringValue = "Ese usuario ya existe"
                 lblCamposVacios.isHidden = false
             }
         }else{
@@ -228,6 +251,31 @@ class RegistroAdmin: NSViewController {
         return true
     }
     
+    func validarNoUsuarioRepetido()->Bool{
+        if modificar{
+            print("entra a modificar en validación de usuario repetido")
+            print("email",emailTemporal)
+            if txtEmail.stringValue == emailTemporal{
+                print("email",emailTemporal)
+                return true
+            }else{
+                for usuario in vc.usuarioLog {
+                    if txtEmail.stringValue == usuario.email{
+                        return false
+                    }
+                }
+                return true
+            }
+        }else{
+            for usuario in vc.usuarioLog {
+                if txtEmail.stringValue == usuario.email{
+                    return false
+                }
+            }
+            return true
+        }
+    }
+    
     func emailEsValido() -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
@@ -240,11 +288,35 @@ class RegistroAdmin: NSViewController {
         return phoneNumberPredicate.evaluate(with: txtTelefono.stringValue)
     }
     
+    func validarEdad()->Bool{
+        if edad<18{
+            return false
+        }
+        return true
+    }
+    
     func validarPasswordsIguales()->Bool{
         if txtPassword.stringValue == txtConfirmarPassword.stringValue{
             return true
         }
         return false
+    }
+    
+    func permitirCambioRol(usuarioLoggeado : Int) {
+        
+        if idUsuarioAModificar == 1 {
+            lblRolAdmin.isHidden=false
+            cmbRoles.isHidden = true
+        }
+        else if vc.idUsuarioActual == idUsuarioAModificar {
+            lblRolAdmin.isHidden=false
+            cmbRoles.isHidden = true
+        }
+        else{
+            lblRolAdmin.isHidden=true
+            cmbRoles.isHidden = false
+        }
+       
     }
     
     @IBAction func cerrarViewController(_ sender: NSButton) {

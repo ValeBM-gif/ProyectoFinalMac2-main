@@ -95,6 +95,7 @@ class MenuAdmin: NSViewController {
         if txtID.stringValue != ""{
             if soloHayNumerosEnTxtID(){
                 idUsuarioAModificar = txtID.integerValue
+                
                 if checarExistenciaUsuario(id: idUsuarioAModificar){
                     performSegue(withIdentifier: "irAModificar", sender: self)
                     lblIDIncorrecto.isHidden = true
@@ -123,6 +124,9 @@ class MenuAdmin: NSViewController {
     }
     
     func checarExistenciaUsuario(id:Int) -> Bool{
+        if (id==0){
+            return false
+        }
         for UsuarioModelo in vc.usuarioLog {
             if (UsuarioModelo.id == id) {
                 return true
@@ -141,6 +145,7 @@ class MenuAdmin: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        txtID.stringValue = ""
         if segue.identifier == "irAModificar" {
             
             (segue.destinationController as! RegistroAdmin).vc = self.vc
@@ -150,7 +155,7 @@ class MenuAdmin: NSViewController {
             let destinationVC = segue.destinationController as! RegistroAdmin;
             
             destinationVC.idDeUsuarioRecibido = idUsuarioActual
-            destinationVC.idUsuarioAModificar = idUsuarioAModificar - 1
+            destinationVC.idUsuarioAModificar = idUsuarioAModificar
             destinationVC.modificar=true
             
         }else if segue.identifier=="irARegistrar"{

@@ -27,11 +27,13 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         
-        usuarioLog.append(UsuarioModelo(0, "Default User", "def", "def", "def@g.com","4771234567", "no binarie", 10, "123", "123","Admin"))
-        usuarioLog.append(UsuarioModelo(1, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", 10, "123", "123","Admin"))
-        usuarioLog.append(UsuarioModelo(2, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", 10, "123", "123","Ventas"))
-        usuarioLog.append(UsuarioModelo(3, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 10, "123", "123","Cliente"))
-        usuarioLog.append(UsuarioModelo(4, "vale", "b", "m", "v@g.com","4771234567", "no binarie", 20, "123", "123","Compras"))
+        usuarioLog.append(UsuarioModelo(0, "Default User", "def", "def", "def@g.com","4771234567", "no binarie", 20, "123", "123","Admin",formatStringToDate(date: "2002/10/10")))
+        usuarioLog.append(UsuarioModelo(1, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", 20, "123", "123","Admin", formatStringToDate(date: "2003/04/26")))
+        usuarioLog.append(UsuarioModelo(2, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", 20, "123", "123","Ventas", formatStringToDate(date: "2002/08/23")))
+        usuarioLog.append(UsuarioModelo(3, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 21, "123", "123","Cliente", formatStringToDate(date: "2001/02/17")))
+        usuarioLog.append(UsuarioModelo(4, "vale", "b", "m", "v@g.com","4771234567", "no binarie", 20, "123", "123","Compras", formatStringToDate(date: "2002/07/20")))
+        usuarioLog.append(UsuarioModelo(5, "valeAdmin", "b", "m", "v2@g.com","4771234567", "no binarie", 20, "123", "123","Admin", formatStringToDate(date: "2002/07/20")))
+        usuarioLog.append(UsuarioModelo(6, "valeAdmin2", "b", "m", "v3@g.com","4771234567", "no binarie", 20, "123", "123","Admin", formatStringToDate(date: "2002/07/20")))
         
         productoLog.append(ProductoModelo(0, "Default Prod", "def", "def", 1, 1, "def", 1, 0, "def"))
         productoLog.append(ProductoModelo(1, "awita", "de limon", "lt", 10, 5, "liquidoss", 20, 3, "vale"))
@@ -44,6 +46,15 @@ class ViewController: NSViewController {
     
     override func viewDidAppear(){
         self.view.window?.title = "Iniciar sesión"
+    }
+    
+    func formatStringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = date
+        let date = dateFormatter.date(from: dateString)
+        print(date)
+        return date!
     }
     
     @IBAction func iniciarSesion(_ sender: NSButton) {
@@ -59,6 +70,7 @@ class ViewController: NSViewController {
                    nombreUsuarioActual=UsuarioActual.nombre
                    if UsuarioActual.rol == "Cliente"{
                        usuarioEsAdmin = false
+                       
                        performSegue(withIdentifier: "irVcCliente", sender: self)
                    }else if UsuarioActual.rol == "Admin"{
                        usuarioEsAdmin = true
@@ -87,6 +99,7 @@ class ViewController: NSViewController {
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        
         if segue.identifier=="registrarUsuarioSegue"{
             (segue.destinationController as! RegistrarUsuario).vc = self
         }

@@ -8,7 +8,10 @@
 import Cocoa
 
 class RegistrarUsuario: NSViewController {
-    
+    //basarse en menu admin maso
+    //TODO: Hacer funcional rol
+    //TODO: Hacer funcional datepicker
+    //TODO: agregar cosas faltantes a apend
     //TODO: Validar que no haya usuarios repetidos
     //TODO: Validar contraseñas seguras
     //TODO: Que no se vea la contraseña en campos de contraseña
@@ -45,7 +48,7 @@ class RegistrarUsuario: NSViewController {
         
         lblCamposVacios.isHidden = true;
         
-        position = vc.usuarioLog.count + 1
+        position = vc.usuarioLog.count
         
 
         btnRegistrar.isEnabled = true
@@ -66,10 +69,10 @@ class RegistrarUsuario: NSViewController {
                     if numeroTelfonicoEsValido(){
                         lblCamposVacios.isHidden = true
                         
-                        vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, 10, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
+                        //vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, 10, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente"))
                         
                     print("Agregaste Cliente")
-                        
+                        print("id de user agregado", position)
 
                         dismiss(self)
                         
