@@ -10,9 +10,9 @@ import Cocoa
 class MenuAdmin: NSViewController {
     
     //TODO: admin puede ser todos los roles!!!
-
+    
     @IBOutlet weak var vc: ViewController!
-
+    
     @IBOutlet weak var txtNombreUsuario: NSTextField!
     @IBOutlet weak var txtID: NSTextField!
     @IBOutlet weak var lblIDIncorrecto: NSTextField!
@@ -26,13 +26,27 @@ class MenuAdmin: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("MENU ADMIN: bool es admin? ",vc.usuarioEsAdmin)
+        
         lblIDIncorrecto.isHidden = true
         lblBajaCorrecta.isHidden = true
-
+        
         let usuarioActual = vc.usuarioLog
         idUsuarioActual = vc.idUsuarioActual
         
         txtNombreUsuario.stringValue = "Bienvenide " + usuarioActual[idUsuarioActual].nombre
+    }
+    
+    @IBAction func irAMenuCompras(_ sender: NSButton) {
+        performSegue(withIdentifier: "irMenuComprasAdmin", sender: self)
+    }
+    
+    @IBAction func irAMenuVentas(_ sender: NSButton) {
+        performSegue(withIdentifier: "irMenuVentasAdmin", sender: self)
+    }
+    
+    @IBAction func irAMenuPedidos(_ sender: NSButton) {
+        performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
     }
     
     @IBAction func irARegistro(_ sender: NSButton) {
@@ -121,32 +135,40 @@ class MenuAdmin: NSViewController {
         let numericCharacters = CharacterSet.decimalDigits.inverted
         return txtID.stringValue.rangeOfCharacter(from: numericCharacters) == nil
     }
-        
+    
+    @IBAction func volverAInicio(_ sender: NSButton) {
+        dismiss(self)
+    }
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier == "irAModificar" {
-                        
-                        (segue.destinationController as! RegistroAdmin).vc = self.vc
-                        
-                        (segue.destinationController as! RegistroAdmin).vcMenu = self
-                        
-                        let destinationVC = segue.destinationController as! RegistroAdmin;
-
-                        destinationVC.idDeUsuarioRecibido = idUsuarioActual
-                        destinationVC.idUsuarioAModificar = idUsuarioAModificar - 1
+            
+            (segue.destinationController as! RegistroAdmin).vc = self.vc
+            
+            (segue.destinationController as! RegistroAdmin).vcMenu = self
+            
+            let destinationVC = segue.destinationController as! RegistroAdmin;
+            
+            destinationVC.idDeUsuarioRecibido = idUsuarioActual
+            destinationVC.idUsuarioAModificar = idUsuarioAModificar - 1
             destinationVC.modificar=true
             
-                }else if segue.identifier=="irARegistrar"{
-                        
-                    (segue.destinationController as! RegistroAdmin).vc = self.vc
-                    let destinationVC = segue.destinationController as! RegistroAdmin;
-                    destinationVC.modificar=false
-                        
-                     }else if segue.identifier=="irAConsultar"{
-                        (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog
-                        (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
-                            }
-            }
+        }else if segue.identifier=="irARegistrar"{
             
+            (segue.destinationController as! RegistroAdmin).vc = self.vc
+            let destinationVC = segue.destinationController as! RegistroAdmin;
+            destinationVC.modificar=false
+            
+        }else if segue.identifier=="irAConsultar"{
+            (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog
+            (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
+        }else if segue.identifier=="irMenuComprasAdmin"{
+            (segue.destinationController as! MenuCompras).vc = vc
+            
+        }else if segue.identifier=="irMenuVentasAdmin"{
+            (segue.destinationController as! MenuVentas).vc = vc
+        }else if segue.identifier=="irMenuPedidosAdmin"{
+            (segue.destinationController as! PedidosCliente).vcTablaPedidos = vc
         }
-    //
-
+    }
+}
