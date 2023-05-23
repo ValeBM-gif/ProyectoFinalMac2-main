@@ -12,6 +12,7 @@ class CrearVenta: NSViewController {
     @IBOutlet var vc: ViewController!
     @IBOutlet var vcMenuVenta: MenuVentas!
     
+    @IBOutlet weak var btnEliminarVenta: NSButton!
     @IBOutlet weak var btnAgregarVenta: NSButton!
     @IBOutlet weak var txtIdProducto: NSTextField!
     @IBOutlet weak var txtCantidad: NSTextField!
@@ -19,7 +20,10 @@ class CrearVenta: NSViewController {
     @IBOutlet weak var lblSubtotalVenta: NSTextField!
     @IBOutlet weak var lblTotalVenta: NSTextField!
     @IBOutlet weak var lblNombreVendedor: NSTextField!
-    @IBOutlet weak var txtNombreCliente: NSTextField!
+    @IBOutlet weak var lblNombreCliente: NSTextField!
+    
+    @IBOutlet weak var tablaVentas: NSTableView!
+    @objc dynamic var ventasLogFinal:[VentaModelo] = []
     
     @objc dynamic var ventasLog:[VentaModelo] = []
     
@@ -36,12 +40,46 @@ class CrearVenta: NSViewController {
     var subtotal : Double = 0
     var multi : Double = 0
     var total:Double = 0
+    var totalVentas: Int = 0
     
     override func viewDidLoad() {
+        ventasLog = vc.ventasLog
+        ventasLogFinal = vc.ventasLog
+        
         super.viewDidLoad()
+       totalVentas=ventasLog.count
+      
+            ventasLog.removeAll()
+     
+        
+        tablaVentas.reloadData()
         lblIncorrecto.isHidden = true
         
+        lblNombreCliente.stringValue = vcMenuVenta.nombreClienteABuscar
+        lblNombreVendedor.stringValue = vc.usuarioLog[vc.idUsuarioActual].nombre
+        
     }
+    
+    @IBAction func eliminarVenta(_ sender: NSButton) {
+       
+            let selectedRow = tablaVentas.selectedRow
+        
+        if selectedRow >= 0 {
+            
+            ventasLog.remove(at: selectedRow)
+            ventasLogFinal.remove(at: selectedRow+totalVentas)
+            
+            tablaVentas.reloadData()
+            
+            calcularSubtotalVenta(id: vc.contadorIdVenta)
+            
+            
+                             calcularTotalVenta()
+        }
+    
+
+    }
+    
     
     @IBAction func agregarVenta(_ sender: NSButton) {
         if validarCamposVacios(){
@@ -57,17 +95,24 @@ class CrearVenta: NSViewController {
                                 if checarIdRepetido(id:idProducto){
                                     if checarCantidadValida(id: idProducto){
                                     
-                                        calcularTotalVenta()
+                       
 
                                         ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
                                                                      descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
 
-                                        lblNombreVendedor.stringValue = vcMenuVenta.nombreVendedor
+                                        ventasLogFinal.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
+                                                                     descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
+                                        
+                                      
+                                        restarInventario(id: Int(txtIdProducto.stringValue)!)
+                                        
                                         
                                         calcularSubtotalVenta(id: vc.contadorIdVenta)
-                                        calcularTotalVenta()
-                                        restarInventario(id: Int(txtIdProducto.stringValue)!)
-                                        txtNombreCliente.stringValue = vcMenuVenta.nombreClienteABuscar
+                                        
+                                        
+                                                         calcularTotalVenta()
+                                        vc.ventasLog = ventasLogFinal
+                                        
                                     }else{
                                         lblIncorrecto.stringValue = "*Cantidad solicitada excedente a la cantidad en existencia*"
                                         lblIncorrecto.isHidden = false

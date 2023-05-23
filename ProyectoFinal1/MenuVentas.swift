@@ -108,7 +108,7 @@ class MenuVentas: NSViewController {
             let destinoVc = segue.destinationController as! CrearVenta
             destinoVc.vc = vc
             destinoVc.vcMenuVenta = self
-            destinoVc.ventasLog = vc.ventasLog
+           
         }
     }
     
