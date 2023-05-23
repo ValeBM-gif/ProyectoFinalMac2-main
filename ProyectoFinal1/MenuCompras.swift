@@ -94,7 +94,7 @@ class MenuCompras: NSViewController {
 
             
         }else if segue.identifier=="irConsultarProductos"{
-            (segue.destinationController as! ConsultaProductos).productoLog = vc.productoLog
+            (segue.destinationController as! ConsultaProductos).productos = vc.productoLog
             (segue.destinationController as! ConsultaProductos).vcTabla = vc
         }
     }
