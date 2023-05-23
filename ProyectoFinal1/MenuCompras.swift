@@ -101,6 +101,7 @@ class MenuCompras: NSViewController {
     
     @IBAction func consultarProducto(_ sender: NSButton) {
         performSegue(withIdentifier: "irConsultarProductos", sender: self)
+        dismiss(self)
     }
     
     
