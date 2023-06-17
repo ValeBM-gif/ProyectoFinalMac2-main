@@ -9,6 +9,8 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
+    @IBOutlet weak var imgAvatar: NSImageView!
+    
     @IBOutlet var vc: ViewController!
     @IBOutlet var vcMenuVenta: MenuVentas!
     
@@ -24,7 +26,7 @@ class CrearVenta: NSViewController {
     
     @IBOutlet weak var tablaVentas: NSTableView!
     @objc dynamic var ventasLogFinal:[VentaModelo] = []
-    
+    @objc dynamic var ventasTemp:[VentaModelo] = []
     @objc dynamic var ventasLog:[VentaModelo] = []
     
     //TODO: CONECTAR VENTAS A PEDIDOS PARA QUE EL CLIENTE TENGA ACCESO
@@ -44,19 +46,45 @@ class CrearVenta: NSViewController {
     
     override func viewDidLoad() {
         ventasLog = vc.ventasLog
+        ventasTemp = vc.ventasLog
         ventasLogFinal = vc.ventasLog
         
         super.viewDidLoad()
-       totalVentas=ventasLog.count
+        totalVentas=ventasLog.count
       
-            ventasLog.removeAll()
-     
+        ventasLog.removeAll()
         
         tablaVentas.reloadData()
         lblIncorrecto.isHidden = true
         
         lblNombreCliente.stringValue = vcMenuVenta.nombreClienteABuscar
         lblNombreVendedor.stringValue = vc.usuarioLog[vc.idUsuarioActual].nombre
+        
+        colorFondo(color: vc.usuarioLog[idUsuarioActual].colorFondo)
+        if vc.usuarioLog[idUsuarioActual].imgFondo != "Sin avatar"{
+            imgAvatar.isHidden = false
+            imgAvatar.image = NSImage(named: vc.usuarioLog[idUsuarioActual].imgFondo)
+        }else{
+            imgAvatar.isHidden = true
+        }
+        
+    }
+    
+    func colorFondo(color:String){
+        view.wantsLayer = true
+        if color=="Rosa"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
+        }else if color=="Morado"{
+            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
+        }else if color=="Amarillo"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color=="Verde"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color == "Azul"{
+            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
+        }else{
+            view.wantsLayer = false
+        }
         
     }
     
@@ -96,22 +124,25 @@ class CrearVenta: NSViewController {
                                     if checarCantidadValida(id: idProducto){
                                     
                        
-
+                                        ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
+                                                                     descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
+                                        
                                         ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
                                                                      descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
 
-                                        ventasLogFinal.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
-                                                                     descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
+                                        ventasLogFinal.append(ventasLog[ventasLog.count-1])
                                         
                                       
                                         restarInventario(id: Int(txtIdProducto.stringValue)!)
                                         
                                         
-                                        calcularSubtotalVenta(id: vc.contadorIdVenta)
+                                       
                                         
                                         
-                                                         calcularTotalVenta()
+                                                        
+                                       
                                         vc.ventasLog = ventasLogFinal
+                                      
                                         
                                     }else{
                                         lblIncorrecto.stringValue = "*Cantidad solicitada excedente a la cantidad en existencia*"
@@ -229,10 +260,13 @@ class CrearVenta: NSViewController {
     }
     
     func calcularSubtotalVenta(id:Int)->Double{
-        for venta in ventasLog{
+        for venta in ventasTemp{
+            print(venta.idVenta , "idventa")
+            print(id, "ID A BUSCAR")
             if(venta.idVenta == id){
                 print("entro de nuevo")
-                multi = Double(txtCantidad.stringValue)! * vc.productoLog[txtIdProducto.integerValue].precio
+                print(txtIdProducto.integerValue)
+                multi = Double(txtCantidad.stringValue)! * ventasTemp[txtIdProducto.integerValue-1].precioProducto
             }
         }
         subtotal = subtotal + multi
@@ -244,6 +278,7 @@ class CrearVenta: NSViewController {
     func calcularTotalVenta()->Double{
         total = subtotal + (subtotal * 0.16)
         lblTotalVenta.stringValue = "$\(total)"
+     
         return total
     }
 

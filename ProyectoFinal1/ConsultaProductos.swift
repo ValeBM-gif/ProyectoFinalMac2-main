@@ -9,7 +9,8 @@ import Cocoa
 
 class ConsultaProductos: NSViewController {
     
-
+    @IBOutlet weak var imgAvatar: NSImageView!
+    
     @IBOutlet weak var tablaProductos: NSTableView!
     @IBOutlet var vcTabla: ViewController!
     @objc dynamic var productos:[ProductoModelo] = []
@@ -20,6 +21,35 @@ class ConsultaProductos: NSViewController {
         obtenerProductos()
         super.viewDidLoad()
         lblError.isHidden = true
+        
+        let usuarioActual = vcTabla.usuarioLog
+        var idUsuarioActual:Int = vcTabla.idUsuarioActual
+        
+        colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
+        if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
+            imgAvatar.isHidden = false
+            imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
+        }else{
+            imgAvatar.isHidden = true
+        }
+    }
+    
+    func colorFondo(color:String){
+        view.wantsLayer = true
+        if color=="Rosa"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
+        }else if color=="Morado"{
+            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
+        }else if color=="Amarillo"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color=="Verde"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color == "Azul"{
+            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
+        }else{
+            view.wantsLayer = false
+        }
+        
     }
     
     func obtenerProductos(){

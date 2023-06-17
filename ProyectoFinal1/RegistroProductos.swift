@@ -9,6 +9,7 @@ import Cocoa
 
 class RegistroProductos: NSViewController {
 
+    @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet weak var vc: ViewController!
     
@@ -50,9 +51,36 @@ class RegistroProductos: NSViewController {
             lblTitulo.stringValue = "Modificación de Productos"
             lblDescripcion.isHidden = true
             btnEnviar.title = "Modificar"
-            
-            
         }
+        
+        let usuarioActual = vc.usuarioLog
+        var idUsuarioActual:Int = vc.idUsuarioActual
+        
+        colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
+        if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
+            imgAvatar.isHidden = false
+            imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
+        }else{
+            imgAvatar.isHidden = true
+        }
+    }
+    
+    func colorFondo(color:String){
+        view.wantsLayer = true
+        if color=="Rosa"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
+        }else if color=="Morado"{
+            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
+        }else if color=="Amarillo"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color=="Verde"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color == "Azul"{
+            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
+        }else{
+            view.wantsLayer = false
+        }
+        
     }
     
     

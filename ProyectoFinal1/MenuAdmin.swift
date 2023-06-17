@@ -7,9 +7,21 @@
 
 import Cocoa
 
+extension NSColor {
+    convenience init(hex: Int, alpha: CGFloat = 1.0) {
+        let red = CGFloat((hex & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((hex & 0x00FF00) >> 8) / 255.0
+        let blue = CGFloat(hex & 0x0000FF) / 255.0
+        
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
+
 class MenuAdmin: NSViewController {
     
     //TODO: que exista el user
+    
+    @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet weak var vc: ViewController!
     
@@ -26,20 +38,52 @@ class MenuAdmin: NSViewController {
     var idCliente:Int=0
     var idUsuarioPedidos:Int=0
     var clientes:[UsuarioModelo]!
+    var colorFondo:String = "Rosa"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         clientes = []
+        
+        let usuarioActual = vc.usuarioLog
+        idUsuarioActual = vc.idUsuarioActual
+        
+        print("aaaaaaaaa",usuarioActual[idUsuarioActual].colorFondo);
+        
+        colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
+        if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
+            imgAvatar.isHidden = false
+            imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
+        }else{
+            imgAvatar.isHidden = true
+        }
+        
+        clientes = []
         
         print("MENU ADMIN: bool es admin? ",vc.usuarioEsAdmin)
         
         lblIDIncorrecto.isHidden = true
         lblBajaCorrecta.isHidden = true
         
-        let usuarioActual = vc.usuarioLog
-        idUsuarioActual = vc.idUsuarioActual
+        
         
         txtNombreUsuario.stringValue = "Bienvenide " + usuarioActual[idUsuarioActual].nombre
+    }
+    
+    func colorFondo(color:String){
+        view.wantsLayer = true
+        if color=="Rosa"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
+        }else if color=="Morado"{
+            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
+        }else if color=="Amarillo"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color=="Verde"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color == "Azul"{
+            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
+        }else{
+            view.wantsLayer = false
+        }
+        
     }
     
     @IBAction func irAMenuCompras(_ sender: NSButton) {

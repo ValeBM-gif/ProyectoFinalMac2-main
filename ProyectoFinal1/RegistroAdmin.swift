@@ -10,6 +10,7 @@ import Cocoa
 class RegistroAdmin: NSViewController {
 
     //TODO: Validar contraseñas seguras
+    //TODO: Que al cambiar fondo/imagen de uno mismo cambie al cerrar ventana o no te deje cambiar tus propios cosis
 
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!
@@ -21,8 +22,15 @@ class RegistroAdmin: NSViewController {
     var position:Int = 0
     let roles = ["Admin", "Cliente", "Compras", "Ventas"]
     var rolSeleccionado:String = "Cliente"
+    let colores = ["Rosa", "Morado", "Amarillo", "Verde", "Azul", "Sin color"]
+    var colorSeleccionado: String = "Rosa"
+    let imagenesFondo = ["trina", "andre", "cat", "robbie", "beck", "jade", "tori", "Sin avatar"]
+    var imgSeleccionada: String = "trina"
+    
     var emailTemporal:String = ""
     var edad:Int = 0
+    
+    @objc dynamic var usuarioLog:[UsuarioModelo] = []
     
     @IBOutlet weak var lblTitulo: NSTextField!
     
@@ -32,38 +40,53 @@ class RegistroAdmin: NSViewController {
     @IBOutlet weak var txtEmail: NSTextField!
     @IBOutlet weak var txtTelefono: NSTextField!
     @IBOutlet weak var txtGenero: NSTextField!
+    
+    @IBOutlet weak var dtpFechaNacimiento: NSDatePicker!
+    @IBOutlet weak var lblEdad: NSTextField!
+    
     @IBOutlet weak var txtPassword: NSTextField!
     @IBOutlet weak var txtConfirmarPassword: NSTextField!
     
     @IBOutlet weak var cmbRoles: NSPopUpButton!
+    @IBOutlet weak var lblRolAdmin: NSTextField!
     
-    @IBOutlet weak var dtpFechaNacimiento: NSDatePicker!
-    @IBOutlet weak var lblEdad: NSTextField!
-    @IBOutlet weak var btnRegistrar: NSButton!
+    @IBOutlet weak var cmbColorFondo: NSPopUpButton!
+    @IBOutlet weak var cmbImagenFondo: NSPopUpButton!
     
     @IBOutlet weak var lblCamposVacios: NSTextField!
     
-    @IBOutlet weak var lblRolAdmin: NSTextField!
-    
-    @objc dynamic var usuarioLog:[UsuarioModelo] = []
-    
+    @IBOutlet weak var btnRegistrar: NSButton!
+
     override func viewDidLoad() {
-        cmbRoles.removeAllItems()
-       cmbRoles.addItems(withTitles: roles)
-       
         super.viewDidLoad()
+        
+        cmbRoles.removeAllItems()
+        cmbRoles.addItems(withTitles: roles)
+        
+        cmbColorFondo.removeAllItems()
+        cmbColorFondo.addItems(withTitles: colores)
+        
+        cmbImagenFondo.removeAllItems()
+        cmbImagenFondo.addItems(withTitles: imagenesFondo)
         
         if modificar{
             autorellenarCampos()
             lblTitulo.stringValue = "Modificar"
             btnRegistrar.title = "Modificar"
+            
             cmbRoles.selectItem(at: obtenerIndiceRol(id:idUsuarioAModificar))
+            cmbColorFondo.selectItem(at: obtenerIndiceColor(id:idUsuarioAModificar))
+            cmbImagenFondo.selectItem(at: obtenerIndiceImagen(id:idUsuarioAModificar))
             
             permitirCambioRol(usuarioLoggeado: vc.idUsuarioActual)
         }else{
             btnRegistrar.title = "Registrar"
             lblTitulo.stringValue = "Registro"
+            
             cmbRoles.selectItem(at: 1)
+            cmbColorFondo.selectItem(at:0)
+            cmbImagenFondo.selectItem(at:0)
+            
             lblRolAdmin.isHidden=true
         }
         
@@ -71,13 +94,23 @@ class RegistroAdmin: NSViewController {
         
         position = vc.usuarioLog.count
         
-        
         print("valor de bool modificar: \(String(describing: modificar))")
     }
     
     @IBAction func rolCambiado(_ sender: NSPopUpButton) {
         let indiceSeleccionado = sender.indexOfSelectedItem
             rolSeleccionado = roles[indiceSeleccionado]
+            
+        }
+    
+    @IBAction func colorCambiado(_ sender: NSPopUpButton) {
+        let indiceSeleccionado = sender.indexOfSelectedItem
+            colorSeleccionado = colores[indiceSeleccionado]
+        }
+    
+    @IBAction func imgCambiado(_ sender: NSPopUpButton) {
+        let indiceSeleccionado = sender.indexOfSelectedItem
+            imgSeleccionada = imagenesFondo[indiceSeleccionado]
             
         }
     
@@ -112,6 +145,18 @@ class RegistroAdmin: NSViewController {
             vc.usuarioLog[idUsuarioAModificar].confirmarContraseña = txtConfirmarPassword.stringValue
             vc.usuarioLog[idUsuarioAModificar].rol = rolSeleccionado
             
+            if obtenerIndiceColor(id: idUsuarioAModificar) != 5{
+                vc.usuarioLog[idUsuarioAModificar].colorFondo = colorSeleccionado
+            }else{
+                vc.usuarioLog[idUsuarioAModificar].colorFondo = ""
+            }
+            
+            if obtenerIndiceImagen(id: idUsuarioAModificar) != 7{
+                vc.usuarioLog[idUsuarioAModificar].imgFondo = imgSeleccionada
+            }else{
+                vc.usuarioLog[idUsuarioAModificar].colorFondo = ""
+            }
+            
             vcMenu.txtNombreUsuario.stringValue = "Bienvenide " + vc.usuarioLog[idDeUsuarioRecibido].nombre
             
             dismiss(self)
@@ -138,8 +183,19 @@ class RegistroAdmin: NSViewController {
                         txtPassword.stringValue = vc.usuarioLog[idUsuarioAModificar].contraseña
                         txtConfirmarPassword.stringValue = vc.usuarioLog[idUsuarioAModificar].contraseña
         
-        
         cmbRoles.selectItem(at: obtenerIndiceRol(id: idUsuarioAModificar))
+        
+        if obtenerIndiceColor(id: idUsuarioAModificar) != 5{
+            cmbColorFondo.selectItem(at: obtenerIndiceColor(id: idUsuarioAModificar))
+        }else{
+            cmbColorFondo.selectItem(at:0)
+        }
+        
+        if obtenerIndiceImagen(id: idUsuarioAModificar) != 7{
+            cmbImagenFondo.selectItem(at: obtenerIndiceImagen(id: idUsuarioAModificar))
+        }else{
+            cmbImagenFondo.selectItem(at:0)
+        }
     }
     
     func obtenerIndiceRol(id:Int) -> Int{
@@ -155,6 +211,36 @@ class RegistroAdmin: NSViewController {
         }
     }
     
+    func obtenerIndiceColor(id:Int) -> Int{
+       
+        switch vc.usuarioLog[id].colorFondo {
+        case "Rosa": return 0
+        case "Morado": return 1
+        case "Amarillo": return 2
+        case "Verde": return 3
+        case "Azul": return 4
+        case "Sin color": return 5
+        default:
+            return 5
+        }
+    }
+    
+    func obtenerIndiceImagen(id:Int) -> Int{
+       
+        switch vc.usuarioLog[id].imgFondo {
+        case "trina": return 0
+        case "andre": return 1
+        case "cat": return 2
+        case "robbie": return 3
+        case "beck": return 4
+        case "jade": return 5
+        case "tori": return 6
+        case "Sin avatar": return 7
+        default:
+            return 7
+        }
+    }
+    
     func registrarUsuario(){
         print("entra a registrar usuario")
         calcularEdad()
@@ -164,7 +250,7 @@ class RegistroAdmin: NSViewController {
             calcularEdad()
             
             vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad
-                                               ,            txtPassword.stringValue, txtConfirmarPassword.stringValue, rolSeleccionado, dtpFechaNacimiento.dateValue))
+                                               ,            txtPassword.stringValue, txtConfirmarPassword.stringValue, rolSeleccionado, dtpFechaNacimiento.dateValue, colorSeleccionado, imgSeleccionada))
             
             print("Agregaste!!!!")
             print("id de user agregado", position)
@@ -321,6 +407,13 @@ class RegistroAdmin: NSViewController {
     
     @IBAction func cerrarViewController(_ sender: NSButton) {
         dismiss(self)
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier=="registrarUsuarioSegue"{
+            //(segue.destinationController as! RegistrarUsuario).vc = self
+        }
     }
  
 }
