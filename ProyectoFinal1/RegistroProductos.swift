@@ -30,7 +30,8 @@ class RegistroProductos: NSViewController {
     
     var esRegistroProducto: Bool = true
     var registerPosition: Int = 0
-    var modifyPosition: Int = 0
+    var modifyObject = ProductoModelo(0, "", "", "", 0, 0, "", 0, 0, "")
+    var idDeProductoARegistrar = 0
     //@objc dynamic var productoLog: [ProductoModelo] = []
     
     override func viewDidLoad() {
@@ -38,7 +39,8 @@ class RegistroProductos: NSViewController {
         
         lblIncorrecto.isHidden = true
         
-        registerPosition = vc.productoLog.count
+        
+        registerPosition = calcularIdProductoARegistrar()
         print("count de producto log",vc.productoLog.count)
         
         if esRegistroProducto{
@@ -81,6 +83,11 @@ class RegistroProductos: NSViewController {
             view.wantsLayer = false
         }
         
+    }
+    
+    func calcularIdProductoARegistrar() -> Int {
+        idDeProductoARegistrar = vc.productoLog.last!.id + 1
+        return idDeProductoARegistrar
     }
     
     
@@ -140,26 +147,26 @@ class RegistroProductos: NSViewController {
     }
     
     func modificarProducto(){
-        vc.productoLog[modifyPosition].nombre = txtNombre.stringValue
-        vc.productoLog[modifyPosition].descripcion = txtDescripcion.stringValue
-        vc.productoLog[modifyPosition].unidad = txtUnidad.stringValue
-        vc.productoLog[modifyPosition].precio = txtPrecio.doubleValue
-        vc.productoLog[modifyPosition].costo = txtCosto.doubleValue
-        vc.productoLog[modifyPosition].categoria = txtCategoria.stringValue
-        vc.productoLog[modifyPosition].cantidad = txtCantidad.integerValue
+        modifyObject.nombre = txtNombre.stringValue
+        modifyObject.descripcion = txtDescripcion.stringValue
+        modifyObject.unidad = txtUnidad.stringValue
+        modifyObject.precio = txtPrecio.doubleValue
+        modifyObject.costo = txtCosto.doubleValue
+        modifyObject.categoria = txtCategoria.stringValue
+        modifyObject.cantidad = txtCantidad.integerValue
 
         dismiss(self)
     }
     
     func llenarCampos(){
         print("entra a llenar campos")
-        txtNombre.stringValue = vc.productoLog[modifyPosition].nombre
-        txtDescripcion.stringValue = vc.productoLog[modifyPosition].descripcion
-        txtUnidad.stringValue = vc.productoLog[modifyPosition].unidad
-        txtPrecio.stringValue = String( vc.productoLog[modifyPosition].precio)
-        txtCosto.stringValue = String( vc.productoLog[modifyPosition].costo)
-        txtCategoria.stringValue =  vc.productoLog[modifyPosition].categoria
-        txtCantidad.stringValue = String( vc.productoLog[modifyPosition].cantidad)
+        txtNombre.stringValue = modifyObject.nombre
+        txtDescripcion.stringValue = modifyObject.descripcion
+        txtUnidad.stringValue = modifyObject.unidad
+        txtPrecio.stringValue = String(modifyObject.precio)
+        txtCosto.stringValue = String(modifyObject.costo)
+        txtCategoria.stringValue = modifyObject.categoria
+        txtCantidad.stringValue = String(modifyObject.cantidad)
     }
     
     func validarCamposVacios()->Bool{

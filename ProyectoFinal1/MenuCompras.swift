@@ -123,11 +123,21 @@ class MenuCompras: NSViewController {
             dismiss(self)
     }
     
+    func encontrarProductoPorId() -> ProductoModelo {
+        var productoEncontrado = ProductoModelo(0, "", "", "", 0, 0, "", 0, 0, "")
+        for producto in vc.productoLog{
+            if txtID.integerValue == producto.id{
+                productoEncontrado = producto
+            }
+        }
+        return productoEncontrado
+    }
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="irVcRegistroProducto"{
             (segue.destinationController as! RegistroProductos).vc = vc
             (segue.destinationController as! RegistroProductos).esRegistroProducto = irARegistro
-            (segue.destinationController as! RegistroProductos).modifyPosition = idProductoABuscar
+            (segue.destinationController as! RegistroProductos).modifyObject = encontrarProductoPorId()
 
             
         }else if segue.identifier=="irConsultarProductos"{

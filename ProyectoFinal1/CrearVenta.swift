@@ -60,10 +60,10 @@ class CrearVenta: NSViewController {
         lblNombreCliente.stringValue = vcMenuVenta.nombreClienteABuscar
         lblNombreVendedor.stringValue = vc.usuarioLog[vc.idUsuarioActual].nombre
         
-        colorFondo(color: vc.usuarioLog[idUsuarioActual].colorFondo)
-        if vc.usuarioLog[idUsuarioActual].imgFondo != "Sin avatar"{
+        colorFondo(color: vc.usuarioLog[vc.idUsuarioActual].colorFondo)
+        if vc.usuarioLog[vc.idUsuarioActual].imgFondo != "Sin avatar"{
             imgAvatar.isHidden = false
-            imgAvatar.image = NSImage(named: vc.usuarioLog[idUsuarioActual].imgFondo)
+            imgAvatar.image = NSImage(named: vc.usuarioLog[vc.idUsuarioActual].imgFondo)
         }else{
             imgAvatar.isHidden = true
         }
@@ -101,8 +101,7 @@ class CrearVenta: NSViewController {
             
             calcularSubtotalVenta(id: vc.contadorIdVenta)
             
-            
-                             calcularTotalVenta()
+            calcularTotalVenta()
         }
     
 
