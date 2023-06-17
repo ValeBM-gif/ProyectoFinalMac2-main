@@ -28,7 +28,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         
         usuarioLog.append(UsuarioModelo(0, "Default User", "def", "def", "def@g.com","4771234567", "no binarie", 20, "123", "123","Cliente",formatStringToDate(date: "2002/10/10"), "Rosa", "cat"))
-        usuarioLog.append(UsuarioModelo(1, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "masculino", 20, "123", "123","Admin", formatStringToDate(date: "2003/04/26"), "Morado", "jade"))
+        usuarioLog.append(UsuarioModelo(1, "Uriel", "Resendiz", "Medina", "m@l.com","4771234567", "masculino", 20, "123", "123","Admin", formatStringToDate(date: "2003/04/26"), "Morado", "jade"))
         usuarioLog.append(UsuarioModelo(2, "Pedro", "Flores", "Razo", "pedro@gmail.com","4771234567", "masculino", 20, "123", "123","Ventas", formatStringToDate(date: "2002/08/23"), "Amarillo", "tori"))
         usuarioLog.append(UsuarioModelo(3, "Ivan", "Campos", "Solis", "ivan@gmail.com","4771234567", "masculino", 21, "123", "123","Cliente", formatStringToDate(date: "2001/02/17"), "Verde", "beck"))
         usuarioLog.append(UsuarioModelo(4, "Vale", "Baeza", "Morales", "vale@gmail.com","4771234567", "femenino", 20, "123", "123","Compras", formatStringToDate(date: "2002/07/20"), "Azul", "trina"))

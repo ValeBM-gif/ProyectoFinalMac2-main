@@ -57,16 +57,16 @@ class PedidosCliente: NSViewController {
             idUsuarioActual = idClienteAdmin
         }
         
-        let usuarioActual = vcTablaPedidos.usuarioLog
-        idUsuarioActual = vcTablaPedidos.idUsuarioActual
+        //let usuarioActual = vcTablaPedidos.usuarioLog
+        //idUsuarioActual = vcTablaPedidos.idUsuarioActual
         
-        colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
-        if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
-            imgAvatar.isHidden = false
-            imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
-        }else{
-            imgAvatar.isHidden = true
-        }
+       // colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
+        //if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
+          //  imgAvatar.isHidden = false
+            //imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
+        //}else{
+          //  imgAvatar.isHidden = true
+        //}
         
         buscarClientes()
         
@@ -121,34 +121,46 @@ class PedidosCliente: NSViewController {
     func buscarPedidosDeCliente(){
         if (ventasLog.count>0){
            
-            for venta in ventasLog
-            {
-                if (venta.idCliente == idClienteActual){
-                    print(venta.idVenta)
+            //for venta in ventasLog
+            for i in 0...ventasLog.count-1
+            { 
+                if (ventasLog[i].idCliente == idClienteActual){
+                    print(ventasLog[i].idVenta)
                     if(tempId == -1){
-                        tempId=venta.idVenta
+                        tempId=ventasLog[i].idVenta
                     }
                     else{
-                        if(tempId != venta.idVenta){
-                            tempId=venta.idVenta
-                            pedidosLog.append(PedidoModelo(tempId-1, "", "Total Pedido", "" ,"" ,"$"+String(venta.totalVenta), venta.totalVenta))
+                        if(tempId != ventasLog[i].idVenta){
+                            tempId=ventasLog[i].idVenta
+                            pedidosLog.append(PedidoModelo(tempId-1, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[i-1].totalVenta), ventasLog[i-1].totalVenta))
                         }
                     }
                     
-                    pedidosLog.append(PedidoModelo(tempId, String(venta.idProducto),
-                                                   obtenerDescripcionProducto(id: venta.idProducto)                ,String(venta.cantidad), String(venta.precioProducto), String(venta.totalProducto), venta.totalVenta))
+                    
+                    pedidosLog.append(PedidoModelo(tempId, String(ventasLog[i].idProducto),
+                                                   obtenerDescripcionProducto(id: ventasLog[i].idProducto)            ,String(ventasLog[i].cantidad), String(ventasLog[i].precioProducto), String(ventasLog[i].totalProducto), ventasLog[i].totalVenta))
                     
                     
                 }
                 
             }
+            
             print(ventasLog.count, "COUNT")
+            
             if(ventasLog.count != 1){
-                pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[tempId].totalVenta), ventasLog[tempId].totalVenta))}
+            var indiceUltimaVenta:Int!
+               for venta in ventasLog {
+                   if(venta.idVenta == tempId){
+                       indiceUltimaVenta = ventasLog.firstIndex(of: venta)
+                   }
+                    
+                }
+               
+                pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[indiceUltimaVenta].totalVenta), ventasLog[indiceUltimaVenta].totalVenta))}
             else{
                 print(ventasLog.count, "COUNT1")
                 pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[tempId-1].totalVenta), ventasLog[tempId-1].totalVenta))
-        }
+            }
         }
             
     }
