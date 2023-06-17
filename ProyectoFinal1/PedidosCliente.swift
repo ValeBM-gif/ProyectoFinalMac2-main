@@ -9,7 +9,6 @@ import Cocoa
 
 class PedidosCliente: NSViewController {
     
-    //TODO: Todeeeeeee
     
     @IBOutlet weak var imgAvatar: NSImageView!
     
@@ -32,14 +31,15 @@ class PedidosCliente: NSViewController {
     var idUsuarioActual:Int!
     var usuarios:[UsuarioModelo]!
     var clientes:[UsuarioModelo]!
-    
-    //TO DO: MOSTRAR EL TOTAL DEL PEDIDO
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         idPedido=1;
         tempId = -1;
+        usuarios = vcTablaPedidos.usuarioLog
+        clientes = []
+        
+        cambiarImagenYFondo(idUsuarioActual: vcTablaPedidos.idUsuarioActual)
         
         
         if vcTablaPedidos.usuarioEsAdmin{
@@ -48,8 +48,7 @@ class PedidosCliente: NSViewController {
             btnAtras.isHidden = true
         }
         
-        usuarios = vcTablaPedidos.usuarioLog
-        clientes = []
+        
         if(idClienteAdmin == -1){
             idUsuarioActual = vcTablaPedidos.idUsuarioActual
         }
@@ -57,22 +56,23 @@ class PedidosCliente: NSViewController {
             idUsuarioActual = idClienteAdmin
         }
         
-        //let usuarioActual = vcTablaPedidos.usuarioLog
-        //idUsuarioActual = vcTablaPedidos.idUsuarioActual
-        
-       // colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
-        //if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
-          //  imgAvatar.isHidden = false
-            //imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
-        //}else{
-          //  imgAvatar.isHidden = true
-        //}
         
         buscarClientes()
         
         obtenerIdClienteActual()
         
         buscarPedidosDeCliente()
+    }
+    
+    func cambiarImagenYFondo(idUsuarioActual:Int){
+        
+         colorFondo(color: usuarios[idUsuarioActual].colorFondo)
+         if usuarios[idUsuarioActual].imgFondo != "Sin avatar"{
+             imgAvatar.isHidden = false
+             imgAvatar.image = NSImage(named: usuarios[idUsuarioActual].imgFondo)
+         }else{
+            imgAvatar.isHidden = true
+         }
     }
     
     func colorFondo(color:String){
@@ -121,7 +121,6 @@ class PedidosCliente: NSViewController {
     func buscarPedidosDeCliente(){
         if (ventasLog.count>0){
            
-            //for venta in ventasLog
             for i in 0...ventasLog.count-1
             { 
                 if (ventasLog[i].idCliente == idClienteActual){
@@ -138,8 +137,7 @@ class PedidosCliente: NSViewController {
                     
                     
                     pedidosLog.append(PedidoModelo(tempId, String(ventasLog[i].idProducto),
-                                                   obtenerDescripcionProducto(id: ventasLog[i].idProducto)            ,String(ventasLog[i].cantidad), String(ventasLog[i].precioProducto), String(ventasLog[i].totalProducto), ventasLog[i].totalVenta))
-                    
+                        obtenerDescripcionProducto(id: ventasLog[i].idProducto)            ,String(ventasLog[i].cantidad), String(ventasLog[i].precioProducto), String(ventasLog[i].totalProducto), ventasLog[i].totalVenta))
                     
                 }
                 
@@ -147,7 +145,6 @@ class PedidosCliente: NSViewController {
             
             print(ventasLog.count, "COUNT")
             
-            if(ventasLog.count != 1){
             var indiceUltimaVenta:Int!
                for venta in ventasLog {
                    if(venta.idVenta == tempId){
@@ -156,11 +153,8 @@ class PedidosCliente: NSViewController {
                     
                 }
                
-                pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[indiceUltimaVenta].totalVenta), ventasLog[indiceUltimaVenta].totalVenta))}
-            else{
-                print(ventasLog.count, "COUNT1")
-                pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[tempId-1].totalVenta), ventasLog[tempId-1].totalVenta))
-            }
+                pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[indiceUltimaVenta].totalVenta), ventasLog[indiceUltimaVenta].totalVenta))
+           
         }
             
     }
