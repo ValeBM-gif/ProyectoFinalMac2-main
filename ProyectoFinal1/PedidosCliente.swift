@@ -11,6 +11,8 @@ class PedidosCliente: NSViewController {
     
     //TODO: Todeeeeeee
     
+    @IBOutlet weak var imgAvatar: NSImageView!
+    
     @IBOutlet var vcTablaPedidos: ViewController!
     @objc dynamic var vieneDeAdmin: Bool  = false
     @objc dynamic var idClienteAdmin: Int = -1
@@ -55,14 +57,40 @@ class PedidosCliente: NSViewController {
             idUsuarioActual = idClienteAdmin
         }
         
+        let usuarioActual = vcTablaPedidos.usuarioLog
+        idUsuarioActual = vcTablaPedidos.idUsuarioActual
+        
+        colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
+        if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
+            imgAvatar.isHidden = false
+            imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
+        }else{
+            imgAvatar.isHidden = true
+        }
+        
         buscarClientes()
         
         obtenerIdClienteActual()
         
         buscarPedidosDeCliente()
+    }
+    
+    func colorFondo(color:String){
+        view.wantsLayer = true
+        if color=="Rosa"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
+        }else if color=="Morado"{
+            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
+        }else if color=="Amarillo"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color=="Verde"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color == "Azul"{
+            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
+        }else{
+            view.wantsLayer = false
+        }
         
-        
-        //
     }
     
     func buscarClientes(){
@@ -91,28 +119,38 @@ class PedidosCliente: NSViewController {
     }
     
     func buscarPedidosDeCliente(){
-        for venta in ventasLog
-        {
-            if (venta.idCliente == idClienteActual){
-                print(venta.idVenta)
-                if(tempId == -1){
-                    tempId=venta.idVenta
-                }
-                else{
-                    if(tempId != venta.idVenta){
+        if (ventasLog.count>0){
+           
+            for venta in ventasLog
+            {
+                if (venta.idCliente == idClienteActual){
+                    print(venta.idVenta)
+                    if(tempId == -1){
                         tempId=venta.idVenta
-                        pedidosLog.append(PedidoModelo(idPedido-1, "", "Total Pedido", "" ,"" ,"$"+String(venta.totalVenta), venta.totalVenta))
                     }
+                    else{
+                        if(tempId != venta.idVenta){
+                            tempId=venta.idVenta
+                            pedidosLog.append(PedidoModelo(tempId-1, "", "Total Pedido", "" ,"" ,"$"+String(venta.totalVenta), venta.totalVenta))
+                        }
+                    }
+                    
+                    pedidosLog.append(PedidoModelo(tempId, String(venta.idProducto),
+                                                   obtenerDescripcionProducto(id: venta.idProducto)                ,String(venta.cantidad), String(venta.precioProducto), String(venta.totalProducto), venta.totalVenta))
+                    
+                    
                 }
-               
-                pedidosLog.append(PedidoModelo(idPedido, String(venta.idProducto),
-                                               obtenerDescripcionProducto(id: venta.idProducto)                ,String(venta.cantidad), String(venta.precioProducto), String(venta.totalProducto), venta.totalVenta))
                 
-                idPedido=idPedido+1
             }
-            
+            print(ventasLog.count, "COUNT")
+            if(ventasLog.count != 1){
+                pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[tempId].totalVenta), ventasLog[tempId].totalVenta))}
+            else{
+                print(ventasLog.count, "COUNT1")
+                pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[tempId-1].totalVenta), ventasLog[tempId-1].totalVenta))
         }
-        pedidosLog.append(PedidoModelo(tempId, "", "Total Pedido", "" ,"" ,"$"+String(ventasLog[tempId].totalVenta), ventasLog[tempId].totalVenta))
+        }
+            
     }
     
     func obtenerDescripcionProducto(id:Int) -> String{

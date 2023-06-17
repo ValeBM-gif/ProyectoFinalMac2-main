@@ -21,8 +21,12 @@ class UsuarioModelo: NSObject {
     @objc dynamic var confirmarContraseña:String
     @objc dynamic var rol:String
     @objc dynamic var fechaNacimiento: Date
+    @objc dynamic var colorFondo: String
+    @objc dynamic var imgFondo: String
     
-    init(_ id: Int,_ nombre: String,_ apellidoPaterno: String,_ apellidoMaterno: String,_ email: String,_ telefono: String,_ genero: String,_ edad:Int,_ contraseña: String,_ confirmarContraseña: String,_ rol: String,_ fechaNacimiento: Date) {
+    
+    
+    init(_ id: Int,_ nombre: String,_ apellidoPaterno: String,_ apellidoMaterno: String,_ email: String,_ telefono: String,_ genero: String,_ edad:Int,_ contraseña: String,_ confirmarContraseña: String,_ rol: String,_ fechaNacimiento: Date,_ colorFondo: String,_ imgFondo: String ) {
         self.id = id
         self.nombre = nombre
         self.apellidoPaterno = apellidoPaterno
@@ -35,6 +39,8 @@ class UsuarioModelo: NSObject {
         self.confirmarContraseña = confirmarContraseña
         self.rol = rol
         self.fechaNacimiento = fechaNacimiento
+        self.colorFondo = colorFondo
+        self.imgFondo = imgFondo
     }
     
 }

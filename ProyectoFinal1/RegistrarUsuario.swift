@@ -84,7 +84,7 @@ class RegistrarUsuario: NSViewController {
                             if validarEdad(){
                                 lblCamposVacios.isHidden = true
                                 
-                                vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente",dtpFechaNacimiento.dateValue))
+                                vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente",dtpFechaNacimiento.dateValue, "", ""))
                                 
                             print("Agregaste Cliente")
                                 print("id de user agregado", position)

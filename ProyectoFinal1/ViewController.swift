@@ -27,22 +27,18 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         
-        usuarioLog.append(UsuarioModelo(0, "Default User", "def", "def", "def@g.com","4771234567", "no binarie", 20, "123", "123","Cliente",formatStringToDate(date: "2002/10/10")))
-        usuarioLog.append(UsuarioModelo(1, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "no binarie", 20, "123", "123","Admin", formatStringToDate(date: "2003/04/26")))
-        usuarioLog.append(UsuarioModelo(2, "Pedro", "f", "f", "p@g.com","4771234567", "no binarie", 20, "123", "123","Ventas", formatStringToDate(date: "2002/08/23")))
-        usuarioLog.append(UsuarioModelo(3, "Cliente", "f", "f", "c@g.com","4771234567", "no binarie", 21, "123", "123","Cliente", formatStringToDate(date: "2001/02/17")))
-        usuarioLog.append(UsuarioModelo(4, "vale", "b", "m", "v@g.com","4771234567", "no binarie", 20, "123", "123","Compras", formatStringToDate(date: "2002/07/20")))
-        usuarioLog.append(UsuarioModelo(5, "valeAdmin", "b", "m", "v2@g.com","4771234567", "no binarie", 20, "123", "123","Admin", formatStringToDate(date: "2002/07/20")))
-        usuarioLog.append(UsuarioModelo(6, "valeAdmin2", "b", "m", "v3@g.com","4771234567", "no binarie", 20, "123", "123","Admin", formatStringToDate(date: "2002/07/20")))
+        usuarioLog.append(UsuarioModelo(0, "Default User", "def", "def", "def@g.com","4771234567", "no binarie", 20, "123", "123","Cliente",formatStringToDate(date: "2002/10/10"), "Rosa", "cat"))
+        usuarioLog.append(UsuarioModelo(1, "Uriel", "Resendiz", "Medina", "murmi@lasalle.com","4771234567", "masculino", 20, "123", "123","Admin", formatStringToDate(date: "2003/04/26"), "Morado", "jade"))
+        usuarioLog.append(UsuarioModelo(2, "Pedro", "Flores", "Razo", "pedro@gmail.com","4771234567", "masculino", 20, "123", "123","Ventas", formatStringToDate(date: "2002/08/23"), "Amarillo", "tori"))
+        usuarioLog.append(UsuarioModelo(3, "Ivan", "Campos", "Solis", "ivan@gmail.com","4771234567", "masculino", 21, "123", "123","Cliente", formatStringToDate(date: "2001/02/17"), "Verde", "beck"))
+        usuarioLog.append(UsuarioModelo(4, "Vale", "Baeza", "Morales", "vale@gmail.com","4771234567", "femenino", 20, "123", "123","Compras", formatStringToDate(date: "2002/07/20"), "Azul", "trina"))
         
         productoLog.append(ProductoModelo(0, "Default Prod", "def", "def", 1, 1, "def", 1, 0, "def"))
-        productoLog.append(ProductoModelo(1, "awita", "de limon", "lt", 10, 5, "liquidoss", 20, 3, "vale"))
-        productoLog.append(ProductoModelo(2, "jugue", "de uva", "ml", 20, 10, "liquidoss complejos", 30, 0, "uriel"))
-        productoLog.append(ProductoModelo(3, "awita", "de limon", "lt", 30, 5, "liquidoss", 20, 3, "vale"))
-        productoLog.append(ProductoModelo(4, "jugue", "de uva", "ml", 40, 10, "liquidoss complejos", 30, 2, "Cliente"))
-        ventasLog.append(   VentaModelo(idVenta: 0, idVendedor: 1, nombreVendedor: "JUANA", idCliente: 1, nombreCliente: "JHONNY", idProducto: 1, nombreProducto: "AWA", descripcionProducto: "DE LIMON", cantidad: 2, precioProducto: 200, totalProducto: 400, subtotalVenta: 170, ivaVenta: 30, totalVenta: 200))
-        ventasLog.append(   VentaModelo(idVenta: 2, idVendedor: 1, nombreVendedor: "JUANA", idCliente: 1, nombreCliente: "JHONNY", idProducto: 1, nombreProducto: "AWA", descripcionProducto: "DE LIMON", cantidad: 2, precioProducto: 200, totalProducto: 400, subtotalVenta: 170, ivaVenta: 30, totalVenta: 200))
-        ventasLog.append(   VentaModelo(idVenta: 1, idVendedor: 1, nombreVendedor: "JUANA", idCliente: 3, nombreCliente: "JHONNY2", idProducto: 1, nombreProducto: "COJIN", descripcionProducto: "COJIN DE TELA", cantidad: 2, precioProducto: 100, totalProducto: 200, subtotalVenta: 170, ivaVenta: 30, totalVenta: 200))
+        productoLog.append(ProductoModelo(1, "Agua fig", "Agua de limón", "lt", 10, 5, "Aguas", 20, 4, "Vale"))
+        productoLog.append(ProductoModelo(2, "Jugo Boing", "Jugo Boing de uva", "ml", 15, 10, "Jugos", 30, 4, "Vale"))
+        productoLog.append(ProductoModelo(3, "Malteada", "Malteada sabor chocolate", "lt", 30, 20, "malteadas", 20, 4, "Vale"))
+
+
 
         lblIncorrecto.isHidden=true
     }
@@ -56,7 +52,6 @@ class ViewController: NSViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = date
         let date = dateFormatter.date(from: dateString)
-        print(date)
         return date!
     }
     
@@ -112,14 +107,11 @@ class ViewController: NSViewController {
             (segue.destinationController as! MenuVentas).nombreVendedor = nombreUsuarioActual
         }else if segue.identifier=="irVcMenuCompras"{
             (segue.destinationController as! MenuCompras).vc = self
-            
         }else if segue.identifier=="irVcCliente"{
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = self
-            
             (segue.destinationController as! PedidosCliente).ventasLog = self.ventasLog
             (segue.destinationController as! PedidosCliente).productosLog = self.productoLog
         }
-        print("VIEWCONTROLLER: bool es admin? ",usuarioEsAdmin)
     }
     
     
