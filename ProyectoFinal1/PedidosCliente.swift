@@ -57,17 +57,6 @@ class PedidosCliente: NSViewController {
             idUsuarioActual = idClienteAdmin
         }
         
-        let usuarioActual = vcTablaPedidos.usuarioLog
-        idUsuarioActual = vcTablaPedidos.idUsuarioActual
-        
-        colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
-        if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
-            imgAvatar.isHidden = false
-            imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
-        }else{
-            imgAvatar.isHidden = true
-        }
-        
         buscarClientes()
         
         obtenerIdClienteActual()

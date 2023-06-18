@@ -138,7 +138,6 @@ class MenuCompras: NSViewController {
             (segue.destinationController as! RegistroProductos).vc = vc
             (segue.destinationController as! RegistroProductos).esRegistroProducto = irARegistro
             (segue.destinationController as! RegistroProductos).modifyObject = encontrarProductoPorId()
-
             
         }else if segue.identifier=="irConsultarProductos"{
             (segue.destinationController as! ConsultaProductos).productos = vc.productoLog

@@ -31,7 +31,7 @@ class RegistroProductos: NSViewController {
     var esRegistroProducto: Bool = true
     var registerPosition: Int = 0
     var modifyObject = ProductoModelo(0, "", "", "", 0, 0, "", 0, 0, "")
-    var idDeProductoARegistrar = 0
+    var idDeProductoARegistrar: Int = 0
     //@objc dynamic var productoLog: [ProductoModelo] = []
     
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class RegistroProductos: NSViewController {
         lblIncorrecto.isHidden = true
         
         
-        registerPosition = calcularIdProductoARegistrar()
+        registerPosition = vc.contadorGlobalProductos+1
         print("count de producto log",vc.productoLog.count)
         
         if esRegistroProducto{
@@ -84,12 +84,6 @@ class RegistroProductos: NSViewController {
         }
         
     }
-    
-    func calcularIdProductoARegistrar() -> Int {
-        idDeProductoARegistrar = vc.productoLog.last!.id + 1
-        return idDeProductoARegistrar
-    }
-    
     
     @IBAction func enviar(_ sender: NSButton) {
         
@@ -139,7 +133,9 @@ class RegistroProductos: NSViewController {
     func registrarProducto(){
         print("  position: ",registerPosition)
         vc.productoLog.append(ProductoModelo(registerPosition, txtNombre.stringValue, txtDescripcion.stringValue, txtUnidad.stringValue, txtPrecio.doubleValue, txtCosto.doubleValue, txtCategoria.stringValue, txtCantidad.integerValue, vc.idUsuarioActual, vc.nombreUsuarioActual))
+        vc.contadorGlobalProductos += 1
         print("count de producto log, después de registrar",vc.productoLog.count)
+        print("contador global de prod después de registrar",vc.contadorGlobalProductos)
         for producto in vc.productoLog{
             print("productos", producto.nombre)
         }

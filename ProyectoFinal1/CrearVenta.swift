@@ -9,6 +9,8 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
+    //TODO: se rompe al agregar un producto con índice mayor a 1 por primera vez
+    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vc: ViewController!
@@ -50,6 +52,7 @@ class CrearVenta: NSViewController {
         ventasLogFinal = vc.ventasLog
         
         super.viewDidLoad()
+        
         totalVentas=ventasLog.count
       
         ventasLog.removeAll()
@@ -107,8 +110,7 @@ class CrearVenta: NSViewController {
 
     }
     
-    
-    @IBAction func agregarVenta(_ sender: NSButton) {
+    func hacerValidaciones() -> Bool{
         if validarCamposVacios(){
             if txtCantidad.stringValue != ""{
                 if txtIdProducto.stringValue != "" && validarIdProductoMayorCero(){
@@ -121,59 +123,64 @@ class CrearVenta: NSViewController {
                             if validarExistenciaProducto(id: idProducto){
                                 if checarIdRepetido(id:idProducto){
                                     if checarCantidadValida(id: idProducto){
-                                    
-                       
-                                        ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
-                                                                     descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
-                                        
-                                        ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
-                                                                     descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
-
-                                        ventasLogFinal.append(ventasLog[ventasLog.count-1])
-                                        
-                                      
-                                        restarInventario(id: Int(txtIdProducto.stringValue)!)
-                                        
-                                        
-                                       
-                                        
-                                        
-                                                        
-                                       
-                                        vc.ventasLog = ventasLogFinal
-                                      
-                                        
+                                        return true
                                     }else{
                                         lblIncorrecto.stringValue = "*Cantidad solicitada excedente a la cantidad en existencia*"
                                         lblIncorrecto.isHidden = false
+                                        return false
                                     }
                                 }else{
                                     lblIncorrecto.stringValue = "*Inserta un ID diferente*"
                                     lblIncorrecto.isHidden = false
+                                    return false
                                 }
                             }else{
                                 lblIncorrecto.stringValue = "*Producto inexistente*"
                                 lblIncorrecto.isHidden = false
+                                return false
                             }
                         }else{
                             lblIncorrecto.stringValue = "*Inserta un ID válido en producto*"
                             lblIncorrecto.isHidden = false
+                            return false
                         }
                     }else{
                         lblIncorrecto.stringValue = "*Inserta una cantidad valida"
                         lblIncorrecto.isHidden = false
+                        return false
                     }
                 }else{
                     lblIncorrecto.stringValue = "*Inserta un ID Valido*"
                     lblIncorrecto.isHidden = false
+                    return false
                 }
             }else{
                 lblIncorrecto.stringValue = "*Inserta una cantidad*"
                 lblIncorrecto.isHidden = false
+                return false
             }
         }else{
             lblIncorrecto.stringValue = "*Inserta un ID y una cantidad*"
             lblIncorrecto.isHidden = false
+            return false
+        }
+    }
+    
+    
+    @IBAction func agregarVenta(_ sender: NSButton) {
+        if hacerValidaciones(){
+            ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
+                                         descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
+            
+            ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
+                                         descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
+
+            ventasLogFinal.append(ventasLog[ventasLog.count-1])
+            
+          
+            restarInventario(id: Int(txtIdProducto.stringValue)!)
+
+            vc.ventasLog = ventasLogFinal
         }
     }
     

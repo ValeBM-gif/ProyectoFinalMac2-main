@@ -9,7 +9,7 @@ import Cocoa
 
 class ModificarProducto: NSViewController {
 
-    //TODO: YA NO DEBERÍAMOS USAR ESTE VC, VERIFICAR QUE NO SE UTILICE Y BORRAR
+    //TODO: BORRRAAAAARRRRRR
     
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuCompras!
