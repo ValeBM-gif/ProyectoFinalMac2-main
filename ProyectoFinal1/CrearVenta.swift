@@ -9,7 +9,7 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
-    //TODO: se rompe al agregar un producto con índice mayor a 1 por primera vez
+    //TODO: Arreglar operaciones total, la segunda vez ya no lo hace bien
     
     @IBOutlet weak var imgAvatar: NSImageView!
     
@@ -102,9 +102,9 @@ class CrearVenta: NSViewController {
             
             tablaVentas.reloadData()
             
-            calcularSubtotalVenta(id: vc.contadorIdVenta)
+            // calcularSubtotalVenta(id: vc.contadorIdVenta)
             
-            calcularTotalVenta()
+            // calcularTotalVenta()
         }
     
 
@@ -198,6 +198,19 @@ class CrearVenta: NSViewController {
 
             vc.ventasLog = ventasLogFinal
             print("Pasa ventas log toma lo de ventas log final")
+        }
+    }
+    
+    
+    @IBAction func modificarVenta(_ sender: NSButton) {
+        
+        let selectedRow = tablaVentas.selectedRow
+        
+        if selectedRow >= 0 {
+            performSegue(withIdentifier: "irModificarVenta", sender: self)
+        }else{
+            lblIncorrecto.isHidden = false
+            lblIncorrecto.stringValue = "*Selecciona un producto a modificar*"
         }
     }
     

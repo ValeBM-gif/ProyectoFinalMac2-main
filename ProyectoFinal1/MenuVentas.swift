@@ -9,6 +9,8 @@ import Cocoa
 
 class MenuVentas: NSViewController {
     
+    //TODO: validar que solo deje vender a clientes
+    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet weak var vc: ViewController!
