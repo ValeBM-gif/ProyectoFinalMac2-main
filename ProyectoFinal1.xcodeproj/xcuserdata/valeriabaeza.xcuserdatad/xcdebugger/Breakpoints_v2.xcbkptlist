@@ -50,6 +50,38 @@
             endingLineNumber = "146"
             landmarkName = "modificarProducto()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6F444F80-408E-452D-8BE5-FDF3A6AB0F7C - 378377024b0f6f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProyectoFinal1.RegistroProductos.modificarProducto() -&gt; ()"
+                  moduleName = "ProyectoFinal1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/valeriabaeza/Downloads/ProyectoFinalMac-main/ProyectoFinal1/RegistroProductos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "384">
+               </Location>
+               <Location
+                  uuid = "6F444F80-408E-452D-8BE5-FDF3A6AB0F7C - 5a6b4c8889467805"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProyectoFinal1.RegistroProductos.validarCamposVacios() -&gt; Swift.Bool"
+                  moduleName = "ProyectoFinal1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/valeriabaeza/Downloads/ProyectoFinalMac-main/ProyectoFinal1/RegistroProductos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "2184">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -66,6 +98,38 @@
             endingLineNumber = "159"
             landmarkName = "llenarCampos()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2DEE2308-4FCC-40E4-86CD-6DC5C5D5731E - 90d12791357eaaa7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProyectoFinal1.RegistroProductos.llenarCampos() -&gt; ()"
+                  moduleName = "ProyectoFinal1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/valeriabaeza/Downloads/ProyectoFinalMac-main/ProyectoFinal1/RegistroProductos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "568">
+               </Location>
+               <Location
+                  uuid = "2DEE2308-4FCC-40E4-86CD-6DC5C5D5731E - a4e53af46dcb35bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProyectoFinal1.RegistroProductos.validarNoCeros() -&gt; Swift.Bool"
+                  moduleName = "ProyectoFinal1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/valeriabaeza/Downloads/ProyectoFinalMac-main/ProyectoFinal1/RegistroProductos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
