@@ -95,6 +95,41 @@ class ViewController: NSViewController {
         }
         return false
     }
+    
+    func cambiarImagen(idUsuarioActual:Int, imgAvatar:NSImageView){
+         if usuarioLog[idUsuarioActual].imgFondo != "Sin avatar"{
+             imgAvatar.isHidden = false
+             imgAvatar.image = NSImage(named: usuarioLog[idUsuarioActual].imgFondo)
+         }else{
+            imgAvatar.isHidden = true
+         }
+    }
+    
+    func cambiarColorFondo(color:String, view:NSView){
+        view.wantsLayer = true
+        if color=="Rosa"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
+        }else if color=="Morado"{
+            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
+        }else if color=="Amarillo"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color=="Verde"{
+            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
+        }else if color == "Azul"{
+            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
+        }else{
+            view.wantsLayer = false
+        }
+        
+    }
+    
+    func cambiarImagenYFondo(idUsuarioActual:Int, imgAvatar:NSImageView, view:NSView){
+        
+       cambiarColorFondo(color: usuarioLog[idUsuarioActual].colorFondo, view:view)
+        cambiarImagen(idUsuarioActual: idUsuarioActual, imgAvatar: imgAvatar)
+    
+    }
+    
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         

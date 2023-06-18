@@ -13,9 +13,7 @@ class PedidosCliente: NSViewController {
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vcTablaPedidos: ViewController!
-    @objc dynamic var vieneDeAdmin: Bool  = false
     @objc dynamic var idClienteAdmin: Int = -1
-    
     @objc dynamic var ventasLog:[VentaModelo] = []
     @objc dynamic var productosLog:[ProductoModelo] = []
     @objc dynamic var pedidosLog:[PedidoModelo] = []
@@ -23,8 +21,8 @@ class PedidosCliente: NSViewController {
     @objc dynamic var clientesLog:[UsuarioModelo] = []
     
     @IBOutlet weak var btnAtras: NSButton!
-    
     @IBOutlet weak var tablaPedidos: NSTableView!
+    
     var idClienteActual:Int!
     var idPedido:Int!
     var tempId:Int!
@@ -39,15 +37,13 @@ class PedidosCliente: NSViewController {
         usuarios = vcTablaPedidos.usuarioLog
         clientes = []
         
-        cambiarImagenYFondo(idUsuarioActual: vcTablaPedidos.idUsuarioActual)
-        
+        vcTablaPedidos.cambiarImagenYFondo(idUsuarioActual: vcTablaPedidos.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
         
         if vcTablaPedidos.usuarioEsAdmin{
             btnAtras.isHidden = false
         }else{
             btnAtras.isHidden = true
         }
-        
         
         if(idClienteAdmin == -1){
             idUsuarioActual = vcTablaPedidos.idUsuarioActual
@@ -56,42 +52,13 @@ class PedidosCliente: NSViewController {
             idUsuarioActual = idClienteAdmin
         }
         
-        
         buscarClientes()
         
         obtenerIdClienteActual()
         
         buscarPedidosDeCliente()
     }
-    
-    func cambiarImagenYFondo(idUsuarioActual:Int){
         
-         colorFondo(color: usuarios[idUsuarioActual].colorFondo)
-         if usuarios[idUsuarioActual].imgFondo != "Sin avatar"{
-             imgAvatar.isHidden = false
-             imgAvatar.image = NSImage(named: usuarios[idUsuarioActual].imgFondo)
-         }else{
-            imgAvatar.isHidden = true
-         }
-    }
-    
-    func colorFondo(color:String){
-        view.wantsLayer = true
-        if color=="Rosa"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
-        }else if color=="Morado"{
-            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
-        }else if color=="Amarillo"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
-        }else if color=="Verde"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
-        }else if color == "Azul"{
-            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
-        }else{
-            view.wantsLayer = false
-        }
-        
-    }
     
     func buscarClientes(){
         for usuario in usuarios {
@@ -108,6 +75,7 @@ class PedidosCliente: NSViewController {
             }
         }
     }
+    
     func obtenerIdsVentas(){
         for venta in ventasLog{
             if (venta.idCliente == idClienteActual){
@@ -124,7 +92,7 @@ class PedidosCliente: NSViewController {
             for i in 0...ventasLog.count-1
             { 
                 if (ventasLog[i].idCliente == idClienteActual){
-                    print(ventasLog[i].idVenta)
+                   
                     if(tempId == -1){
                         tempId=ventasLog[i].idVenta
                     }
@@ -142,8 +110,6 @@ class PedidosCliente: NSViewController {
                 }
                 
             }
-            
-            print(ventasLog.count, "COUNT")
             
             var indiceUltimaVenta:Int!
                for venta in ventasLog {
