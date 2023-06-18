@@ -319,7 +319,6 @@ class MenuAdmin: NSViewController {
             (segue.destinationController as! PedidosCliente).idClienteAdmin = idCliente
             
             (segue.destinationController as! PedidosCliente).ventasLog = vc.ventasLog
-            (segue.destinationController as! PedidosCliente).productosLog = vc.productoLog
         }
     }
 }
