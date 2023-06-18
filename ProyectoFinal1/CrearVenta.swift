@@ -39,6 +39,7 @@ class CrearVenta: NSViewController {
     var multi : Double = 0
     var total:Double = 0
     var totalVentas: Int = 0
+    var selectedRow:Int = 0
     
     override func viewDidLoad() {
         
@@ -64,7 +65,7 @@ class CrearVenta: NSViewController {
     
     @IBAction func eliminarVenta(_ sender: NSButton) {
        
-        let selectedRow = tablaVentas.selectedRow
+        selectedRow = tablaVentas.selectedRow
         
         if selectedRow >= 0 {
             
@@ -178,9 +179,10 @@ class CrearVenta: NSViewController {
     
     @IBAction func modificarVenta(_ sender: NSButton) {
         
-        let selectedRow = tablaVentas.selectedRow
+        selectedRow = tablaVentas.selectedRow
         
         if selectedRow >= 0 {
+            lblIncorrecto.isHidden = true
             performSegue(withIdentifier: "irModificarVenta", sender: self)
         }else{
             lblIncorrecto.isHidden = false
@@ -305,6 +307,17 @@ class CrearVenta: NSViewController {
     override func viewDidDisappear() {
         if(ventasLog.count>0){
             vc.contadorIdVenta += 1
+        }
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        txtCantidad.stringValue = ""
+        txtIdProducto.stringValue = ""
+        if segue.identifier == "irModificarVenta" {
+            
+            let destinationVC = segue.destinationController as! ModificarVenta;
+            
+            destinationVC.vcVentas = self
         }
     }
 }
