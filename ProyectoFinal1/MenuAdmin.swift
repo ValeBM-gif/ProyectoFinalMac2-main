@@ -19,7 +19,7 @@ extension NSColor {
 
 class MenuAdmin: NSViewController {
     
-    //TODO: que exista el user
+    //TODO: índices de eliminar, agregar y modificar estan mal
     
     @IBOutlet weak var imgAvatar: NSImageView!
     
@@ -87,10 +87,14 @@ class MenuAdmin: NSViewController {
     }
     
     @IBAction func irAMenuCompras(_ sender: NSButton) {
+        lblBajaCorrecta.isHidden = true
+        lblIDIncorrecto.isHidden = true
         performSegue(withIdentifier: "irMenuComprasAdmin", sender: self)
     }
     
     @IBAction func irAMenuVentas(_ sender: NSButton) {
+        lblBajaCorrecta.isHidden = true
+        lblIDIncorrecto.isHidden = true
         performSegue(withIdentifier: "irMenuVentasAdmin", sender: self)
     }
     
@@ -102,10 +106,9 @@ class MenuAdmin: NSViewController {
                idCliente=buscarIdCliente(id:idUsuarioPedidos)
                 if  idCliente != -1 && idCliente != 0
                 {
-                    performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
                     lblIDIncorrecto.isHidden = true
                     lblBajaCorrecta.isHidden = true
-                    
+                    performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
                 }else{
                     lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIDIncorrecto.isHidden = false
@@ -122,10 +125,9 @@ class MenuAdmin: NSViewController {
               
                 if  buscarIdClienteValido(id:idCliente)
                 {
-                    performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
                     lblIDIncorrecto.isHidden = true
                     lblBajaCorrecta.isHidden = true
-                    
+                    performSegue(withIdentifier: "irMenuPedidosAdmin", sender: self)
                 }else{
                     lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIDIncorrecto.isHidden = false
@@ -152,13 +154,15 @@ class MenuAdmin: NSViewController {
     }
     
     @IBAction func irARegistro(_ sender: NSButton) {
+        lblIDIncorrecto.isHidden = true
+        lblBajaCorrecta.isHidden = true
         performSegue(withIdentifier: "irARegistrar", sender: self)
     }
     
     @IBAction func eliminarUsuario(_ sender: NSButton) {
         if txtID.stringValue != ""{
             if soloHayNumerosEnTxtID(){
-                idUsuarioAEliminar = txtID.integerValue
+                idUsuarioAEliminar = sacarPosicionUsuario(idDeTxt: txtID.integerValue)
                 if idUsuarioAEliminar != 0 {
                     if idUsuarioActual != idUsuarioAEliminar{
                         if checarExistenciaUsuario(id: idUsuarioAEliminar){
@@ -170,31 +174,47 @@ class MenuAdmin: NSViewController {
                             lblBajaCorrecta.isHidden=false
                             lblIDIncorrecto.isHidden=true
                         }else{
+                            print("usuario no existe??")
                             lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                             lblIDIncorrecto.isHidden = false
                             lblBajaCorrecta.isHidden = true
                         }
                     }else{
+                        print("usuario se quiere matar")
                         lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                         lblIDIncorrecto.isHidden = false
                         lblBajaCorrecta.isHidden = true
                     }
                 }else{
+                    print("id usuario a eliminar es 0")
                     lblIDIncorrecto.stringValue = "*El admin no se puede eliminar*"
                     lblIDIncorrecto.isHidden = false
                     lblBajaCorrecta.isHidden = true
                 }
             }else{
+                print("hay letras")
                 lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                 lblIDIncorrecto.isHidden = false
                 lblBajaCorrecta.isHidden = true
             }
         }else{
+            print("campos vacios")
             lblIDIncorrecto.stringValue = "*Inserta el ID que quieres eliminar*"
             lblIDIncorrecto.isHidden = false
             lblBajaCorrecta.isHidden = true
         }
         
+    }
+    
+    func sacarPosicionUsuario(idDeTxt:Int) -> Int{
+        for usuario in vc.usuarioLog {
+            if (usuario.id == idDeTxt) {
+                print("usuario ganaodr eliminar ",vc.usuarioLog.firstIndex(of: usuario)!)
+                print("usuario ganaodr eliminar ",usuario.id)
+                return vc.usuarioLog.firstIndex(of: usuario)!
+            }
+        }
+        return 0
     }
     
     @IBAction func irAModificar(_ sender: NSButton) {
@@ -203,10 +223,9 @@ class MenuAdmin: NSViewController {
                 idUsuarioAModificar = txtID.integerValue
                 
                 if checarExistenciaUsuario(id: idUsuarioAModificar){
-                    performSegue(withIdentifier: "irAModificar", sender: self)
                     lblIDIncorrecto.isHidden = true
                     lblBajaCorrecta.isHidden = true
-                    
+                    performSegue(withIdentifier: "irAModificar", sender: self)
                 }else{
                     lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIDIncorrecto.isHidden = false
@@ -226,6 +245,8 @@ class MenuAdmin: NSViewController {
     
     
     @IBAction func irAConsultar(_ sender: NSButton) {
+        lblIDIncorrecto.isHidden = true
+        lblBajaCorrecta.isHidden = true
         performSegue(withIdentifier: "irAConsultar", sender: self)
     }
     
@@ -251,7 +272,6 @@ class MenuAdmin: NSViewController {
     
     func buscarIdCliente(id:Int) -> Int{
         buscarClientes()
-       
         for cliente in clientes {
             if (clientes.firstIndex(of: cliente)  == id && cliente.email != "-1"){
                 
@@ -307,7 +327,7 @@ class MenuAdmin: NSViewController {
             destinationVC.modificar=false
             
         }else if segue.identifier=="irAConsultar"{
-            (segue.destinationController as! ConsultarUsuario).usuarioLog = vc.usuarioLog
+            (segue.destinationController as! ConsultarUsuario).usuarioLogTemp = vc.usuarioLog
             (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
         }else if segue.identifier=="irMenuComprasAdmin"{
             (segue.destinationController as! MenuCompras).vc = vc

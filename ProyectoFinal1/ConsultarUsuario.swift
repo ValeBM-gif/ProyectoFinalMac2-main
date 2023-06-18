@@ -12,6 +12,7 @@ class ConsultarUsuario: NSViewController {
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vcTabla: ViewController!
+    @objc dynamic var usuarioLogTemp:[UsuarioModelo] = []
     @objc dynamic var usuarioLog:[UsuarioModelo] = []
 
     @IBOutlet weak var tablaUsuarios: NSTableView!
@@ -19,7 +20,13 @@ class ConsultarUsuario: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        usuarioLog.remove(at: 0)
+        usuarioLogTemp.remove(at: 0)
+        usuarioLog = usuarioLogTemp
+        for usuario in usuarioLog{
+            if (usuario.nombre == "-1" && usuario.email == "-1"){
+                usuarioLog.remove(at: usuarioLog.firstIndex(of: usuario)!)
+            }
+        }
         tablaUsuarios.reloadData()
         
         let usuarioActual = vcTabla.usuarioLog
