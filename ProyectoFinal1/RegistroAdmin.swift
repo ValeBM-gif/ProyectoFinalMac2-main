@@ -9,8 +9,8 @@ import Cocoa
 
 class RegistroAdmin: NSViewController {
 
-    //TODO: Validar contraseñas seguras
     //TODO: Que al cambiar fondo/imagen de uno mismo cambie al cerrar ventana o no te deje cambiar tus propios cosis
+    //TODO: índices de eliminar, agregar y modificar estan mal
 
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!
@@ -74,9 +74,9 @@ class RegistroAdmin: NSViewController {
             lblTitulo.stringValue = "Modificar"
             btnRegistrar.title = "Modificar"
             
-            cmbRoles.selectItem(at: obtenerIndiceRol(id:idUsuarioAModificar))
-            cmbColorFondo.selectItem(at: obtenerIndiceColor(id:idUsuarioAModificar))
-            cmbImagenFondo.selectItem(at: obtenerIndiceImagen(id:idUsuarioAModificar))
+            cmbRoles.selectItem(at: obtenerIndiceRol(id:sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)))
+            cmbColorFondo.selectItem(at: obtenerIndiceColor(id:sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)))
+            cmbImagenFondo.selectItem(at: obtenerIndiceImagen(id:sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)))
             
             permitirCambioRol(usuarioLoggeado: vc.idUsuarioActual)
         }else{
@@ -92,9 +92,8 @@ class RegistroAdmin: NSViewController {
         
         lblCamposVacios.isHidden = true;
         
-        position = vc.usuarioLog.count
-        
-        print("valor de bool modificar: \(String(describing: modificar))")
+        position = vc.contadorGlobalUsuarios+1
+        //position = sacarPosicionUsuario(idDeTxt: vc.contadorGlobalUsuarios)+1
     }
     
     @IBAction func rolCambiado(_ sender: NSPopUpButton) {
@@ -115,12 +114,10 @@ class RegistroAdmin: NSViewController {
         }
     
     @IBAction func modficarORegistrarUsuario(_ sender: NSButton) {
-        print("entra a ibaction?????????")
         if modificar == true {
             modificarUsuario()
         }
         else {
-            print("entra a else de registrar usuario")
             registrarUsuario()
         }
     }
@@ -133,28 +130,28 @@ class RegistroAdmin: NSViewController {
             print("entra a modificar usuario hacer validaciones correctas:p")
             lblCamposVacios.isHidden = true
             
-            vc.usuarioLog[idUsuarioAModificar].nombre = txtNombre.stringValue
-            vc.usuarioLog[idUsuarioAModificar].apellidoMaterno = txtApellidoMaterno.stringValue
-            vc.usuarioLog[idUsuarioAModificar].apellidoPaterno = txtApellidoPaterno.stringValue
-            vc.usuarioLog[idUsuarioAModificar].email = txtEmail.stringValue
-            vc.usuarioLog[idUsuarioAModificar].telefono = txtTelefono.stringValue
-            vc.usuarioLog[idUsuarioAModificar].genero = txtGenero.stringValue
-            vc.usuarioLog[idUsuarioAModificar].fechaNacimiento = dtpFechaNacimiento.dateValue
-            vc.usuarioLog[idUsuarioAModificar].edad = edad
-            vc.usuarioLog[idUsuarioAModificar].contraseña = txtPassword.stringValue
-            vc.usuarioLog[idUsuarioAModificar].confirmarContraseña = txtConfirmarPassword.stringValue
-            vc.usuarioLog[idUsuarioAModificar].rol = rolSeleccionado
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].nombre = txtNombre.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].apellidoMaterno = txtApellidoMaterno.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].apellidoPaterno = txtApellidoPaterno.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].email = txtEmail.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].telefono = txtTelefono.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].genero = txtGenero.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].fechaNacimiento = dtpFechaNacimiento.dateValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].edad = edad
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].contraseña = txtPassword.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].confirmarContraseña = txtConfirmarPassword.stringValue
+            vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].rol = rolSeleccionado
             
-            if obtenerIndiceColor(id: idUsuarioAModificar) != 5{
-                vc.usuarioLog[idUsuarioAModificar].colorFondo = colorSeleccionado
+            if obtenerIndiceColor(id: sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)) != 5{
+                vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].colorFondo = colorSeleccionado
             }else{
-                vc.usuarioLog[idUsuarioAModificar].colorFondo = ""
+                vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].colorFondo = ""
             }
             
-            if obtenerIndiceImagen(id: idUsuarioAModificar) != 7{
-                vc.usuarioLog[idUsuarioAModificar].imgFondo = imgSeleccionada
+            if obtenerIndiceImagen(id: sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)) != 7{
+                vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].imgFondo = imgSeleccionada
             }else{
-                vc.usuarioLog[idUsuarioAModificar].colorFondo = ""
+                vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].colorFondo = ""
             }
             
             vcMenu.txtNombreUsuario.stringValue = "Bienvenide " + vc.usuarioLog[idDeUsuarioRecibido].nombre
@@ -166,41 +163,52 @@ class RegistroAdmin: NSViewController {
     }
     
     func autorellenarCampos(){
-            
             lblCamposVacios.isHidden = true
-        emailTemporal = vc.usuarioLog[idUsuarioAModificar].email
+        
+        emailTemporal = vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].email
                     
                     idDeUsuarioRecibido = vc.idUsuarioActual
                     
-                        txtNombre.stringValue = vc.usuarioLog[idUsuarioAModificar].nombre
-                        txtApellidoPaterno.stringValue=vc.usuarioLog[idUsuarioAModificar].apellidoPaterno
-                        txtApellidoMaterno.stringValue = vc.usuarioLog[idUsuarioAModificar].apellidoMaterno
-                        txtEmail.stringValue=vc.usuarioLog[idUsuarioAModificar].email
-                        txtTelefono.stringValue = vc.usuarioLog[idUsuarioAModificar].telefono
-                        txtGenero.stringValue=vc.usuarioLog[idUsuarioAModificar].genero
-                        dtpFechaNacimiento.dateValue = vc.usuarioLog[idUsuarioAModificar].fechaNacimiento
-                        lblEdad.stringValue = "Edad: \(vc.usuarioLog[idUsuarioAModificar].edad)"
-                        txtPassword.stringValue = vc.usuarioLog[idUsuarioAModificar].contraseña
-                        txtConfirmarPassword.stringValue = vc.usuarioLog[idUsuarioAModificar].contraseña
+                        txtNombre.stringValue = vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].nombre
+                        txtApellidoPaterno.stringValue=vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].apellidoPaterno
+                        txtApellidoMaterno.stringValue = vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].apellidoMaterno
+                        txtEmail.stringValue=vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].email
+                        txtTelefono.stringValue = vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].telefono
+                        txtGenero.stringValue=vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].genero
+                        dtpFechaNacimiento.dateValue = vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].fechaNacimiento
+                        lblEdad.stringValue = "Edad: \(vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].edad)"
+                        txtPassword.stringValue = vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].contraseña
+                        txtConfirmarPassword.stringValue = vc.usuarioLog[sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)].contraseña
         
-        cmbRoles.selectItem(at: obtenerIndiceRol(id: idUsuarioAModificar))
+        cmbRoles.selectItem(at: obtenerIndiceRol(id: sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)))
         
-        if obtenerIndiceColor(id: idUsuarioAModificar) != 5{
-            cmbColorFondo.selectItem(at: obtenerIndiceColor(id: idUsuarioAModificar))
+        if obtenerIndiceColor(id: sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)) != 5{
+            cmbColorFondo.selectItem(at: obtenerIndiceColor(id: sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)))
         }else{
             cmbColorFondo.selectItem(at:0)
         }
         
-        if obtenerIndiceImagen(id: idUsuarioAModificar) != 7{
-            cmbImagenFondo.selectItem(at: obtenerIndiceImagen(id: idUsuarioAModificar))
+        if obtenerIndiceImagen(id: sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)) != 7{
+            cmbImagenFondo.selectItem(at: obtenerIndiceImagen(id: sacarPosicionUsuario(idDeTxt: idUsuarioAModificar)))
         }else{
             cmbImagenFondo.selectItem(at:0)
         }
     }
     
+    func sacarPosicionUsuario(idDeTxt:Int) -> Int{
+        for usuario in vc.usuarioLog {
+            if (usuario.id == idDeTxt) {
+                print("usuario ganaodr ",vc.usuarioLog.firstIndex(of: usuario)!)
+                print("usuario ganaodr ",usuario.id)
+                return usuario.id
+            }
+        }
+        return 0
+    }
+    
     func obtenerIndiceRol(id:Int) -> Int{
        
-        switch vc.usuarioLog[id].rol {
+        switch vc.usuarioLog[sacarPosicionUsuario(idDeTxt: id)].rol {
         case "Admin": return 0
         case "Cliente": return 1
         case "Compras": return 2
@@ -242,18 +250,16 @@ class RegistroAdmin: NSViewController {
     }
     
     func registrarUsuario(){
-        print("entra a registrar usuario")
         calcularEdad()
         if hacerValidaciones(){
             lblCamposVacios.isHidden = true
             
             calcularEdad()
             
+            print("position antes de agregar",position)
             vc.usuarioLog.append(UsuarioModelo(position, txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad
                                                ,            txtPassword.stringValue, txtConfirmarPassword.stringValue, rolSeleccionado, dtpFechaNacimiento.dateValue, colorSeleccionado, imgSeleccionada))
             
-            print("Agregaste!!!!")
-            print("id de user agregado", position)
             dismiss(self)
         }
     }
@@ -390,11 +396,11 @@ class RegistroAdmin: NSViewController {
     
     func permitirCambioRol(usuarioLoggeado : Int) {
         
-        if idUsuarioAModificar == 1 {
+        if sacarPosicionUsuario(idDeTxt: idUsuarioAModificar) == 1 {
             lblRolAdmin.isHidden=false
             cmbRoles.isHidden = true
         }
-        else if vc.idUsuarioActual == idUsuarioAModificar {
+        else if vc.idUsuarioActual == sacarPosicionUsuario(idDeTxt: idUsuarioAModificar) {
             lblRolAdmin.isHidden=false
             cmbRoles.isHidden = true
         }

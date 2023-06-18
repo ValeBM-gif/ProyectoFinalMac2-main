@@ -10,6 +10,7 @@ import Cocoa
 class CrearVenta: NSViewController {
     
     //TODO: Arreglar operaciones total, la segunda vez ya no lo hace bien
+    //TODO: validaciones de letras???????
     
     @IBOutlet weak var imgAvatar: NSImageView!
     

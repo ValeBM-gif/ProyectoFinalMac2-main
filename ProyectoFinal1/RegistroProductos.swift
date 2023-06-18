@@ -39,7 +39,6 @@ class RegistroProductos: NSViewController {
         
         lblIncorrecto.isHidden = true
         
-        
         registerPosition = vc.contadorGlobalProductos+1
         print("count de producto log",vc.productoLog.count)
         
