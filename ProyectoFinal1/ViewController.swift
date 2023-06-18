@@ -25,6 +25,8 @@ class ViewController: NSViewController {
     var contadorIdVenta: Int = 1
     var usuarioEsAdmin: Bool = false
     
+    var contadorGlobalProductos:Int = 0
+    
     override func viewDidLoad() {
         
         usuarioLog.append(UsuarioModelo(0, "Default User", "def", "def", "def@g.com","4771234567", "no binarie", 20, "123", "123","Cliente",formatStringToDate(date: "2002/10/10"), "Rosa", "cat"))
@@ -38,7 +40,7 @@ class ViewController: NSViewController {
         productoLog.append(ProductoModelo(2, "Jugo Boing", "Jugo Boing de uva", "ml", 15, 10, "Jugos", 30, 4, "Vale"))
         productoLog.append(ProductoModelo(3, "Malteada", "Malteada sabor chocolate", "lt", 30, 20, "malteadas", 20, 4, "Vale"))
 
-
+        contadorGlobalProductos = productoLog.count-1;
 
         lblIncorrecto.isHidden=true
     }
