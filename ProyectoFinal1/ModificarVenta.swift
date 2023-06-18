@@ -18,6 +18,8 @@ class ModificarVenta: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lblIncorrecto.isHidden = true
+        //NO TIENE NS IMAGEVIEW
+        //vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
     }
         
     @IBAction func modificarVenta(_ sender: NSButton) {

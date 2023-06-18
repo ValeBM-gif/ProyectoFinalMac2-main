@@ -33,17 +33,8 @@ class MenuCompras: NSViewController {
             btnCerrarSesion.isHidden = false
         }
         
-        let usuarioActual = vc.usuarioLog
-        idUsuarioActual = vc.idUsuarioActual
-        
-        colorFondo(color: usuarioActual[idUsuarioActual].colorFondo)
-        if usuarioActual[idUsuarioActual].imgFondo != "Sin avatar"{
-            imgAvatar.isHidden = false
-            imgAvatar.image = NSImage(named: usuarioActual[idUsuarioActual].imgFondo)
-        }else{
-            imgAvatar.isHidden = true
-        }
-        
+        vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
+       
         lblIDIncorrecto.isHidden = true
         
         //let usuarioActual = vc.usuarioLog

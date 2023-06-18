@@ -15,6 +15,8 @@ class RegistroAdmin: NSViewController {
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!
     
+    @IBOutlet weak var imgAvatar: NSImageView!
+    
     var modificar:Bool = false
     var idDeUsuarioRecibido:Int = 0
     var idUsuarioAModificar:Int = 0
@@ -94,6 +96,7 @@ class RegistroAdmin: NSViewController {
         
         position = vc.contadorGlobalUsuarios+1
         //position = sacarPosicionUsuario(idDeTxt: vc.contadorGlobalUsuarios)+1
+        vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
     }
     
     @IBAction func rolCambiado(_ sender: NSPopUpButton) {
