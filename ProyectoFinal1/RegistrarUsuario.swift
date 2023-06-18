@@ -64,6 +64,9 @@ class RegistrarUsuario: NSViewController {
             lblClienteExistente.isHidden = false
         }
         
+        //FALTA EL NSVIEW DE LA IMAGEN
+        //vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
+        
     }
     
     @IBAction func rolCambiado(_ sender: NSPopUpButton) {

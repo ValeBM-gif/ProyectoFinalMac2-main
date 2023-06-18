@@ -728,6 +728,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iLH-Cs-4Lf">
+                                <rect key="frame" x="264" y="171" width="164" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="maq-2k-QiH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0v4-1y-bnJ">
                                 <rect key="frame" x="264" y="134" width="164" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -740,15 +749,6 @@
                                     </allowedInputSourceLocales>
                                 </secureTextFieldCell>
                             </secureTextField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iLH-Cs-4Lf">
-                                <rect key="frame" x="264" y="171" width="164" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="maq-2k-QiH">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WSL-k1-yr6">
                                 <rect key="frame" x="44" y="85" width="391" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1627,8 +1627,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="eK8-tn-YGD">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="708756463.86645103">
-                                        <!--2023-06-18 04:47:43 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="708779099.57132196">
+                                        <!--2023-06-18 11:04:59 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1756,6 +1756,7 @@
                         <outlet property="cmbImagenFondo" destination="T8s-Nf-dbj" id="2qb-2v-3C8"/>
                         <outlet property="cmbRoles" destination="My1-Es-EmF" id="nel-lM-TfQ"/>
                         <outlet property="dtpFechaNacimiento" destination="sh0-pf-bhv" id="UEx-WR-35t"/>
+                        <outlet property="imgAvatar" destination="d9A-dD-0JU" id="pbA-9X-oee"/>
                         <outlet property="lblCamposVacios" destination="a8L-w5-zsB" id="WxM-aa-rt2"/>
                         <outlet property="lblEdad" destination="i2M-MG-Tf6" id="Coi-HV-If1"/>
                         <outlet property="lblRolAdmin" destination="U6d-YH-teu" id="BWy-UM-ZF0"/>
@@ -1998,8 +1999,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="DvB-bx-Hyv">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="708756463.93923295">
-                                        <!--2023-06-18 04:47:43 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="708779099.66926897">
+                                        <!--2023-06-18 11:04:59 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3975,7 +3976,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4bW-Km-igk"/>
+        <segue reference="e4Z-6O-aLA"/>
         <segue reference="m5k-g2-VSf"/>
         <segue reference="gpR-nn-ApA"/>
         <segue reference="I0U-A5-VRi"/>
