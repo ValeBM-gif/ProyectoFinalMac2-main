@@ -15,7 +15,6 @@ class PedidosCliente: NSViewController {
     @IBOutlet var vcTablaPedidos: ViewController!
     @objc dynamic var idClienteAdmin: Int = -1
     @objc dynamic var ventasLog:[VentaModelo] = []
-    @objc dynamic var productosLog:[ProductoModelo] = []
     @objc dynamic var pedidosLog:[PedidoModelo] = []
     @objc dynamic var idsVentas:[Int] = []
     @objc dynamic var clientesLog:[UsuarioModelo] = []
@@ -103,9 +102,8 @@ class PedidosCliente: NSViewController {
                         }
                     }
                     
-                    
                     pedidosLog.append(PedidoModelo(tempId, String(ventasLog[i].idProducto),
-                        obtenerDescripcionProducto(id: ventasLog[i].idProducto)            ,String(ventasLog[i].cantidad), String(ventasLog[i].precioProducto), String(ventasLog[i].totalProducto), ventasLog[i].totalVenta))
+                        ventasLog[i].descripcionProducto,       String(ventasLog[i].cantidad), String(ventasLog[i].precioProducto), String(ventasLog[i].totalProducto), ventasLog[i].totalVenta))
                     
                 }
                 
@@ -123,15 +121,6 @@ class PedidosCliente: NSViewController {
            
         }
             
-    }
-    
-    func obtenerDescripcionProducto(id:Int) -> String{
-        for producto in productosLog{
-            if producto.id == id {
-                return producto.descripcion
-            }
-        }
-        return ""
     }
     
     @IBAction func CerrarVc(_ sender: NSButton) {
