@@ -145,7 +145,6 @@ class ViewController: NSViewController {
         }else if segue.identifier=="irVcCliente"{
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = self
             (segue.destinationController as! PedidosCliente).ventasLog = self.ventasLog
-            (segue.destinationController as! PedidosCliente).productosLog = self.productoLog
         }
     }
     
