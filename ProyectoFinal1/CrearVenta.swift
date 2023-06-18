@@ -169,19 +169,42 @@ class CrearVenta: NSViewController {
     
     @IBAction func agregarVenta(_ sender: NSButton) {
         if hacerValidaciones(){
-            ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
-                                         descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
+            print("Valores ventas temp")
+            print("id Venta",vc.contadorIdVenta)
+            print("id Vendedor",vc.idUsuarioActual)
+            print("nombre Venta",vcMenuVenta.nombreVendedor)
+            print("id Cliente",vcMenuVenta.idClienteABuscar)
+            print("nombre Cliente",vcMenuVenta.nombreClienteABuscar)
+            print("id Producto",vc.productoLog[encontrarPosicionProductoPorId()].id)
+            print("nombre Producto",vc.productoLog[encontrarPosicionProductoPorId()].nombre)
+            print("descricpión Producto",vc.productoLog[encontrarPosicionProductoPorId()].descripcion)
+            print("cantidad",txtCantidad.integerValue)
+            print("precio producto",vc.productoLog[encontrarPosicionProductoPorId()].precio)
             
-            ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[txtIdProducto.integerValue].id, nombreProducto: vc.productoLog[txtIdProducto.integerValue].nombre,
-                                         descripcionProducto: vc.productoLog[txtIdProducto.integerValue].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[txtIdProducto.integerValue].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
-
+            ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,
+                                         descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
+            
+            print("Pasa ventas temp")
+            ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,
+                                         descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
+            
+            print("Pasa ventas log")
+            
             ventasLogFinal.append(ventasLog[ventasLog.count-1])
-            
+            print("Pasa ventas log final")
           
             restarInventario(id: Int(txtIdProducto.stringValue)!)
+            print("Pasa restar inventario")
 
             vc.ventasLog = ventasLogFinal
+            print("Pasa ventas log toma lo de ventas log final")
         }
+    }
+    
+    func encontrarPosicionProductoPorId() -> Int {
+        guard let posicionProducto =  vc.productoLog.firstIndex(where: {$0.id == txtIdProducto.integerValue}) else {return -1}
+        
+        return posicionProducto
     }
     
     func validarCantidadMayorCero() -> Bool {
@@ -197,8 +220,8 @@ class CrearVenta: NSViewController {
     }
     
     func restarInventario(id:Int){
-        vc.productoLog[id].cantidad = vc.productoLog[id].cantidad - Int(txtCantidad.stringValue)!
-        print("cantidad del producto ahora es: " , vc.productoLog[id].cantidad)
+        vc.productoLog[encontrarPosicionProductoPorId()].cantidad = vc.productoLog[encontrarPosicionProductoPorId()].cantidad - Int(txtCantidad.stringValue)!
+        print("cantidad del producto ahora es: " , vc.productoLog[encontrarPosicionProductoPorId()].cantidad)
     }
     
     func validarIdProductoMayorCero() -> Bool {
@@ -249,7 +272,7 @@ class CrearVenta: NSViewController {
     }
     
     func checarCantidadValida(id:Int)->Bool{
-        if txtCantidad.integerValue <= vc.productoLog[id].cantidad{
+        if txtCantidad.integerValue <= vc.productoLog[id-1].cantidad{
             return true
         }
         return false
@@ -267,12 +290,11 @@ class CrearVenta: NSViewController {
     
     func calcularSubtotalVenta(id:Int)->Double{
         for venta in ventasTemp{
-            print(venta.idVenta , "idventa")
-            print(id, "ID A BUSCAR")
+            print(venta.idVenta , " idventa")
+            print(id, " ID A BUSCAR")
             if(venta.idVenta == id){
-                print("entro de nuevo")
-                print(txtIdProducto.integerValue)
-                multi = Double(txtCantidad.stringValue)! * ventasTemp[txtIdProducto.integerValue-1].precioProducto
+                print("venta a multiplicar", ventasTemp[venta.idVenta-1].nombreProducto)
+                multi = Double(txtCantidad.stringValue)! * ventasTemp[venta.idVenta-1].precioProducto
             }
         }
         subtotal = subtotal + multi
