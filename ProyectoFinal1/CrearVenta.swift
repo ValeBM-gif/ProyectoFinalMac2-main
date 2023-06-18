@@ -9,9 +9,6 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
-    //TODO: Arreglar operaciones total, la segunda vez ya no lo hace bien
-    //TODO: validaciones de letras???????
-    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vc: ViewController!
@@ -32,10 +29,6 @@ class CrearVenta: NSViewController {
     @objc dynamic var ventasTemp:[VentaModelo] = []
     @objc dynamic var ventasLog:[VentaModelo] = []
     
-    //TODO: CONECTAR VENTAS A PEDIDOS PARA QUE EL CLIENTE TENGA ACCESO
-    
-    //NORMALIZAR LOS IDS DE USUARIOS CON LOS IDS DE CLIENTES
-    
     var idProducto: Int=0
     var cantidadProducto: Int=0
     var totalProducto: Double=0
@@ -48,6 +41,7 @@ class CrearVenta: NSViewController {
     var totalVentas: Int = 0
     
     override func viewDidLoad() {
+        
         ventasLog = vc.ventasLog
         ventasTemp = vc.ventasLog
         ventasLogFinal = vc.ventasLog
@@ -64,50 +58,46 @@ class CrearVenta: NSViewController {
         lblNombreCliente.stringValue = vcMenuVenta.nombreClienteABuscar
         lblNombreVendedor.stringValue = vc.usuarioLog[vc.idUsuarioActual].nombre
         
-        colorFondo(color: vc.usuarioLog[vc.idUsuarioActual].colorFondo)
-        if vc.usuarioLog[vc.idUsuarioActual].imgFondo != "Sin avatar"{
-            imgAvatar.isHidden = false
-            imgAvatar.image = NSImage(named: vc.usuarioLog[vc.idUsuarioActual].imgFondo)
-        }else{
-            imgAvatar.isHidden = true
-        }
-        
-    }
-    
-    func colorFondo(color:String){
-        view.wantsLayer = true
-        if color=="Rosa"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
-        }else if color=="Morado"{
-            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
-        }else if color=="Amarillo"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
-        }else if color=="Verde"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
-        }else if color == "Azul"{
-            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
-        }else{
-            view.wantsLayer = false
-        }
+        vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
         
     }
     
     @IBAction func eliminarVenta(_ sender: NSButton) {
        
-            let selectedRow = tablaVentas.selectedRow
+        let selectedRow = tablaVentas.selectedRow
         
         if selectedRow >= 0 {
             
             ventasLog.remove(at: selectedRow)
             ventasLogFinal.remove(at: selectedRow+totalVentas)
-            
+            ventasTemp.remove(at: selectedRow+totalVentas)
             tablaVentas.reloadData()
             
-            // calcularSubtotalVenta(id: vc.contadorIdVenta)
+            calcularSubtotalVenta(id: vc.contadorIdVenta)
+            calcularTotalVenta()
             
-            // calcularTotalVenta()
+            for venta in ventasLog{
+                venta.subtotalVenta=subtotal
+                venta.totalVenta=total
+                ventasLogFinal[totalVentas+ventasLog.firstIndex(of: venta)!].subtotalVenta=subtotal
+                ventasLogFinal[totalVentas+ventasLog.firstIndex(of: venta)!].totalVenta=total
+            }
+
+            vc.ventasLog = ventasLogFinal
+            lblIncorrecto.isHidden=true;
+            
+        }else{
+            
+            if(ventasLog.count<1){
+                lblIncorrecto.stringValue = "*Primero debes agregar una venta*"
+            }
+            else{
+                lblIncorrecto.stringValue = "*Selecciona una venta de la tabla para eliminar*"
+            }
+            
+            lblIncorrecto.isHidden = false
+            return
         }
-    
 
     }
     
@@ -170,35 +160,18 @@ class CrearVenta: NSViewController {
     
     @IBAction func agregarVenta(_ sender: NSButton) {
         if hacerValidaciones(){
-            print("Valores ventas temp")
-            print("id Venta",vc.contadorIdVenta)
-            print("id Vendedor",vc.idUsuarioActual)
-            print("nombre Venta",vcMenuVenta.nombreVendedor)
-            print("id Cliente",vcMenuVenta.idClienteABuscar)
-            print("nombre Cliente",vcMenuVenta.nombreClienteABuscar)
-            print("id Producto",vc.productoLog[encontrarPosicionProductoPorId()].id)
-            print("nombre Producto",vc.productoLog[encontrarPosicionProductoPorId()].nombre)
-            print("descricpión Producto",vc.productoLog[encontrarPosicionProductoPorId()].descripcion)
-            print("cantidad",txtCantidad.integerValue)
-            print("precio producto",vc.productoLog[encontrarPosicionProductoPorId()].precio)
             
-            ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,
-                                         descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
+            ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
             
-            print("Pasa ventas temp")
-            ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,
-                                         descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
-            
-            print("Pasa ventas log")
-            
-            ventasLogFinal.append(ventasLog[ventasLog.count-1])
-            print("Pasa ventas log final")
-          
-            restarInventario(id: Int(txtIdProducto.stringValue)!)
-            print("Pasa restar inventario")
+            ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
+    
 
+            ventasLogFinal.append(ventasLog[ventasLog.count-1])
+           
+            restarInventario(id: Int(txtIdProducto.stringValue)!)
+            
             vc.ventasLog = ventasLogFinal
-            print("Pasa ventas log toma lo de ventas log final")
+           
         }
     }
     
@@ -216,7 +189,7 @@ class CrearVenta: NSViewController {
     }
     
     func encontrarPosicionProductoPorId() -> Int {
-        guard let posicionProducto =  vc.productoLog.firstIndex(where: {$0.id == txtIdProducto.integerValue}) else {return -1}
+        guard let posicionProducto =  vc.productoLog.firstIndex(where: {$0.id == txtIdProducto.integerValue}) else {return 0}
         
         return posicionProducto
     }
@@ -235,7 +208,6 @@ class CrearVenta: NSViewController {
     
     func restarInventario(id:Int){
         vc.productoLog[encontrarPosicionProductoPorId()].cantidad = vc.productoLog[encontrarPosicionProductoPorId()].cantidad - Int(txtCantidad.stringValue)!
-        print("cantidad del producto ahora es: " , vc.productoLog[encontrarPosicionProductoPorId()].cantidad)
     }
     
     func validarIdProductoMayorCero() -> Bool {
@@ -286,7 +258,7 @@ class CrearVenta: NSViewController {
     }
     
     func checarCantidadValida(id:Int)->Bool{
-        if txtCantidad.integerValue <= vc.productoLog[id-1].cantidad{
+        if txtCantidad.integerValue <= vc.productoLog[encontrarPosicionProductoPorId()].cantidad{
             return true
         }
         return false
@@ -296,36 +268,43 @@ class CrearVenta: NSViewController {
         for producto in vc.productoLog{
             if(producto.id == id){
                 totalProducto = producto.precio * txtCantidad.doubleValue
-                print(totalProducto, "vale tonte 2")
             }
         }
         return totalProducto
     }
     
     func calcularSubtotalVenta(id:Int)->Double{
+        
+        subtotal=0
+        total=0
+        
         for venta in ventasTemp{
-            print(venta.idVenta , " idventa")
-            print(id, " ID A BUSCAR")
+           
             if(venta.idVenta == id){
-                print("venta a multiplicar", ventasTemp[venta.idVenta-1].nombreProducto)
-                multi = Double(txtCantidad.stringValue)! * ventasTemp[venta.idVenta-1].precioProducto
+                multi += Double(venta.cantidad) * ventasTemp[ventasTemp.firstIndex(of: venta)!].precioProducto
             }
         }
-        subtotal = subtotal + multi
+        
+        subtotal = (total/1.16) + (multi/1.16)
         multi=0
-        lblSubtotalVenta.stringValue = ("$" + String(subtotal))
+        
+        lblSubtotalVenta.stringValue = ("$" + String(round(subtotal*100)/100.0))
+        
         return subtotal
     }
     
     func calcularTotalVenta()->Double{
-        total = subtotal + (subtotal * 0.16)
-        lblTotalVenta.stringValue = "$\(total)"
+        
+        total = round((subtotal*1.16)*100)/100.0
+        
+        lblTotalVenta.stringValue = "$\(round(total*100)/100.0)"
      
         return total
     }
 
     override func viewDidDisappear() {
-        vc.contadorIdVenta = vc.contadorIdVenta + 1
-        print(vc.contadorIdVenta)
+        if(ventasLog.count>0){
+            vc.contadorIdVenta += 1
+        }
     }
 }
