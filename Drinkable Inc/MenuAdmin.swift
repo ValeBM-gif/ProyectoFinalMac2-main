@@ -39,6 +39,8 @@ class MenuAdmin: NSViewController {
     var idUsuarioPedidos:Int=0
     var clientes:[UsuarioModelo]!
     var colorFondo:String = "Rosa"
+    var usuarioAModificar = UsuarioModelo(0, "", "", "", "", "", "", 0, "", "", "", Date(), "", "")
+    var usuarioAEliminar = UsuarioModelo(0, "", "", "", "", "", "", 0, "", "", "", Date(), "", "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,16 +142,21 @@ class MenuAdmin: NSViewController {
         if txtID.stringValue != ""{
             if soloHayNumerosEnTxtID(){
                 idUsuarioAEliminar = sacarPosicionUsuario(idDeTxt: txtID.integerValue)
-                if idUsuarioAEliminar != 0 {
-                    if idUsuarioActual != idUsuarioAEliminar{
+                if getUsuarioAEliminar().id != 0 {
+                    if idUsuarioActual != getUsuarioAEliminar().id{
                         if checarExistenciaUsuario(id: idUsuarioAEliminar){
-                            if(vc.usuarioLog[idUsuarioAEliminar].rol=="Cliente"){
-                                vc.usuarioLog[idUsuarioAEliminar].nombre="-1"
-                                vc.usuarioLog[idUsuarioAEliminar].email="-1"
+                            if usuarioAEliminar.rol=="Cliente"{
+                                if !validarClienteYaEliminado(){
+                                    usuarioAEliminar.nombre="-1"
+                                    usuarioAEliminar.email="-1"
+                                }
                             }else{
-                                vc.usuarioLog.remove(at: idUsuarioAEliminar)}
-                            lblBajaCorrecta.isHidden=false
-                            lblIDIncorrecto.isHidden=true
+                                vc.usuarioLog.remove(at: idUsuarioAEliminar)
+                                lblBajaCorrecta.isHidden=false
+                                lblIDIncorrecto.isHidden=true
+                            }
+                            //vc.contadorGlobalUsuarios -= 1
+                          
                         }else{
                             print("usuario no existe??")
                             lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
@@ -183,6 +190,20 @@ class MenuAdmin: NSViewController {
         
     }
     
+    func validarClienteYaEliminado()->Bool{
+        if usuarioAEliminar.nombre == "-1" && usuarioAEliminar.email == "-1"{
+            lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
+            lblIDIncorrecto.isHidden = false
+            lblBajaCorrecta.isHidden = true
+            return true
+        }else{
+            lblIDIncorrecto.isHidden = true
+            lblBajaCorrecta.isHidden = false
+            return false
+        }
+       
+    }
+    
     func sacarPosicionUsuario(idDeTxt:Int) -> Int{
         for usuario in vc.usuarioLog {
             if (usuario.id == idDeTxt) {
@@ -199,7 +220,8 @@ class MenuAdmin: NSViewController {
             if soloHayNumerosEnTxtID(){
                 idUsuarioAModificar = txtID.integerValue
                 
-                if checarExistenciaUsuario(id: idUsuarioAModificar){
+                if checarExistenciaUsuario(id: idUsuarioAModificar) && verificarUsuarioEsBorrado() == false{
+                    print("pasa checar existencia usuario")
                     lblIDIncorrecto.isHidden = true
                     lblBajaCorrecta.isHidden = true
                     performSegue(withIdentifier: "irAModificar", sender: self)
@@ -232,11 +254,22 @@ class MenuAdmin: NSViewController {
             return false
         }
         for UsuarioModelo in vc.usuarioLog {
-            if (UsuarioModelo.id == id) {
+            if (String(UsuarioModelo.id) == txtID.stringValue) {
                 return true
             }
         }
         return false
+    }
+    
+    func verificarUsuarioEsBorrado() -> Bool {
+        var usuarioEsModificado = false
+        if getUsuarioAModificar().nombre == "-1" || getUsuarioAModificar().email == "-1"{
+            usuarioEsModificado = true
+        }
+        else{
+            usuarioEsModificado = false
+        }
+        return usuarioEsModificado
     }
     
     func buscarClientes(){
@@ -272,6 +305,28 @@ class MenuAdmin: NSViewController {
         return false
     }
     
+    func getUsuarioAModificar() -> UsuarioModelo {
+        print (txtID.stringValue)
+        for usuario in vc.usuarioLog{
+            print(txtID.stringValue)
+            if(txtID.stringValue == String(usuario.id)){
+                usuarioAModificar = usuario
+            }
+        }
+        print (usuarioAModificar.nombre)
+        print ("wtffff")
+        return usuarioAModificar
+    }
+    
+    func getUsuarioAEliminar() -> UsuarioModelo {
+        for usuario in vc.usuarioLog{
+            if(txtID.stringValue == String(usuario.id)){
+                usuarioAEliminar = usuario
+            }
+        }
+        return usuarioAEliminar
+    }
+    
     
     
     func soloHayNumerosEnTxtID() -> Bool{
@@ -284,7 +339,7 @@ class MenuAdmin: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        txtID.stringValue = ""
+        
         if segue.identifier == "irAModificar" {
             
             (segue.destinationController as! RegistroAdmin).vc = self.vc
@@ -296,6 +351,8 @@ class MenuAdmin: NSViewController {
             destinationVC.idDeUsuarioRecibido = idUsuarioActual
             destinationVC.idUsuarioAModificar = idUsuarioAModificar
             destinationVC.modificar=true
+            destinationVC.usuarioAModificar = getUsuarioAModificar()
+            txtID.stringValue = ""
             
         }else if segue.identifier=="irARegistrar"{
             
