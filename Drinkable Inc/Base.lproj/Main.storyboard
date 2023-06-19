@@ -1627,8 +1627,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="eK8-tn-YGD">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="708810408.22134495">
-                                        <!--2023-06-18 19:46:48 +0000-->
+
+                                    <date key="date" timeIntervalSinceReferenceDate="708836870.52978504">
+                                        <!--2023-06-19 03:07:50 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1999,8 +2000,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="DvB-bx-Hyv">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="708810408.23213804">
-                                        <!--2023-06-18 19:46:48 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="708836870.71029198">
+                                        <!--2023-06-19 03:07:50 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3437,7 +3438,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BX0-FJ-GYh">
                                 <rect key="frame" x="386" y="35" width="308" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="*Selecciona un producto de la tabla para eliminar*" id="AG5-m6-Dzf">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="*Selecciona un producto de la tabla para eliminar*" id="AG5-m6-Dzf">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4013,7 +4014,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="e4Z-6O-aLA"/>
+        <segue reference="4bW-Km-igk"/>
         <segue reference="txk-Vd-39z"/>
         <segue reference="gpR-nn-ApA"/>
         <segue reference="I0U-A5-VRi"/>
