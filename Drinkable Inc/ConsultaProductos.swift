@@ -14,10 +14,8 @@ class ConsultaProductos: NSViewController {
     @IBOutlet weak var tablaProductos: NSTableView!
     @IBOutlet var vcTabla: ViewController!
     
-    //productos tiene los valores del productosLog del ViewController de MenuCompras
+
     @objc dynamic var productos:[ProductoModelo] = []
-    
-    //productoLog es el temporal
     @objc dynamic var productoLog:[ProductoModelo] = []
     @IBOutlet weak var lblError: NSTextField!
     
@@ -29,12 +27,9 @@ class ConsultaProductos: NSViewController {
         vcTabla.cambiarImagenYFondo(idUsuarioActual: vcTabla.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
     }
     
-
-    
     func obtenerProductos(){
         for i in 1..<productos.count{
             productoLog.append(productos[i])
-            print(productos[i].id)
         }
     }
     
@@ -44,41 +39,39 @@ class ConsultaProductos: NSViewController {
         
         if selectedRow >= 0 {
             
-            print("valor de selected row ",selectedRow)
-            print("producto a eliminar",productos[selectedRow+1].nombre)
+            productos.remove(at: selectedRow+1)
             
-            productos.remove(at: calcularIdDeProductoDeRowSeleccionada(i: selectedRow+1))
-            
-            print("productoLog a eliminar",productoLog[selectedRow].nombre)
-            productoLog.remove(at: calcularIdDeProductoDeRowSeleccionada(i: selectedRow+1)-1)
+            productoLog.remove(at: selectedRow)
        
             tablaProductos.reloadData()
             
-            lblError.isHidden = true;
+            lblError.isHidden = true
             
-        }else{
-            lblError.isHidden=false;
+        }else if (productoLog.count==0){
+            lblError.stringValue = "*No quedan productos por eliminar*"
+            lblError.isHidden = false
+            return
+        }
+        else{
+            lblError.stringValue = "*Selecciona un producto de la tabla para eliminar*"
+            lblError.isHidden=false
             return
         }
     
-    }
-    
-    func calcularIdDeProductoDeRowSeleccionada(i:Int)->Int{
-        var idProductoSeleccionado:Int = 0
-        idProductoSeleccionado = productos[i].id
-        return idProductoSeleccionado
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="regresarAMenuCompras"{
             (segue.destinationController as! MenuCompras).vc = vcTabla
             (segue.destinationController as! MenuCompras).vc.productoLog = productos
-            
         }
     }
     
-    @IBAction func cerrarViewController(_ sender: NSButton) {
+    override func viewDidDisappear() {
         performSegue(withIdentifier: "regresarAMenuCompras", sender: self)
+    }
+    
+    @IBAction func cerrarViewController(_ sender: NSButton) {
         dismiss(self)
     }
     
