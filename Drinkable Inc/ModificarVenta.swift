@@ -31,17 +31,22 @@ class ModificarVenta: NSViewController {
             cantidadNueva = txtCantidadModificar.integerValue
             if vcVentas.selectedRow >= 0 {
                 vcVentas.ventasLog[vcVentas.selectedRow].cantidad = cantidadNueva
-                //print("ventas log cantidad",)
                 vcVentas.ventasLogFinal[vcVentas.selectedRow+vcVentas.totalVentas].cantidad = cantidadNueva
                 vcVentas.ventasTemp[vcVentas.selectedRow+vcVentas.totalVentas].cantidad = cantidadNueva
+
                 
-                vcVentas.ventasLog[vcVentas.selectedRow].totalProducto = vcVentas.calcularTotalProducto(id: vcVentas.selectedRow)
+                vcVentas.ventasLog[vcVentas.selectedRow].totalProducto = vcVentas.ventasLog[vcVentas.selectedRow].precioProducto * Double(cantidadNueva)
                 
-                vcVentas.ventasLogFinal[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.calcularTotalProducto(id: vcVentas.selectedRow+vcVentas.totalVentas)
+                vcVentas.ventasLogFinal[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].precioProducto * Double(cantidadNueva)
                 
-                vcVentas.ventasTemp[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.calcularTotalProducto(id: vcVentas.selectedRow+vcVentas.totalVentas)
+                vcVentas.ventasTemp[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].precioProducto * Double(cantidadNueva)
                 
-                vcVentas.tablaVentas.reloadData()
+                
+                //vcVentas.ventasLogFinal[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.calcularTotalProducto(id: vcVentas.selectedRow+vcVentas.totalVentas)
+                
+                //vcVentas.ventasTemp[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = calcularTotalProducto(id: vcVentas.selectedRow+vcVentas.totalVentas)
+                
+                
                 
                 vcVentas.calcularSubtotalVenta(id: vcVentas.vc.contadorIdVenta)
                 vcVentas.calcularTotalVenta()
@@ -55,12 +60,21 @@ class ModificarVenta: NSViewController {
                     vcVentas.vc.ventasLog = vcVentas.ventasLogFinal
                 }
                 
-                //vcVentas.lblTotalVenta.stringValue = String(vcVentas.totalVentas)
-                //vcVentas.lblSubtotalVenta.stringValue = String(vcVentas.subtotalVenta)
+                vcVentas.tablaVentas.reloadData()
+                vcVentas.vc.ventasLog = vcVentas.ventasLogFinal
                 
             }
         }
         dismiss(self)
+    }
+    
+    func calcularTotalProducto(id:Int)->Double{
+        for producto in vcVentas.vc.productoLog{
+            if(producto.id == id){
+                vcVentas.totalProducto = producto.precio * Double(cantidadNueva)
+            }
+        }
+        return vcVentas.totalProducto
     }
     
     func hacerValidaciones()->Bool{
