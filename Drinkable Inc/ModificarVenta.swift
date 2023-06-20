@@ -42,14 +42,17 @@ class ModificarVenta: NSViewController {
                 vcVentas.vc.productoLog[vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].idProducto].cantidad -= txtCantidadModificar.integerValue
                 vcVentas.vc.productoLog[vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].idProducto].cantidad += cantidadAnterior
                 
-                vcVentas.calcularSubtotalVenta(id: vcVentas.vc.contadorIdVenta)
-                vcVentas.calcularTotalVenta()
+                let nuevoSubtotal = vcVentas.calcularSubtotalVenta(id: vcVentas.vc.contadorIdVenta)
+                let nuevoTotal = vcVentas.calcularTotalVenta()
                 
                 for venta in vcVentas.ventasLog{
-                    venta.subtotalVenta=vcVentas.subtotal
-                    venta.totalVenta=vcVentas.total
-                    vcVentas.ventasLogFinal[vcVentas.totalVentas+vcVentas.ventasLog.firstIndex(of: venta)!].subtotalVenta=vcVentas.subtotal
-                    vcVentas.ventasLogFinal[vcVentas.totalVentas+vcVentas.ventasLog.firstIndex(of: venta)!].totalVenta=vcVentas.total
+                    
+                    venta.subtotalVenta=nuevoSubtotal
+                    venta.totalVenta=nuevoTotal
+                    
+                    vcVentas.ventasLogFinal[vcVentas.totalVentas+vcVentas.ventasLog.firstIndex(of: venta)!].subtotalVenta=nuevoSubtotal
+                    
+                    vcVentas.ventasLogFinal[vcVentas.totalVentas+vcVentas.ventasLog.firstIndex(of: venta)!].totalVenta=nuevoTotal
                     
                     vcVentas.vc.ventasLog = vcVentas.ventasLogFinal
                 }
@@ -122,7 +125,7 @@ class ModificarVenta: NSViewController {
         }
         else{
             cantEsMayorCero = false
-            lblIncorrecto.stringValue = "Inserta una cantidad valida"
+            lblIncorrecto.stringValue = "Inserta una cantidad válida"
         }
         return cantEsMayorCero
     }
