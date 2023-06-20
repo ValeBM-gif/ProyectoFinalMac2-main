@@ -150,19 +150,8 @@ class RegistroAdmin: NSViewController {
             if usuarioAModificar.rol != "Admin"{
                 usuarioAModificar.rol = rolSeleccionado
             }
-            
-            
-            if obtenerIndiceColor() != 5{
                 usuarioAModificar.colorFondo = colorSeleccionado
-            }else{
-                usuarioAModificar.colorFondo = ""
-            }
-            
-            if obtenerIndiceImagen() != 7{
-                usuarioAModificar.imgFondo = imgSeleccionada
-            }else{
-                usuarioAModificar.imgFondo = ""
-            }
+                usuarioAModificar.imgFondo = imgSeleccionada           
             
             vcMenu.txtNombreUsuario.stringValue = "Bienvenide " + vc.usuarioLog[idDeUsuarioRecibido].nombre
             vcMenu.vc.cambiarImagenYFondo(idUsuarioActual: vcMenu.vc.idUsuarioActual, imgAvatar: vcMenu.imgAvatar, view: vcMenu.view)

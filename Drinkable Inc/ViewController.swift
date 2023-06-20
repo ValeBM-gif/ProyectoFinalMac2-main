@@ -114,7 +114,7 @@ class ViewController: NSViewController {
         view.wantsLayer = true
    
         if color=="Rosa"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9FF).cgColor
         }else if color=="Morado"{
             view.layer?.backgroundColor = NSColor(hex: 0xbe75fa).cgColor
         }else if color=="Amarillo"{
@@ -125,7 +125,7 @@ class ViewController: NSViewController {
             view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
         }else{
             view.layer?.backgroundColor = NSColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor
-            view.wantsLayer = false
+         
            
         }
         
