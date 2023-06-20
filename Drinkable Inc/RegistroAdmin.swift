@@ -80,8 +80,11 @@ class RegistroAdmin: NSViewController {
             btnRegistrar.title = "Modificar"
             
             cmbRoles.selectItem(at: obtenerIndiceRol())
+            rolSeleccionado = roles[obtenerIndiceRol()]
             cmbColorFondo.selectItem(at: obtenerIndiceColor())
+            colorSeleccionado = colores[obtenerIndiceColor()]
             cmbImagenFondo.selectItem(at: obtenerIndiceImagen())
+            imgSeleccionada = imagenesFondo[obtenerIndiceImagen()]
             
             permitirCambioRol(usuarioLoggeado: vc.idUsuarioActual)
         }else{
@@ -145,7 +148,10 @@ class RegistroAdmin: NSViewController {
             usuarioAModificar.edad = edad
             usuarioAModificar.contraseña = txtPassword.stringValue
             usuarioAModificar.confirmarContraseña = txtConfirmarPassword.stringValue
-            usuarioAModificar.rol = rolSeleccionado
+            if usuarioAModificar.rol != "Admin"{
+                usuarioAModificar.rol = rolSeleccionado
+            }
+            
             
             if obtenerIndiceColor() != 5{
                 usuarioAModificar.colorFondo = colorSeleccionado
@@ -156,7 +162,7 @@ class RegistroAdmin: NSViewController {
             if obtenerIndiceImagen() != 7{
                 usuarioAModificar.imgFondo = imgSeleccionada
             }else{
-                usuarioAModificar.colorFondo = ""
+                usuarioAModificar.imgFondo = ""
             }
             
             vcMenu.txtNombreUsuario.stringValue = "Bienvenide " + vc.usuarioLog[idDeUsuarioRecibido].nombre

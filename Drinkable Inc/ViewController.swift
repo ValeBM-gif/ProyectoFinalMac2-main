@@ -115,7 +115,7 @@ class ViewController: NSViewController {
         if color=="Rosa"{
             view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
         }else if color=="Morado"{
-            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
+            view.layer?.backgroundColor = NSColor(hex: 0xbe75fa).cgColor
         }else if color=="Amarillo"{
             view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
         }else if color=="Verde"{
