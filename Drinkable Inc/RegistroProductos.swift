@@ -32,7 +32,7 @@ class RegistroProductos: NSViewController {
     var registerPosition: Int = 0
     var modifyObject = ProductoModelo(0, "", "", "", 0, 0, "", 0, 0, "")
     var idDeProductoARegistrar: Int = 0
-    //@objc dynamic var productoLog: [ProductoModelo] = []
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +40,13 @@ class RegistroProductos: NSViewController {
         lblIncorrecto.isHidden = true
         
         registerPosition = vc.contadorGlobalProductos+1
-        print("count de producto log",vc.productoLog.count)
         
         if esRegistroProducto{
             lblTitulo.stringValue = "Registro de Productos"
             lblDescripcion.isHidden = false
            
         }else{
-            print("entraa a elseeeeeeeeeee")
+           
             llenarCampos()
             lblTitulo.stringValue = "Modificación de Productos"
             lblDescripcion.isHidden = true
@@ -83,7 +82,7 @@ class RegistroProductos: NSViewController {
                             lblIncorrecto.isHidden = false
                         }
                     }else{
-                        lblIncorrecto.stringValue = "*Inserta mas de 0 en costo o precio*"
+                        lblIncorrecto.stringValue = "*Inserta más de 0 en costo o precio*"
                         lblIncorrecto.isHidden = false
                     }
                 }else{
@@ -103,14 +102,11 @@ class RegistroProductos: NSViewController {
     }
     
     func registrarProducto(){
-        print("  position: ",registerPosition)
+       
         vc.productoLog.append(ProductoModelo(registerPosition, txtNombre.stringValue, txtDescripcion.stringValue, txtUnidad.stringValue, txtPrecio.doubleValue, txtCosto.doubleValue, txtCategoria.stringValue, txtCantidad.integerValue, vc.idUsuarioActual, vc.nombreUsuarioActual))
+        
         vc.contadorGlobalProductos += 1
-        print("count de producto log, después de registrar",vc.productoLog.count)
-        print("contador global de prod después de registrar",vc.contadorGlobalProductos)
-        for producto in vc.productoLog{
-            print("productos", producto.nombre)
-        }
+      
         dismiss(self)
     }
     
@@ -127,7 +123,7 @@ class RegistroProductos: NSViewController {
     }
     
     func llenarCampos(){
-        print("entra a llenar campos")
+        
         txtNombre.stringValue = modifyObject.nombre
         txtDescripcion.stringValue = modifyObject.descripcion
         txtUnidad.stringValue = modifyObject.unidad
@@ -135,6 +131,7 @@ class RegistroProductos: NSViewController {
         txtCosto.stringValue = String(modifyObject.costo)
         txtCategoria.stringValue = modifyObject.categoria
         txtCantidad.stringValue = String(modifyObject.cantidad)
+        
     }
     
     func validarCamposVacios()->Bool{
@@ -145,6 +142,15 @@ class RegistroProductos: NSViewController {
             txtCosto.stringValue == "" ||
             txtCategoria.stringValue == "" ||
             txtCantidad.stringValue == "" {
+            return false
+        } else if txtNombre.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtDescripcion.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtUnidad.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtPrecio.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtCosto.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtCategoria.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtCantidad.stringValue.trimmingCharacters(in: .whitespaces).isEmpty
+        {
             return false
         }
         return true

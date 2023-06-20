@@ -9,9 +9,6 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
-    //TODO: Al eliminar regrese cantidad al stock
-    //TODO: Al modificar actualice cantidad de stock
-    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vc: ViewController!
@@ -95,8 +92,6 @@ class CrearVenta: NSViewController {
             vc.ventasLog = ventasLogFinal
             lblIncorrecto.isHidden=true;
             
-            
-            //vc.productoLog[ventasLogFinal[selectedRow+totalVentas].idProducto].cantidad += cantidadAnterior
             
         }else{
             

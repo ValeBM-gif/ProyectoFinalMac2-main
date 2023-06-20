@@ -8,9 +8,6 @@
 import Cocoa
 
 class RegistroAdmin: NSViewController {
-
-    //TODO: Que al cambiar fondo/imagen de uno mismo cambie al cerrar ventana o no te deje cambiar tus propios cosis
-    //TODO: validacion de correo repetido en modificar
     
     @IBOutlet weak var vc: ViewController!
     @IBOutlet weak var vcMenu: MenuAdmin!
@@ -32,8 +29,6 @@ class RegistroAdmin: NSViewController {
     
     var emailTemporal:String = ""
     var edad:Int = 0
-    
-    //@objc dynamic var usuarioLog:[UsuarioModelo] = []
     
     @IBOutlet weak var lblTitulo: NSTextField!
     
@@ -63,7 +58,7 @@ class RegistroAdmin: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("")
+    
         cmbRoles.removeAllItems()
         cmbRoles.addItems(withTitles: roles)
         
@@ -119,7 +114,6 @@ class RegistroAdmin: NSViewController {
     @IBAction func imgCambiado(_ sender: NSPopUpButton) {
         let indiceSeleccionado = sender.indexOfSelectedItem
             imgSeleccionada = imagenesFondo[indiceSeleccionado]
-            
         }
     
     @IBAction func modficarORegistrarUsuario(_ sender: NSButton) {
@@ -130,7 +124,6 @@ class RegistroAdmin: NSViewController {
             registrarUsuario()
         }
     }
-    
     
     func modificarUsuario(){
         calcularEdad()
@@ -151,8 +144,7 @@ class RegistroAdmin: NSViewController {
                 usuarioAModificar.rol = rolSeleccionado
             }
                 usuarioAModificar.colorFondo = colorSeleccionado
-                usuarioAModificar.imgFondo = imgSeleccionada           
-            
+                usuarioAModificar.imgFondo = imgSeleccionada
             vcMenu.txtNombreUsuario.stringValue = "Bienvenide " + vc.usuarioLog[idDeUsuarioRecibido].nombre
             vcMenu.vc.cambiarImagenYFondo(idUsuarioActual: vcMenu.vc.idUsuarioActual, imgAvatar: vcMenu.imgAvatar, view: vcMenu.view)
             
@@ -252,7 +244,7 @@ class RegistroAdmin: NSViewController {
 
         edad = componentesFechaActual.year! - componentesFechaNacimiento.year!
 
-        // Comprobar si todavía no ha pasado su cumpleaños este año
+     
         if (componentesFechaNacimiento.month! > componentesFechaActual.month!) || (componentesFechaNacimiento.month! == componentesFechaActual.month! && componentesFechaNacimiento.day! > componentesFechaActual.day!) {
           edad -= 1
         }
@@ -323,28 +315,27 @@ class RegistroAdmin: NSViewController {
     
     func validarNoUsuarioRepetido()->Bool{
         if modificar{
-            print("entra a modificar en validación de usuario repetido")
+          
             emailTemporal = vc.usuarioLog[idUsuarioAModificar].email
-            print("email",emailTemporal)
+           
             if txtEmail.stringValue == emailTemporal{
-                print("txt tiene lo mismo que email temporal")
+               
                 return true
             }else{
                 for usuario in vc.usuarioLog {
                     if txtEmail.stringValue == usuario.email{
-                        print("coincide con algun email existente")
+                        
                         return false
                     }
                 }
                 return true
             }
         }else{
-            print("entra a registrar en validación de usuario repetido")
+           
             for usuario in vc.usuarioLog {
-                print("entra a for")
-                print("email usuario: ",usuario.email)
+               
                 if txtEmail.stringValue == usuario.email{
-                    print("coincide con algun email existente")
+                    
                     return false
                 }
             }
@@ -398,13 +389,6 @@ class RegistroAdmin: NSViewController {
     
     @IBAction func cerrarViewController(_ sender: NSButton) {
         dismiss(self)
-    }
-    
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier=="registrarUsuarioSegue"{
-            //(segue.destinationController as! RegistrarUsuario).vc = self
-        }
     }
  
 }

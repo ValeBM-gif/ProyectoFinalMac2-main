@@ -65,6 +65,7 @@ class RegistrarUsuario: NSViewController {
         lblClienteExistente.isHidden = true
         
         if(vcMenu=="Ventas"){
+            
             lblClienteExistente.isHidden = false
             vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
         }
@@ -87,11 +88,6 @@ class RegistrarUsuario: NSViewController {
                                 lblCamposVacios.isHidden = true
                                 
                                 vc.usuarioLog.append(UsuarioModelo(position,  txtNombre.stringValue, txtApellidoPaterno.stringValue, txtApellidoMaterno.stringValue, txtEmail.stringValue, txtTelefono.stringValue, txtGenero.stringValue, edad, txtPassword.stringValue, txtConfirmarPassword.stringValue, "Cliente",dtpFechaNacimiento.dateValue, colorSeleccionado, imgSeleccionada))
-                                
-                            print("Agregaste Cliente")
-                                print(colorSeleccionado)
-                                print(imgSeleccionada)
-                                print("id de user agregado", position)
 
                                 dismiss(self)
                             }else{
@@ -131,6 +127,14 @@ class RegistrarUsuario: NSViewController {
             txtGenero.stringValue == "" ||
             txtPassword.stringValue == "" ||
             txtConfirmarPassword.stringValue == "" {
+            return false
+        }
+        else if txtNombre.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtApellidoPaterno.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtApellidoMaterno.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtGenero.stringValue.trimmingCharacters(in: .whitespaces).isEmpty ||
+                    txtPassword.stringValue.trimmingCharacters(in: .whitespaces).isEmpty
+        {
             return false
         }
         return true
@@ -175,8 +179,7 @@ class RegistrarUsuario: NSViewController {
         let componentesFechaActual = calendario.dateComponents([.year, .month, .day], from: fechaActual)
 
         edad = componentesFechaActual.year! - componentesFechaNacimiento.year!
-
-        // Comprobar si todavía no ha pasado su cumpleaños este año
+        
         if (componentesFechaNacimiento.month! > componentesFechaActual.month!) || (componentesFechaNacimiento.month! == componentesFechaActual.month! && componentesFechaNacimiento.day! > componentesFechaActual.day!) {
           edad -= 1
         }
@@ -200,7 +203,6 @@ class RegistrarUsuario: NSViewController {
     }
         
     @IBAction func cerrarViewController(_ sender: NSButton) {
-       print("entra al ib action?")
         dismiss(self)
     }
     

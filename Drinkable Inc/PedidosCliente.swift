@@ -9,7 +9,6 @@ import Cocoa
 
 class PedidosCliente: NSViewController {
     
-    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vcTablaPedidos: ViewController!
@@ -31,7 +30,7 @@ class PedidosCliente: NSViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        idPedido=1;
+        idPedido = 1;
         tempId = -1;
         usuarios = vcTablaPedidos.usuarioLog
         clientes = []

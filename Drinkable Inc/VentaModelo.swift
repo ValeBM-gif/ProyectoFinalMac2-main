@@ -24,6 +24,7 @@ class VentaModelo: NSObject {
     @objc dynamic var ivaVenta:Double
     @objc dynamic var totalVenta:Double
     
+    
     init(idVenta: Int, idVendedor: Int, nombreVendedor: String, idCliente: Int, nombreCliente: String, idProducto: Int, nombreProducto: String, descripcionProducto:String,cantidad: Int, precioProducto: Double, totalProducto: Double, subtotalVenta: Double, ivaVenta: Double, totalVenta: Double) {
         self.idVenta = idVenta
         self.idVendedor = idVendedor

@@ -32,7 +32,6 @@ class ConsultarUsuario: NSViewController {
         vcTabla.cambiarImagenYFondo(idUsuarioActual: vcTabla.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
 
     }
-
     
     @IBAction func cerrarViewController(_ sender: NSButton) {
         dismiss(self)

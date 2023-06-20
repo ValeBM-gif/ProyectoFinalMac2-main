@@ -10,10 +10,8 @@ import Cocoa
 class ConsultaProductos: NSViewController {
     
     @IBOutlet weak var imgAvatar: NSImageView!
-    
     @IBOutlet weak var tablaProductos: NSTableView!
-    @IBOutlet var vcTabla: ViewController!
-    
+    @IBOutlet var vcTabla: ViewController!    
 
     @objc dynamic var productos:[ProductoModelo] = []
     @objc dynamic var productoLog:[ProductoModelo] = []

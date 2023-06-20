@@ -29,7 +29,6 @@ class ModificarProducto: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("llegamos aquí en algún momento?????????")
         
         lblIncorrecto.isHidden = true
         

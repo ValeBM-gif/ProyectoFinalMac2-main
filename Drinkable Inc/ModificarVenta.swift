@@ -8,8 +8,6 @@
 import Cocoa
 
 class ModificarVenta: NSViewController {
-
-    //TODO: validar cantidad existente
     
     @IBOutlet weak var imgAvatar: NSImageView!
     @IBOutlet var vcVentas: CrearVenta!
@@ -35,7 +33,6 @@ class ModificarVenta: NSViewController {
                 vcVentas.ventasLogFinal[vcVentas.selectedRow+vcVentas.totalVentas].cantidad = cantidadNueva
                 vcVentas.ventasTemp[vcVentas.selectedRow+vcVentas.totalVentas].cantidad = cantidadNueva
 
-                
                 vcVentas.ventasLog[vcVentas.selectedRow].totalProducto = vcVentas.ventasLog[vcVentas.selectedRow].precioProducto * Double(cantidadNueva)
                 
                 vcVentas.ventasLogFinal[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].precioProducto * Double(cantidadNueva)
@@ -119,6 +116,7 @@ class ModificarVenta: NSViewController {
     
     func validarCantidadMayorCero() -> Bool {
         var cantEsMayorCero = false
+        
         if((Int(txtCantidadModificar.stringValue)!) > 0){
             cantEsMayorCero = true
         }

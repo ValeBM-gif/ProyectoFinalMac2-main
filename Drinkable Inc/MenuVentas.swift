@@ -50,9 +50,10 @@ class MenuVentas: NSViewController {
                 idClienteABuscar = txtID.integerValue
                 lblIDIncorrecto.isHidden = true
                 if checarExistenciaCliente(id: idClienteABuscar){
-                    print("cliente existe")
-                        var idUsuarioPedidos:Int = txtID.integerValue
-                        var idCliente:Int=buscarIdCliente(id:idUsuarioPedidos)
+                  
+                    let idUsuarioPedidos:Int = txtID.integerValue
+                    let idCliente:Int = buscarIdCliente(id:idUsuarioPedidos)
+                    
                         if  idCliente != -1 && idCliente != 0
                         {
                             lblIDIncorrecto.isHidden = true
@@ -61,8 +62,6 @@ class MenuVentas: NSViewController {
                         }else{
                             lblIDIncorrecto.isHidden = false
                         }
-                        
-                    
                 }else{
                     txtID.stringValue=""
                     performSegue(withIdentifier: "irVcRegistroVentas", sender: self)
@@ -119,14 +118,14 @@ class MenuVentas: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        print("entra a prepare")
+        
         if segue.identifier == "irVcRegistroVentas" {
             let destinoVc = segue.destinationController as! RegistrarUsuario
             destinoVc.vcMenu = "Ventas"
             destinoVc.vc = vc
            
         }else if segue.identifier == "irVentas"{
-            print("entra a segue irvemtas")
+           
             let destinoVc = segue.destinationController as! CrearVenta
             destinoVc.vc = vc
             destinoVc.vcMenuVenta = self
