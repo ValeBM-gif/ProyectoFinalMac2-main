@@ -33,7 +33,7 @@ class RegistroAdmin: NSViewController {
     var emailTemporal:String = ""
     var edad:Int = 0
     
-    @objc dynamic var usuarioLog:[UsuarioModelo] = []
+    //@objc dynamic var usuarioLog:[UsuarioModelo] = []
     
     @IBOutlet weak var lblTitulo: NSTextField!
     
@@ -74,6 +74,7 @@ class RegistroAdmin: NSViewController {
         cmbImagenFondo.addItems(withTitles: imagenesFondo)
         
         if modificar{
+            print("pero si entra aquí????????????????????")
             autorellenarCampos()
             lblTitulo.stringValue = "Modificar"
             btnRegistrar.title = "Modificar"
@@ -84,6 +85,7 @@ class RegistroAdmin: NSViewController {
             
             permitirCambioRol(usuarioLoggeado: vc.idUsuarioActual)
         }else{
+            
             btnRegistrar.title = "Registrar"
             lblTitulo.stringValue = "Registro"
             
@@ -337,22 +339,21 @@ class RegistroAdmin: NSViewController {
                     if txtEmail.stringValue == usuario.email{
                         print("coincide con algun email existente")
                         return false
-                    }else{
-                        print("no coincide con algun email existente")
-                        return true
                     }
                 }
+                return true
             }
         }else{
             print("entra a registrar en validación de usuario repetido")
             for usuario in vc.usuarioLog {
+                print("entra a for")
+                print("email usuario: ",usuario.email)
                 if txtEmail.stringValue == usuario.email{
                     print("coincide con algun email existente")
                     return false
-                }else{
-                    return true
                 }
             }
+            return true
         }
         print("no debería llegar a este punto")
         return true
