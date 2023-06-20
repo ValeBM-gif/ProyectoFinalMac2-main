@@ -105,7 +105,7 @@ class CrearVenta: NSViewController {
     func hacerValidaciones() -> Bool{
         if validarCamposVacios(){
             if txtCantidad.stringValue != ""{
-                if txtIdProducto.stringValue != "" && validarIdProductoMayorCero(){
+                if validarIdProductoMayorCero(){
                     if soloHayNumerosEnCantidad() && validarCantidadMayorCero(){
                         cantidadProducto = txtCantidad.integerValue
                         lblIncorrecto.isHidden = true
@@ -137,12 +137,12 @@ class CrearVenta: NSViewController {
                             return false
                         }
                     }else{
-                        lblIncorrecto.stringValue = "*Inserta una cantidad valida"
+                        lblIncorrecto.stringValue = "*Inserta una cantidad válida"
                         lblIncorrecto.isHidden = false
                         return false
                     }
                 }else{
-                    lblIncorrecto.stringValue = "*Inserta un ID Valido*"
+                    lblIncorrecto.stringValue = "*Inserta un ID válido*"
                     lblIncorrecto.isHidden = false
                     return false
                 }
@@ -214,12 +214,12 @@ class CrearVenta: NSViewController {
     
     func validarIdProductoMayorCero() -> Bool {
         var idProductoMayorcero = false
-        if((Int(txtIdProducto.stringValue)!) > 0){
+        
+        if((Int(txtIdProducto.stringValue) ?? -1) > 0){
             idProductoMayorcero = true
         }
         else{
             idProductoMayorcero = false
-            lblIncorrecto.stringValue = "Inserta un id de producto valido"
         }
         return idProductoMayorcero
     }
