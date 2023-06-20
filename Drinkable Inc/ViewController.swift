@@ -112,6 +112,7 @@ class ViewController: NSViewController {
     
     func cambiarColorFondo(color:String, view:NSView){
         view.wantsLayer = true
+   
         if color=="Rosa"{
             view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
         }else if color=="Morado"{
@@ -123,7 +124,9 @@ class ViewController: NSViewController {
         }else if color == "Azul"{
             view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
         }else{
+            view.layer?.backgroundColor = NSColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor
             view.wantsLayer = false
+           
         }
         
     }
