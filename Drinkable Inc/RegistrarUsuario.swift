@@ -11,6 +11,7 @@ class RegistrarUsuario: NSViewController {
     
     @IBOutlet weak var vc: ViewController!
     
+    @IBOutlet weak var imgAvatar: NSImageView!
     @IBOutlet weak var txtNombre: NSTextField!
     @IBOutlet weak var txtApellidoPaterno: NSTextField!
     @IBOutlet weak var txtApellidoMaterno: NSTextField!
@@ -65,6 +66,7 @@ class RegistrarUsuario: NSViewController {
         
         if(vcMenu=="Ventas"){
             lblClienteExistente.isHidden = false
+            vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
         }
         
         cmbColorFondo.selectItem(at:0)

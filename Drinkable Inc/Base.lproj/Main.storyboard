@@ -1977,9 +1977,9 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftb-8i-0yx">
-                                <rect key="frame" x="112" y="84" width="226" height="16"/>
+                                <rect key="frame" x="112" y="84" width="230" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Ese cliente aun no existe. Regístralo!" id="QQT-Y6-5cK">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Ese cliente aún no existe. ¡Regístralo!" id="QQT-Y6-5cK">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2093,6 +2093,11 @@
                                     <action selector="imgCambiado:" target="5J5-hP-FVg" id="LM8-dQ-O8H"/>
                                 </connections>
                             </popUpButton>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RhI-xX-Pbe">
+                                <rect key="frame" x="395" y="548" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="J69-bC-F0X"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <connections>
@@ -2100,6 +2105,7 @@
                         <outlet property="cmbColorFondo" destination="e1Q-0Q-kXH" id="oyQ-Pj-l2d"/>
                         <outlet property="cmbImagenFondo" destination="UHt-1j-Zno" id="N1u-Oc-gSF"/>
                         <outlet property="dtpFechaNacimiento" destination="Zg5-lq-p5J" id="Y3T-cg-NUf"/>
+                        <outlet property="imgAvatar" destination="RhI-xX-Pbe" id="xb6-15-IgL"/>
                         <outlet property="lblCamposVacios" destination="Moc-f7-U4h" id="tLr-NL-fZ7"/>
                         <outlet property="lblClienteExistente" destination="ftb-8i-0yx" id="wul-js-Zuj"/>
                         <outlet property="lblEdad" destination="31r-Pc-J4i" id="y04-Zf-QV8"/>
@@ -2512,7 +2518,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LIQ-Qv-33s">
                                 <rect key="frame" x="89" y="182" width="66" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Atras" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vqf-ts-RpQ">
+                                <buttonCell key="cell" type="push" title="Atrás" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vqf-ts-RpQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2611,9 +2617,15 @@
                                     <action selector="modificarVenta:" target="af7-jW-jKM" id="27N-8s-p8f"/>
                                 </connections>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqO-kH-bjw">
+                                <rect key="frame" x="30" y="0.0" width="72" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="jade" id="Z8l-eX-QSh"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="imgAvatar" destination="fqO-kH-bjw" id="CF2-1K-4EL"/>
                         <outlet property="lblIncorrecto" destination="odt-mI-156" id="4SP-SC-CeR"/>
                         <outlet property="txtCantidadModificar" destination="tD6-D1-o5i" id="OxA-vx-ySa"/>
                     </connections>
@@ -2705,7 +2717,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-F6-zDe">
                                 <rect key="frame" x="321" y="203" width="66" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Atras" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0CM-dH-eSb">
+                                <buttonCell key="cell" type="push" title="Atrás" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0CM-dH-eSb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2873,7 +2885,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hFw-sj-oLy">
                                 <rect key="frame" x="224" y="27" width="175" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="a" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H2q-D1-84k">
+                                <buttonCell key="cell" type="push" title="Registrar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H2q-D1-84k">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2933,7 +2945,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XDB-6A-MWi">
                                 <rect key="frame" x="109" y="414" width="244" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Ese producto aun no existe. ¡Regístralo!" id="nHd-xi-Drb">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Ese producto aún no existe. ¡Regístralo!" id="nHd-xi-Drb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3554,7 +3566,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VEk-Nd-gjn">
-                                <rect key="frame" x="825" y="49" width="73" height="16"/>
+                                <rect key="frame" x="825" y="49" width="117" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="$0.00" id="eN1-3u-img">
                                     <font key="font" metaFont="system"/>
@@ -3581,7 +3593,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRC-Cu-TGG">
-                                <rect key="frame" x="438" y="49" width="56" height="16"/>
+                                <rect key="frame" x="438" y="49" width="107" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="$0.00" id="IF5-5P-DW6">
                                     <font key="font" metaFont="system"/>
@@ -4016,8 +4028,8 @@
         <segue reference="4bW-Km-igk"/>
         <segue reference="txk-Vd-39z"/>
         <segue reference="gpR-nn-ApA"/>
-        <segue reference="I0U-A5-VRi"/>
-        <segue reference="ENY-1T-7ik"/>
+        <segue reference="Rmp-cS-KSe"/>
+        <segue reference="Zvc-7A-yUL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1" width="384" height="384"/>

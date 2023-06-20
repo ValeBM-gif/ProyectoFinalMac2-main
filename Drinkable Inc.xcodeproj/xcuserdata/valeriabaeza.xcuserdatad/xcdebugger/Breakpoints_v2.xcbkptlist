@@ -40,7 +40,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6F444F80-408E-452D-8BE5-FDF3A6AB0F7C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProyectoFinal1/RegistroProductos.swift"
@@ -88,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2DEE2308-4FCC-40E4-86CD-6DC5C5D5731E"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProyectoFinal1/RegistroProductos.swift"
@@ -167,183 +167,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4412EEC1-CA31-4A13-9127-BEAB3FDFC3C9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Drinkable Inc/RegistroAdmin.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "modificarUsuario()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4412EEC1-CA31-4A13-9127-BEAB3FDFC3C9 - 3e2f3eec4b8e1623"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
-                  offsetFromSymbolStart = "4184">
-               </Location>
-               <Location
-                  uuid = "4412EEC1-CA31-4A13-9127-BEAB3FDFC3C9 - 3e2f3eec4b8e159d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "154"
-                  endingLineNumber = "154"
-                  offsetFromSymbolStart = "4228">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD770DEE-DB90-4B55-8652-BB3C0C4EDD17"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Drinkable Inc/RegistroAdmin.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "modificarUsuario()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7638A6D3-185D-4B9C-B637-51EE4AB96D9C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Drinkable Inc/RegistroAdmin.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "modificarUsuario()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8B925983-2218-4193-9CC3-6531AD55D7F5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Drinkable Inc/RegistroAdmin.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "modificarUsuario()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8B925983-2218-4193-9CC3-6531AD55D7F5 - 3e2f3eec4b8e16a7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "160"
-                  endingLineNumber = "160"
-                  offsetFromSymbolStart = "4500">
-               </Location>
-               <Location
-                  uuid = "8B925983-2218-4193-9CC3-6531AD55D7F5 - 3e2f3eec4b8e16a7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "160"
-                  endingLineNumber = "160"
-                  offsetFromSymbolStart = "4572">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AFBD6FDE-6013-42DA-9906-DB8AD1969E3D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Drinkable Inc/RegistroAdmin.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "modificarUsuario()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AFBD6FDE-6013-42DA-9906-DB8AD1969E3D - 3e2f3eec4b8e1765"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "4528">
-               </Location>
-               <Location
-                  uuid = "AFBD6FDE-6013-42DA-9906-DB8AD1969E3D - 3e2f3eec4b8e1765"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "4720">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2DB4BEC0-1D4A-4793-AB64-C52DBB03C622"
+            uuid = "3BBDA9E0-422D-4924-81D8-D437DD940E48"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -354,38 +178,6 @@
             endingLineNumber = "159"
             landmarkName = "modificarUsuario()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2DB4BEC0-1D4A-4793-AB64-C52DBB03C622 - 3e2f3eec4b8e1623"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
-                  offsetFromSymbolStart = "4184">
-               </Location>
-               <Location
-                  uuid = "2DB4BEC0-1D4A-4793-AB64-C52DBB03C622 - 3e2f3eec4b8e1623"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Drinkable_Inc.RegistroAdmin.modificarUsuario() -&gt; ()"
-                  moduleName = "Drinkable Inc"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/valeriabaeza/Documents/4%20SEM/OS%20X/os%203/ProyectoFinalMac2-main/Drinkable%20Inc/RegistroAdmin.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
-                  offsetFromSymbolStart = "4376">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -74,7 +74,7 @@ class RegistroAdmin: NSViewController {
         cmbImagenFondo.addItems(withTitles: imagenesFondo)
         
         if modificar{
-            print("pero si entra aquí????????????????????")
+           
             autorellenarCampos()
             lblTitulo.stringValue = "Modificar"
             btnRegistrar.title = "Modificar"
@@ -102,7 +102,6 @@ class RegistroAdmin: NSViewController {
         lblCamposVacios.isHidden = true;
         
         position = vc.contadorGlobalUsuarios+1
-        //position = sacarPosicionUsuario(idDeTxt: vc.contadorGlobalUsuarios)+1
         vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
     }
     
@@ -151,21 +150,11 @@ class RegistroAdmin: NSViewController {
             if usuarioAModificar.rol != "Admin"{
                 usuarioAModificar.rol = rolSeleccionado
             }
-            
-            
-            if obtenerIndiceColor() != 5{
                 usuarioAModificar.colorFondo = colorSeleccionado
-            }else{
-                usuarioAModificar.colorFondo = ""
-            }
-            
-            if obtenerIndiceImagen() != 7{
-                usuarioAModificar.imgFondo = imgSeleccionada
-            }else{
-                usuarioAModificar.imgFondo = ""
-            }
+                usuarioAModificar.imgFondo = imgSeleccionada           
             
             vcMenu.txtNombreUsuario.stringValue = "Bienvenide " + vc.usuarioLog[idDeUsuarioRecibido].nombre
+            vcMenu.vc.cambiarImagenYFondo(idUsuarioActual: vcMenu.vc.idUsuarioActual, imgAvatar: vcMenu.imgAvatar, view: vcMenu.view)
             
             dismiss(self)
         }
@@ -361,8 +350,7 @@ class RegistroAdmin: NSViewController {
             }
             return true
         }
-        print("no debería llegar a este punto")
-        return true
+        
     }
     
     func emailEsValido() -> Bool {
