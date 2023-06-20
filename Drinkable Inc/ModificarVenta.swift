@@ -19,6 +19,7 @@ class ModificarVenta: NSViewController {
     @IBOutlet weak var lblIncorrecto: NSTextField!
         
     var cantidadNueva: Int=0
+    var cantidadAnterior: Int=0
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +42,8 @@ class ModificarVenta: NSViewController {
                 
                 vcVentas.ventasTemp[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].precioProducto * Double(cantidadNueva)
                 
-                
-                //vcVentas.ventasLogFinal[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = vcVentas.calcularTotalProducto(id: vcVentas.selectedRow+vcVentas.totalVentas)
-                
-                //vcVentas.ventasTemp[vcVentas.selectedRow+vcVentas.totalVentas].totalProducto = calcularTotalProducto(id: vcVentas.selectedRow+vcVentas.totalVentas)
-                
-                
+                vcVentas.vc.productoLog[vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].idProducto].cantidad -= txtCantidadModificar.integerValue
+                vcVentas.vc.productoLog[vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].idProducto].cantidad += cantidadAnterior
                 
                 vcVentas.calcularSubtotalVenta(id: vcVentas.vc.contadorIdVenta)
                 vcVentas.calcularTotalVenta()
@@ -64,8 +61,9 @@ class ModificarVenta: NSViewController {
                 vcVentas.vc.ventasLog = vcVentas.ventasLogFinal
                 
             }
+            dismiss(self)
         }
-        dismiss(self)
+        
     }
     
     func calcularTotalProducto(id:Int)->Double{
@@ -132,6 +130,10 @@ class ModificarVenta: NSViewController {
     }
     
     func validarCantidadExistente()->Bool{
-        return true
+        if vcVentas.vc.productoLog[vcVentas.ventasLog[vcVentas.selectedRow+vcVentas.totalVentas].idProducto].cantidad+1 < txtCantidadModificar.integerValue{
+            return false
+        }else{
+            return true
+        }
     }
 }

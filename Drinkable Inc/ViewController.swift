@@ -37,8 +37,8 @@ class ViewController: NSViewController {
         usuarioLog.append(UsuarioModelo(4, "Vale", "Baeza", "Morales", "vale@gmail.com","4771234567", "femenino", 20, "123", "123","Compras", formatStringToDate(date: "2002/07/20"), "Azul", "trina"))
         
         productoLog.append(ProductoModelo(0, "Default Prod", "def", "def", 1, 1, "def", 1, 0, "def"))
-        productoLog.append(ProductoModelo(1, "Agua fig", "Agua de limón", "lt", 10, 5, "Aguas", 20, 4, "Vale"))
-        productoLog.append(ProductoModelo(2, "Jugo Boing", "Jugo Boing de uva", "ml", 15, 10, "Jugos", 30, 4, "Vale"))
+        productoLog.append(ProductoModelo(1, "Agua fig", "Agua de limón", "lt", 10, 5, "Aguas", 5, 4, "Vale"))
+        productoLog.append(ProductoModelo(2, "Jugo Boing", "Jugo Boing de uva", "ml", 15, 10, "Jugos", 10, 4, "Vale"))
         productoLog.append(ProductoModelo(3, "Malteada", "Malteada sabor chocolate", "lt", 30, 20, "malteadas", 20, 4, "Vale"))
 
         contadorGlobalProductos = productoLog.count-1;

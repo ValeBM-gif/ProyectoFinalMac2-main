@@ -2094,9 +2094,9 @@
                                 </connections>
                             </popUpButton>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RhI-xX-Pbe">
-                                <rect key="frame" x="395" y="548" width="48" height="48"/>
+                                <rect key="frame" x="332" y="616" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="J69-bC-F0X"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="trina" id="J69-bC-F0X"/>
                             </imageView>
                         </subviews>
                     </view>
@@ -2618,7 +2618,7 @@
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqO-kH-bjw">
-                                <rect key="frame" x="30" y="0.0" width="72" height="65"/>
+                                <rect key="frame" x="25" y="0.0" width="129" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="jade" id="Z8l-eX-QSh"/>
                             </imageView>

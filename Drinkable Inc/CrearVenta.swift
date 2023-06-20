@@ -9,6 +9,9 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
+    //TODO: Al eliminar regrese cantidad al stock
+    //TODO: Al modificar actualice cantidad de stock
+    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vc: ViewController!
@@ -40,6 +43,7 @@ class CrearVenta: NSViewController {
     var total:Double = 0
     var totalVentas: Int = 0
     var selectedRow:Int = 0
+    var cantidadAnterior:Int = 0
     
     override func viewDidLoad() {
         
@@ -64,10 +68,14 @@ class CrearVenta: NSViewController {
     }
     
     @IBAction func eliminarVenta(_ sender: NSButton) {
-       
+        
         selectedRow = tablaVentas.selectedRow
         
         if selectedRow >= 0 {
+            
+            let posicionProducto =  vc.productoLog.firstIndex(where: {$0.id == ventasLog[selectedRow].idProducto})!
+            
+            vc.productoLog[posicionProducto].cantidad += ventasLog[selectedRow].cantidad
             
             ventasLog.remove(at: selectedRow)
             ventasLogFinal.remove(at: selectedRow+totalVentas)
@@ -86,6 +94,9 @@ class CrearVenta: NSViewController {
 
             vc.ventasLog = ventasLogFinal
             lblIncorrecto.isHidden=true;
+            
+            
+            //vc.productoLog[ventasLogFinal[selectedRow+totalVentas].idProducto].cantidad += cantidadAnterior
             
         }else{
             
@@ -162,6 +173,8 @@ class CrearVenta: NSViewController {
     @IBAction func agregarVenta(_ sender: NSButton) {
         if hacerValidaciones(){
             
+            cantidadAnterior = txtCantidad.integerValue
+            
             ventasTemp.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: 0, subtotalVenta: 0, ivaVenta: 16, totalVenta: 0))
             
             ventasLog.append(VentaModelo(idVenta: vc.contadorIdVenta, idVendedor: vc.idUsuarioActual, nombreVendedor: vcMenuVenta.nombreVendedor, idCliente: vcMenuVenta.idClienteABuscar, nombreCliente:vcMenuVenta.nombreClienteABuscar, idProducto: vc.productoLog[encontrarPosicionProductoPorId()].id, nombreProducto: vc.productoLog[encontrarPosicionProductoPorId()].nombre,descripcionProducto: vc.productoLog[encontrarPosicionProductoPorId()].descripcion  ,cantidad: txtCantidad.integerValue, precioProducto: vc.productoLog[encontrarPosicionProductoPorId()].precio, totalProducto: calcularTotalProducto(id: idProducto), subtotalVenta: calcularSubtotalVenta(id: vc.contadorIdVenta), ivaVenta: 16, totalVenta: calcularTotalVenta()))
@@ -195,6 +208,8 @@ class CrearVenta: NSViewController {
         
         return posicionProducto
     }
+    
+    
     
     func validarCantidadMayorCero() -> Bool {
         var cantEsMayorCero = false
@@ -317,6 +332,7 @@ class CrearVenta: NSViewController {
             
             let destinationVC = segue.destinationController as! ModificarVenta;
             
+            destinationVC.cantidadAnterior = cantidadAnterior
             destinationVC.vcVentas = self
         }
     }
