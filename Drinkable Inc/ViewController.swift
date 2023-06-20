@@ -114,15 +114,15 @@ class ViewController: NSViewController {
         view.wantsLayer = true
    
         if color=="Rosa"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9FF).cgColor
+            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
         }else if color=="Morado"{
-            view.layer?.backgroundColor = NSColor(hex: 0xbe75fa).cgColor
+            view.layer?.backgroundColor = NSColor(hex: 0xCDB5FF).cgColor
         }else if color=="Amarillo"{
             view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
         }else if color=="Verde"{
             view.layer?.backgroundColor = NSColor(hex: 0xE2FFD9).cgColor
         }else if color == "Azul"{
-            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
+            view.layer?.backgroundColor = NSColor(hex: 0xB0E4FF).cgColor
         }else{
             view.layer?.backgroundColor = NSColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor
          

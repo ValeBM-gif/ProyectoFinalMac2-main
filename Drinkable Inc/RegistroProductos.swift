@@ -45,7 +45,7 @@ class RegistroProductos: NSViewController {
         if esRegistroProducto{
             lblTitulo.stringValue = "Registro de Productos"
             lblDescripcion.isHidden = false
-            btnEnviar.title = "Registrar"
+           
         }else{
             print("entraa a elseeeeeeeeeee")
             llenarCampos()
