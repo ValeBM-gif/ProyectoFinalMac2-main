@@ -9,9 +9,6 @@ import Cocoa
 
 class CrearVenta: NSViewController {
     
-    //TODO: Al eliminar regrese cantidad al stock
-    //TODO: Al modificar actualice cantidad de stock
-    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet var vc: ViewController!
@@ -82,21 +79,19 @@ class CrearVenta: NSViewController {
             ventasTemp.remove(at: selectedRow+totalVentas)
             tablaVentas.reloadData()
             
-            calcularSubtotalVenta(id: vc.contadorIdVenta)
-            calcularTotalVenta()
+            let nuevoSubtotal = calcularSubtotalVenta(id: vc.contadorIdVenta)
+            let nuevoTotal = calcularTotalVenta()
             
             for venta in ventasLog{
                 venta.subtotalVenta=subtotal
                 venta.totalVenta=total
-                ventasLogFinal[totalVentas+ventasLog.firstIndex(of: venta)!].subtotalVenta=subtotal
-                ventasLogFinal[totalVentas+ventasLog.firstIndex(of: venta)!].totalVenta=total
+                ventasLogFinal[totalVentas+ventasLog.firstIndex(of: venta)!].subtotalVenta=nuevoSubtotal
+                ventasLogFinal[totalVentas+ventasLog.firstIndex(of: venta)!].totalVenta=nuevoTotal
             }
 
             vc.ventasLog = ventasLogFinal
             lblIncorrecto.isHidden=true;
             
-            
-            //vc.productoLog[ventasLogFinal[selectedRow+totalVentas].idProducto].cantidad += cantidadAnterior
             
         }else{
             

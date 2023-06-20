@@ -17,6 +17,7 @@ class PedidoModelo: NSObject {
     @objc dynamic var totalProducto:String
     @objc dynamic var totalPedido:Double
     
+    
     init(_ id: Int,_ idProducto: String,_ descripcionProducto: String,_ cantidad: String,_ precioProducto: String,_ totalProducto: String,_ totalPedido: Double) {
         self.id = id
         self.idProducto = idProducto

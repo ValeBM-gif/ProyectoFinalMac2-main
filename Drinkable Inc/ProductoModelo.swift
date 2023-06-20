@@ -8,6 +8,7 @@
 import Cocoa
 
 class ProductoModelo: NSObject {
+    
     @objc dynamic var id: Int
     @objc dynamic var nombre:String
     @objc dynamic var descripcion:String
@@ -19,6 +20,7 @@ class ProductoModelo: NSObject {
     @objc dynamic var idComprador:Int
     @objc dynamic var nombreComprador:String
 
+   
     init(_ id: Int, _ nombre: String, _ descricpion: String, _ unidad: String, _ precio: Double, _ costo: Double, _ categoria: String, _ cantidad: Int, _ idComprador: Int, _ nombreComprador: String) {
         self.id = id
         self.nombre = nombre

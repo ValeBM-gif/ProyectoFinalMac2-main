@@ -25,7 +25,6 @@ class UsuarioModelo: NSObject {
     @objc dynamic var imgFondo: String
     
     
-    
     init(_ id: Int,_ nombre: String,_ apellidoPaterno: String,_ apellidoMaterno: String,_ email: String,_ telefono: String,_ genero: String,_ edad:Int,_ contraseña: String,_ confirmarContraseña: String,_ rol: String,_ fechaNacimiento: Date,_ colorFondo: String,_ imgFondo: String ) {
         self.id = id
         self.nombre = nombre

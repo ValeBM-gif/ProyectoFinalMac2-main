@@ -19,8 +19,6 @@ extension NSColor {
 
 class MenuAdmin: NSViewController {
     
-    //TODO: índices de eliminar, agregar y modificar estan mal
-    
     @IBOutlet weak var imgAvatar: NSImageView!
     
     @IBOutlet weak var vc: ViewController!
@@ -48,18 +46,12 @@ class MenuAdmin: NSViewController {
         let usuarioActual = vc.usuarioLog
         idUsuarioActual = vc.idUsuarioActual
         
-        print("aaaaaaaaa",usuarioActual[idUsuarioActual].colorFondo);
-        
         vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
         
         clientes = []
-        
-        print("MENU ADMIN: bool es admin? ",vc.usuarioEsAdmin)
-        
+   
         lblIDIncorrecto.isHidden = true
         lblBajaCorrecta.isHidden = true
-        
-        
         
         txtNombreUsuario.stringValue = "Bienvenide " + usuarioActual[idUsuarioActual].nombre
     }
@@ -155,34 +147,27 @@ class MenuAdmin: NSViewController {
                                 lblBajaCorrecta.isHidden=false
                                 lblIDIncorrecto.isHidden=true
                             }
-                            //vc.contadorGlobalUsuarios -= 1
-                          
                         }else{
-                            print("usuario no existe??")
                             lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                             lblIDIncorrecto.isHidden = false
                             lblBajaCorrecta.isHidden = true
                         }
                     }else{
-                        print("usuario se quiere matar")
                         lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                         lblIDIncorrecto.isHidden = false
                         lblBajaCorrecta.isHidden = true
                     }
                 }else{
-                    print("id usuario a eliminar es 0")
                     lblIDIncorrecto.stringValue = "*El admin no se puede eliminar*"
                     lblIDIncorrecto.isHidden = false
                     lblBajaCorrecta.isHidden = true
                 }
             }else{
-                print("hay letras")
                 lblIDIncorrecto.stringValue = "*Inserta un ID válido*"
                 lblIDIncorrecto.isHidden = false
                 lblBajaCorrecta.isHidden = true
             }
         }else{
-            print("campos vacios")
             lblIDIncorrecto.stringValue = "*Inserta el ID que quieres eliminar*"
             lblIDIncorrecto.isHidden = false
             lblBajaCorrecta.isHidden = true
@@ -201,14 +186,12 @@ class MenuAdmin: NSViewController {
             lblBajaCorrecta.isHidden = false
             return false
         }
-       
     }
     
     func sacarPosicionUsuario(idDeTxt:Int) -> Int{
         for usuario in vc.usuarioLog {
             if (usuario.id == idDeTxt) {
-                print("usuario ganaodr eliminar ",vc.usuarioLog.firstIndex(of: usuario)!)
-                print("usuario ganaodr eliminar ",usuario.id)
+            
                 return vc.usuarioLog.firstIndex(of: usuario)!
             }
         }
@@ -221,7 +204,7 @@ class MenuAdmin: NSViewController {
                 idUsuarioAModificar = txtID.integerValue
                 
                 if checarExistenciaUsuario(id: idUsuarioAModificar) && verificarUsuarioEsBorrado() == false{
-                    print("pasa checar existencia usuario")
+                    
                     lblIDIncorrecto.isHidden = true
                     lblBajaCorrecta.isHidden = true
                     performSegue(withIdentifier: "irAModificar", sender: self)
@@ -306,15 +289,14 @@ class MenuAdmin: NSViewController {
     }
     
     func getUsuarioAModificar() -> UsuarioModelo {
-        print (txtID.stringValue)
+       
         for usuario in vc.usuarioLog{
-            print(txtID.stringValue)
+          
             if(txtID.stringValue == String(usuario.id)){
                 usuarioAModificar = usuario
             }
         }
-        print (usuarioAModificar.nombre)
-        print ("wtffff")
+      
         return usuarioAModificar
     }
     
@@ -357,19 +339,29 @@ class MenuAdmin: NSViewController {
         }else if segue.identifier=="irARegistrar"{
             
             (segue.destinationController as! RegistroAdmin).vc = self.vc
+            
             let destinationVC = segue.destinationController as! RegistroAdmin;
+            
             destinationVC.modificar=false
             
         }else if segue.identifier=="irAConsultar"{
+            
             (segue.destinationController as! ConsultarUsuario).usuarioLogTemp = vc.usuarioLog
+            
             (segue.destinationController as! ConsultarUsuario).vcTabla = self.vc
+            
         }else if segue.identifier=="irMenuComprasAdmin"{
+            
             (segue.destinationController as! MenuCompras).vc = vc
             
         }else if segue.identifier=="irMenuVentasAdmin"{
+            
             (segue.destinationController as! MenuVentas).vc = vc
+      
         }else if segue.identifier=="irMenuPedidosAdmin"{
+            
             (segue.destinationController as! PedidosCliente).vcTablaPedidos = vc
+           
             (segue.destinationController as! PedidosCliente).idClienteAdmin = idCliente
             
             (segue.destinationController as! PedidosCliente).ventasLog = vc.ventasLog

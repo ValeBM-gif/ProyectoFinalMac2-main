@@ -24,7 +24,7 @@ class MenuCompras: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+       
         if vc.usuarioEsAdmin{
             btnAtras.isHidden = false
             btnCerrarSesion.isHidden = true
@@ -36,32 +36,8 @@ class MenuCompras: NSViewController {
         vc.cambiarImagenYFondo(idUsuarioActual: vc.idUsuarioActual, imgAvatar: imgAvatar, view: self.view)
        
         lblIDIncorrecto.isHidden = true
-        
-        //let usuarioActual = vc.usuarioLog
-        print("id de usuario actuaal ",vc.idUsuarioActual)
+                
         idUsuarioActual = vc.idUsuarioActual
-        
-        for producto in vc.productoLog{
-            print("productos", producto.nombre)
-        }
-        
-    }
-    
-    func colorFondo(color:String){
-        view.wantsLayer = true
-        if color=="Rosa"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBDEF9).cgColor
-        }else if color=="Morado"{
-            view.layer?.backgroundColor = NSColor(hex: 0xEEDEFB).cgColor
-        }else if color=="Amarillo"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
-        }else if color=="Verde"{
-            view.layer?.backgroundColor = NSColor(hex: 0xFBF4DE).cgColor
-        }else if color == "Azul"{
-            view.layer?.backgroundColor = NSColor(hex: 0xb2d1d1).cgColor
-        }else{
-            view.wantsLayer = false
-        }
         
     }
     

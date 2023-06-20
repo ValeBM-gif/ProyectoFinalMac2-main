@@ -56,7 +56,6 @@
 		D6767DD829F0BCEB00260906 /* RegistrarUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6767DD729F0BCEB00260906 /* RegistrarUsuario.swift */; };
 		D6815F902A08625F00827C58 /* MenuCompras.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F8F2A08625F00827C58 /* MenuCompras.swift */; };
 		D6815F922A08628600827C58 /* RegistroProductos.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F912A08628600827C58 /* RegistroProductos.swift */; };
-		D6815F942A0862AD00827C58 /* ModificarProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F932A0862AD00827C58 /* ModificarProducto.swift */; };
 		D6815F962A08653A00827C58 /* ProductoModelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815F952A08653A00827C58 /* ProductoModelo.swift */; };
 		D69426252A02B40800B47689 /* cuadrado2.png in Resources */ = {isa = PBXBuildFile; fileRef = D69426162A02B40800B47689 /* cuadrado2.png */; };
 		D69426262A02B40800B47689 /* gaton.png in Resources */ = {isa = PBXBuildFile; fileRef = D69426172A02B40800B47689 /* gaton.png */; };
@@ -132,7 +131,6 @@
 		D6767DD729F0BCEB00260906 /* RegistrarUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrarUsuario.swift; sourceTree = "<group>"; };
 		D6815F8F2A08625F00827C58 /* MenuCompras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCompras.swift; sourceTree = "<group>"; };
 		D6815F912A08628600827C58 /* RegistroProductos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroProductos.swift; sourceTree = "<group>"; };
-		D6815F932A0862AD00827C58 /* ModificarProducto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificarProducto.swift; sourceTree = "<group>"; };
 		D6815F952A08653A00827C58 /* ProductoModelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoModelo.swift; sourceTree = "<group>"; };
 		D69426162A02B40800B47689 /* cuadrado2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cuadrado2.png; sourceTree = "<group>"; };
 		D69426172A02B40800B47689 /* gaton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gaton.png; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 				D6767DC629F0AF9F00260906 /* ViewController.swift */,
 				D6767DC829F0AF9F00260906 /* Assets.xcassets */,
 				D6767DCA29F0AF9F00260906 /* Main.storyboard */,
-				D6815F932A0862AD00827C58 /* ModificarProducto.swift */,
 				D6815F912A08628600827C58 /* RegistroProductos.swift */,
 				D6815F8F2A08625F00827C58 /* MenuCompras.swift */,
 				D6AD02A22A0759A1001B5299 /* RegistroAdmin.swift */,
@@ -395,7 +392,6 @@
 				D6815F902A08625F00827C58 /* MenuCompras.swift in Sources */,
 				F1E5173F2A0885F300D766DD /* PedidosCliente.swift in Sources */,
 				D6815F922A08628600827C58 /* RegistroProductos.swift in Sources */,
-				D6815F942A0862AD00827C58 /* ModificarProducto.swift in Sources */,
 				D6767DC729F0AF9F00260906 /* ViewController.swift in Sources */,
 				2B3439EF2A08BC4F00E733D3 /* VentaModelo.swift in Sources */,
 				2B3439F32A08BF7800E733D3 /* CrearVenta.swift in Sources */,
