@@ -2565,7 +2565,7 @@
         <!--Modificar Venta-->
         <scene sceneID="R8i-ld-WM3">
             <objects>
-                <viewController id="af7-jW-jKM" customClass="ModificarVenta" customModule="Drinkable_Inc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Modificar Venta" id="af7-jW-jKM" customClass="ModificarVenta" customModule="Drinkable_Inc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="4oS-5U-egh">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
