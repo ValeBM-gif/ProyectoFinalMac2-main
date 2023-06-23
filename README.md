@@ -2,20 +2,25 @@
 CRUD de tienda de bebidas
 Proyecto realizado en equipo. 
 
-Lista de módulos y entidades:  
+Lista de módulos y entidades: 
+
 CRUD usuarios  
-CRUD productos  
+
+CRUD productos
+
 CRUD Compras  
+
 CRUD Ventas  
+
 CRUD Pedidos  
 
-Usuarios  
+Usuarios:  
 Administrador(todo)  
 Vendedores(ventas)  
 Compradores (productos, inventario)  
 Clientes(pedidos)  
 
-Proyecto de práctica React. 
+
 
 ### Capturas de pantalla:
 
