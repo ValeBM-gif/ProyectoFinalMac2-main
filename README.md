@@ -1,6 +1,6 @@
 # Drinkable Inc.
 CRUD de tienda de bebidas
-Proyecto realizado en equipo. 
+Proyecto realizado en equipo. <br>
 
 
 Lista de módulos y entidades: 
@@ -13,7 +13,7 @@ CRUD Compras 
 
 CRUD Ventas  
 
-CRUD Pedidos  
+CRUD Pedidos  <br>
 
 
 Usuarios: 
@@ -24,7 +24,7 @@ Vendedores(ventas) 
 
 Compradores (productos, inventario)  
 
-Clientes(pedidos)  
+Clientes(pedidos)  <br>
 
 
 
